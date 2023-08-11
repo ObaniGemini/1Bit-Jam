@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3mqyfu2srbxu"]
+
+[ext_resource type="Script" path="res://scenes/main/menu.gd" id="1_sqoof"]
+
+[node name="Main Menu" type="Node2D"]
+script = ExtResource("1_sqoof")
+
+[node name="Play" type="Button" parent="."]
+offset_left = 555.0
+offset_top = 308.0
+offset_right = 596.0
+offset_bottom = 339.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Play"
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 844.0
+offset_top = 477.0
+offset_right = 885.0
+offset_bottom = 508.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Quirt"
+
+[connection signal="pressed" from="Play" to="." method="play"]
+[connection signal="pressed" from="Quit" to="." method="quit"]

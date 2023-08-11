@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bfqgxnsp33bp6"]
+
+[node name="World" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 138.0
+offset_top = 42.0
+offset_right = 178.0
+offset_bottom = 68.0
+text = "WIP"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 213.0
+offset_top = 148.0
+offset_right = 253.0
+offset_bottom = 174.0
+text = "GAME IN CONSTRUCTION"
