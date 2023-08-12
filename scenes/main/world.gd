@@ -10,7 +10,7 @@ const LEVELS = [
 ]
 
 var level = -1;
-var level_scene = null
+var level_scene: Node = null
 
 func _ready():
 	next_level()
@@ -20,7 +20,8 @@ func load_level():
 		level_scene.queue_free() 
 	level_scene = load(LEVELS_PATH + LEVELS[level] + ".tscn").instantiate()
 	level_scene.finished.connect(next_level)
-	level_scene.game_over.connect(game_over)
+	if level_scene.has_signal("game_over"):
+		level_scene.game_over.connect(game_over)
 	add_child(level_scene)
 
 func next_level():
