@@ -67,9 +67,13 @@ _data = {
 [node name="Ship" type="CharacterBody2D"]
 script = ExtResource("1_qdgyp")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="HitboxWorldBoundary" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_3agus")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="HitboxReceiver" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxReceiver"]
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_3agus")
 
