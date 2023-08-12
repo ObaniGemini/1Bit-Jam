@@ -1,6 +1,6 @@
 extends "res://scenes/main/level.gd"
 
-const OFFSET = 20
+const OFFSET = -20
 
 func _ready():
 	$LabelSpell/AudioStreamPlayer.finished.connect($AsteroidSpawnTimer.start)
