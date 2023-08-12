@@ -19,7 +19,6 @@ b = Vector2(1280, 720)
 [node name="Level1" type="Node2D"]
 
 [node name="Ship" parent="." instance=ExtResource("1_776gt")]
-visible = false
 position = Vector2(635, 668)
 
 [node name="WorldBoundary" type="StaticBody2D" parent="."]
