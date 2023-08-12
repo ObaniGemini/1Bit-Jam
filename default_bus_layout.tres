@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=9 format=3 uid="uid://dla676avxw5q"]
+[gd_resource type="AudioBusLayout" load_steps=10 format=3 uid="uid://dla676avxw5q"]
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3a7d"]
 resource_name = "Compressor"
@@ -24,15 +24,25 @@ drive = 0.31
 
 [sub_resource type="AudioEffectPhaser" id="AudioEffectPhaser_cv2wu"]
 resource_name = "Phaser"
-feedback = 0.5
+rate_hz = 0.162
+feedback = 0.3
+depth = 0.4
 
 [sub_resource type="AudioEffectChorus" id="AudioEffectChorus_krrn2"]
 resource_name = "Chorus"
 
 [sub_resource type="AudioEffectDelay" id="AudioEffectDelay_sjbtm"]
 resource_name = "Delay"
+dry = 0.81
 tap1_delay_ms = 100.0
+tap1_level_db = -2.14
+tap1_pan = 0.34
 tap2_delay_ms = 150.0
+tap2_level_db = -7.4
+
+[sub_resource type="AudioEffectChorus" id="AudioEffectChorus_qq5yb"]
+resource_name = "Chorus"
+wet = 0.7
 
 [resource]
 bus/0/effect/0/effect = SubResource("AudioEffectCompressor_j3a7d")
@@ -75,3 +85,5 @@ bus/3/effect/1/effect = SubResource("AudioEffectChorus_krrn2")
 bus/3/effect/1/enabled = true
 bus/3/effect/2/effect = SubResource("AudioEffectDelay_sjbtm")
 bus/3/effect/2/enabled = true
+bus/3/effect/3/effect = SubResource("AudioEffectChorus_qq5yb")
+bus/3/effect/3/enabled = true
