@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://ca623cq3y78pu"]
 
-[ext_resource type="Script" path="res://scenes/enemies/asteroids/Asteroid.gd" id="1_7bhm2"]
-[ext_resource type="Texture2D" uid="uid://cmim0dqtddvn4" path="res://gfx/big_asteroid1.png" id="2_fv12v"]
+[ext_resource type="Script" path="res://scenes/enemies/asteroids/Asteroid.gd" id="1_f6g3g"]
+[ext_resource type="Texture2D" uid="uid://cmim0dqtddvn4" path="res://gfx/big_asteroid1.png" id="2_sjpn7"]
 
 [node name="BigAsteroid1" type="RigidBody2D"]
 gravity_scale = 0.0
-script = ExtResource("1_7bhm2")
+script = ExtResource("1_f6g3g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_fv12v")
+texture = ExtResource("2_sjpn7")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-17, -3, -21, -21, -13, -27, -2, -27, 1, -22, 1, -18, 10, -18, 10, -10, 18, -5, 20, -2, 20, 4, 18, 11, 21, 20, 21, 23, 16, 26, 2, 21, -5, 21, -14, 18, -20, 0)

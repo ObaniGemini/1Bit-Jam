@@ -37,7 +37,6 @@ func _ready():
 	var speed = randf_range(ASTEROID_SPEED_MIN, ASTEROID_SPEED_MAX)
 	var dir_angle = randf_range(1.0/6 * PI, 5.0 / 6 * PI)
 	var direction = Vector2(cos(dir_angle), sin(dir_angle))
-	print(direction, dir_angle)
 	linear_velocity = direction * speed
 	angular_velocity = randf_range(ASTEROID_ANGULAR_MIN, ASTEROID_ANGULAR_MAX)
 	
