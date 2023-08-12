@@ -4,14 +4,16 @@ const MENU_PATH = "res://scenes/main/menu.tscn"
 const LEVELS_PATH = "res://scenes/levels/" 
 const GAME_OVER = preload("res://scenes/main/death_screen.tscn")
 
-const LEVELS = ["Level1"]
+const LEVELS = [
+	"cinematic_1",
+	"Level1"
+]
 
 var level = -1;
 var level_scene = null
 
 func _ready():
 	next_level()
-	game_over()
 
 func load_level():
 	if level_scene != null:

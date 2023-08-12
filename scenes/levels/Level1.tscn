@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://gbmfkcaw7kc6"]
+[gd_scene load_steps=17 format=3 uid="uid://gbmfkcaw7kc6"]
 
 [ext_resource type="PackedScene" uid="uid://bw4siilxufwyk" path="res://scenes/char/ship.tscn" id="1_776gt"]
 [ext_resource type="Script" path="res://scenes/levels/Level1.gd" id="1_ep8oo"]
 [ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/square.png" id="3_3rh33"]
 [ext_resource type="PackedScene" uid="uid://bav4oj0w0t1o5" path="res://scenes/util/LabelSpell.tscn" id="3_yop4o"]
+[ext_resource type="AudioStream" uid="uid://olqj6xno6f4" path="res://sfx/voices/shepard/Ibetterbecareful.ogg" id="5_wf45x"]
+[ext_resource type="AudioStream" uid="uid://dmhgc5aw6vyyw" path="res://sfx/voices/robot/WARNING.ogg" id="6_wp1dq"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_2l01y"]
 b = Vector2(1280, 0)
@@ -37,6 +39,67 @@ size = Vector2(17.875, 737)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tv1yd"]
 size = Vector2(1484, 23)
+
+[sub_resource type="Animation" id="Animation_8gs68"]
+resource_name = "opening"
+length = 9.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sounds/Ibetterbecareful:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sounds/WARNING:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_44uyc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sounds/Ibetterbecareful:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sounds/WARNING:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dgn5p"]
+_data = {
+"RESET": SubResource("Animation_44uyc"),
+"opening": SubResource("Animation_8gs68")
+}
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_ep8oo")
@@ -101,5 +164,21 @@ position = Vector2(627, 764.5)
 shape = SubResource("RectangleShape2D_tv1yd")
 
 [connection signal="player_died" from="Ship" to="." method="_on_ship_player_died"]
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Ibetterbecareful" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("5_wf45x")
+bus = &"Comms"
+
+[node name="WARNING" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("6_wp1dq")
+bus = &"Robot Comms"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "opening"
+libraries = {
+"": SubResource("AnimationLibrary_dgn5p")
+}
+
 [connection signal="timeout" from="AsteroidSpawnTimer" to="." method="_on_asteroid_spawn_timer_timeout"]
 [connection signal="body_entered" from="AreaKillAsteroids" to="." method="_on_area_2d_body_entered"]

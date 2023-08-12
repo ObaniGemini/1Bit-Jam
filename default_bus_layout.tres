@@ -1,0 +1,77 @@
+[gd_resource type="AudioBusLayout" load_steps=9 format=3 uid="uid://n3ogax387km6"]
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3a7d"]
+resource_name = "Compressor"
+threshold = -9.7
+ratio = 16.7
+gain = 4.7
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_4m7bw"]
+resource_name = "LowPassFilter"
+
+[sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_30xvo"]
+resource_name = "HighPassFilter"
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_cr328"]
+resource_name = "Compressor"
+threshold = -30.0
+ratio = 18.7
+gain = 10.2
+
+[sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_qwcpj"]
+resource_name = "Distortion"
+drive = 0.31
+
+[sub_resource type="AudioEffectPhaser" id="AudioEffectPhaser_cv2wu"]
+resource_name = "Phaser"
+feedback = 0.5
+
+[sub_resource type="AudioEffectChorus" id="AudioEffectChorus_krrn2"]
+resource_name = "Chorus"
+
+[sub_resource type="AudioEffectDelay" id="AudioEffectDelay_sjbtm"]
+resource_name = "Delay"
+tap1_delay_ms = 100.0
+tap2_delay_ms = 150.0
+
+[resource]
+bus/0/effect/0/effect = SubResource("AudioEffectCompressor_j3a7d")
+bus/0/effect/0/enabled = true
+bus/1/name = &"Comms"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectLowPassFilter_4m7bw")
+bus/1/effect/0/enabled = true
+bus/1/effect/1/effect = SubResource("AudioEffectHighPassFilter_30xvo")
+bus/1/effect/1/enabled = true
+bus/1/effect/2/effect = SubResource("AudioEffectCompressor_cr328")
+bus/1/effect/2/enabled = true
+bus/1/effect/3/effect = SubResource("AudioEffectDistortion_qwcpj")
+bus/1/effect/3/enabled = true
+bus/2/name = &"Robot"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = 0.0
+bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectPhaser_cv2wu")
+bus/2/effect/0/enabled = true
+bus/2/effect/1/effect = SubResource("AudioEffectChorus_krrn2")
+bus/2/effect/1/enabled = true
+bus/2/effect/2/effect = SubResource("AudioEffectDelay_sjbtm")
+bus/2/effect/2/enabled = true
+bus/3/name = &"Robot Comms"
+bus/3/solo = false
+bus/3/mute = false
+bus/3/bypass_fx = false
+bus/3/volume_db = 0.0
+bus/3/send = &"Comms"
+bus/3/effect/0/effect = SubResource("AudioEffectPhaser_cv2wu")
+bus/3/effect/0/enabled = true
+bus/3/effect/1/effect = SubResource("AudioEffectChorus_krrn2")
+bus/3/effect/1/enabled = true
+bus/3/effect/2/effect = SubResource("AudioEffectDelay_sjbtm")
+bus/3/effect/2/enabled = true
