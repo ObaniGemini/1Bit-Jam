@@ -11,6 +11,12 @@ Enemies are invisible unless lighten.
 - One weapon that lights around it
 - A bomb that lights the whole screen for $x$ seconds
 
+Complementary Idea :
+- Two "weapons" on 1 button
+	1. headlight
+	2. Weapon
+- Bomb is collectable
+
 # Unorganized Ideas
 - ~Puzzle~
 - ~Bullet Hell~
