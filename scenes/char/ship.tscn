@@ -233,17 +233,14 @@ libraries = {
 
 [node name="lightopen" type="AudioStreamPlayer" parent="light"]
 stream = ExtResource("5_awld5")
-mix_target = 2
 
 [node name="lightoff" type="AudioStreamPlayer" parent="light"]
 stream = ExtResource("6_0be03")
 volume_db = -12.966
-mix_target = 2
 
 [node name="lighton" type="AudioStreamPlayer" parent="light"]
 stream = SubResource("AudioStreamOggVorbis_ubusw")
 volume_db = -11.8635
-mix_target = 2
 
 [node name="WeaponsPosition" type="Node2D" parent="."]
 
