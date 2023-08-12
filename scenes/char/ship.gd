@@ -24,12 +24,12 @@ var mode = Mode_Shoot
 func _ready():
 	if $light.visible:
 		$light.visible = false
-	select_sprite(mode)
+	select_sprite()
 
-func _process(delta):
+func _process(_delta):
 	$light.rotation = (position.x - CENTER) * -0.0005
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	velocity = move_dir * SPEED
 	
 	shoot()
@@ -53,14 +53,14 @@ func joy_axis_move(value):
 
 func switch():
 	mode = (mode + 1) % Mode_Count
-	select(mode)
-	select_sprite(mode)
+	select()
+	select_sprite()
 
-func select_sprite(mode):
+func select_sprite():
 	$Sprite/VesselHeadLights.visible = mode == Mode_Light
 	$Sprite/VesselWeapons.visible = mode != Mode_Light
 
-func select(mode):
+func select():
 	if mode == Mode_Light:
 		$light/AnimationPlayer.play("on")
 	else:

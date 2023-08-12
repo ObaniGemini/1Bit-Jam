@@ -7,9 +7,9 @@ const DEATH_TEXTS = [
 	"YOU'RE DEAD. MAY YOU REST IN PEACE"
 ]
 
-func tween_btn(obj, scale=Vector2(1, 1)):
+func tween_btn(obj, vec=Vector2(1, 1)):
 	var t = get_tree().create_tween().bind_node(self)
-	t.tween_property(obj, "scale", scale, randf_range(0.1, 0.3)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	t.tween_property(obj, "scale", vec, randf_range(0.1, 0.3)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
