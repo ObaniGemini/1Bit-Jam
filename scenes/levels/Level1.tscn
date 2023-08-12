@@ -143,9 +143,10 @@ lifetime = 11.0
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="ParallaxBackground"]
 position = Vector2(640, -16)
+amount = 12
 process_material = SubResource("ParticleProcessMaterial_4e25h")
 texture = ExtResource("3_3rh33")
-lifetime = 5.0
+lifetime = 15.0
 
 [node name="AsteroidSpawnTimer" type="Timer" parent="."]
 
