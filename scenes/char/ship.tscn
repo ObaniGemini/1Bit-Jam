@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bw4siilxufwyk"]
+[gd_scene load_steps=15 format=3 uid="uid://bw4siilxufwyk"]
 
 [ext_resource type="Script" path="res://scenes/char/ship.gd" id="1_qdgyp"]
 [ext_resource type="Texture2D" uid="uid://18qhhnfmswpo" path="res://gfx/vessel_headlights.png" id="2_3vup6"]
@@ -7,8 +7,12 @@
 [ext_resource type="AudioStream" uid="uid://dwsqmn41ricju" path="res://sfx/ship/lightsopen.ogg" id="5_awld5"]
 [ext_resource type="AudioStream" uid="uid://culptf18510tb" path="res://sfx/ship/lightsoff.ogg" id="6_0be03"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tbcdq"]
+radius = 13.0
+height = 38.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3agus"]
-size = Vector2(30, 40)
+size = Vector2(30, 32.5)
 
 [sub_resource type="Animation" id="Animation_wy7ql"]
 length = 0.001
@@ -183,18 +187,10 @@ sampling_rate = 44100.0
 packet_sequence = SubResource("OggPacketSequence_6fvcw")
 loop = true
 
-[node name="Ship" type="CharacterBody2D"]
+[node name="Ship" type="CharacterBody2D" groups=["player"]]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_qdgyp")
-
-[node name="HitboxWorldBoundary" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
-shape = SubResource("RectangleShape2D_3agus")
-
-[node name="HitboxReceiver" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxReceiver"]
-position = Vector2(0, 5)
-shape = SubResource("RectangleShape2D_3agus")
 
 [node name="Sprite" type="Node2D" parent="."]
 
@@ -203,6 +199,18 @@ texture = ExtResource("2_3vup6")
 
 [node name="VesselWeapons" type="Sprite2D" parent="Sprite"]
 texture = ExtResource("3_tm877")
+
+[node name="HitboxWorldBoundary" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_tbcdq")
+
+[node name="HitboxReceiver" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxReceiver"]
+position = Vector2(0, 4.75)
+shape = SubResource("RectangleShape2D_3agus")
 
 [node name="shoot_delay" type="Timer" parent="."]
 wait_time = 0.5
@@ -246,3 +254,5 @@ position = Vector2(14, -12)
 position = Vector2(-15, -12)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="body_entered" from="HitboxReceiver" to="." method="_on_hitbox_receiver_body_entered"]

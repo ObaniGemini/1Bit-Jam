@@ -7,6 +7,8 @@ const CENTER = 640
 const SPEED = 250.0
 const JOYSTICK_MOVE_THRESHOLD = 0.1
 
+signal player_died
+
 var move_dir : Vector2 = Vector2(0, 0)
 var shooting = false
 
@@ -87,3 +89,12 @@ func _input(event):
 	move_dir.x = clampf(move_dir.x, -1, 1)
 	move_dir.y = clampf(move_dir.y, -1, 1)
 
+func kill():
+	player_died.emit()
+
+
+func _on_hitbox_receiver_body_entered(body):
+	if body.is_in_group("asteroid"):
+		kill()
+	elif body.is_in_group("enemy"):
+		kill()

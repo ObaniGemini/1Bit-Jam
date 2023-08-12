@@ -100,5 +100,6 @@ shape = SubResource("RectangleShape2D_ir78t")
 position = Vector2(627, 764.5)
 shape = SubResource("RectangleShape2D_tv1yd")
 
+[connection signal="player_died" from="Ship" to="." method="_on_ship_player_died"]
 [connection signal="timeout" from="AsteroidSpawnTimer" to="." method="_on_asteroid_spawn_timer_timeout"]
 [connection signal="body_entered" from="AreaKillAsteroids" to="." method="_on_area_2d_body_entered"]

@@ -2,6 +2,8 @@ extends "res://scenes/main/level.gd"
 
 const OFFSET = -20
 
+signal game_over
+
 func _ready():
 	$LabelSpell/AudioStreamPlayer.finished.connect($AsteroidSpawnTimer.start)
 
@@ -15,3 +17,7 @@ func _on_asteroid_spawn_timer_timeout():
 func _on_area_kill_asteroids_body_entered(body):
 	if body.is_in_group("asteroid"):
 		body.queue_free()
+
+
+func _on_ship_player_died():
+	game_over.emit()
