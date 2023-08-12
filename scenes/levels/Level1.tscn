@@ -167,9 +167,11 @@ shape = SubResource("RectangleShape2D_tv1yd")
 
 [node name="Ibetterbecareful" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("5_wf45x")
+bus = &"Comms"
 
 [node name="WARNING" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("6_wp1dq")
+bus = &"Robot Comms"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "opening"
