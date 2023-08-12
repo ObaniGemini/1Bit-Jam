@@ -1,27 +1,91 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3mqyfu2srbxu"]
+[gd_scene load_steps=7 format=3 uid="uid://d3mqyfu2srbxu"]
 
 [ext_resource type="Script" path="res://scenes/main/menu.gd" id="1_sqoof"]
+[ext_resource type="Script" path="res://scenes/main/main_menu_button.gd" id="2_4s1g8"]
+[ext_resource type="Texture2D" uid="uid://c7j8vesv3h5pm" path="res://gfx/tri-rect.png" id="3_i4uqr"]
+[ext_resource type="Texture2D" uid="uid://beltxp63ajcnp" path="res://gfx/settings.png" id="4_1w1pd"]
+[ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/square.png" id="4_c040e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_va28y"]
+size = Vector2(320, 320)
 
 [node name="Main Menu" type="Node2D"]
 script = ExtResource("1_sqoof")
 
-[node name="Play" type="Button" parent="."]
-offset_left = 555.0
-offset_top = 308.0
-offset_right = 596.0
-offset_bottom = 339.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-text = "Play"
+[node name="Play" type="Area2D" parent="."]
+position = Vector2(640, 360)
+script = ExtResource("2_4s1g8")
 
-[node name="Quit" type="Button" parent="."]
-offset_left = 844.0
-offset_top = 477.0
-offset_right = 885.0
-offset_bottom = 508.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-text = "Quirt"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Play"]
+shape = SubResource("RectangleShape2D_va28y")
 
-[connection signal="pressed" from="Play" to="." method="play"]
-[connection signal="pressed" from="Quit" to="." method="quit"]
+[node name="Sprite2D" type="Sprite2D" parent="Play"]
+position = Vector2(0, -64)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_i4uqr")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Play"]
+position = Vector2(0, 64)
+scale = Vector2(0.5, -0.5)
+texture = ExtResource("3_i4uqr")
+
+[node name="Settings" type="Area2D" parent="."]
+position = Vector2(256, 360)
+script = ExtResource("2_4s1g8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Settings"]
+shape = SubResource("RectangleShape2D_va28y")
+
+[node name="Sprite2D" type="Sprite2D" parent="Settings"]
+position = Vector2(0, -64)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_1w1pd")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Settings"]
+position = Vector2(0, 64)
+scale = Vector2(0.5, -0.5)
+texture = ExtResource("4_1w1pd")
+
+[node name="Quit" type="Area2D" parent="."]
+position = Vector2(1024, 360)
+script = ExtResource("2_4s1g8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Quit"]
+shape = SubResource("RectangleShape2D_va28y")
+
+[node name="Node2D" type="Node2D" parent="Quit"]
+rotation = 0.785398
+
+[node name="Sprite2D" type="Sprite2D" parent="Quit/Node2D"]
+scale = Vector2(48, 128)
+texture = ExtResource("4_c040e")
+centered = false
+offset = Vector2(-0.5, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Quit/Node2D"]
+rotation = 3.14159
+scale = Vector2(48, 128)
+texture = ExtResource("4_c040e")
+centered = false
+offset = Vector2(-0.5, 0)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Quit/Node2D"]
+rotation = 1.5708
+scale = Vector2(48, 128)
+texture = ExtResource("4_c040e")
+centered = false
+offset = Vector2(-0.5, 0)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Quit/Node2D"]
+rotation = 4.71239
+scale = Vector2(48, 128)
+texture = ExtResource("4_c040e")
+centered = false
+offset = Vector2(-0.5, 0)
+
+[connection signal="selected" from="Play" to="." method="select_play"]
+[connection signal="unselected" from="Play" to="." method="unselect_play"]
+[connection signal="selected" from="Settings" to="." method="select_settings"]
+[connection signal="unselected" from="Settings" to="." method="unselect_settings"]
+[connection signal="selected" from="Quit" to="." method="select_quit"]
+[connection signal="unselected" from="Quit" to="." method="unselect_quit"]
