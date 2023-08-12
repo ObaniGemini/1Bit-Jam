@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://gbmfkcaw7kc6"]
+[gd_scene load_steps=7 format=3 uid="uid://gbmfkcaw7kc6"]
 
 [ext_resource type="PackedScene" uid="uid://bw4siilxufwyk" path="res://scenes/char/ship.tscn" id="1_776gt"]
+[ext_resource type="Script" path="res://scenes/levels/Level1.gd" id="1_ep8oo"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_2l01y"]
 b = Vector2(1280, 0)
@@ -17,9 +18,9 @@ a = Vector2(1280, 0)
 b = Vector2(1280, 720)
 
 [node name="Level1" type="Node2D"]
+script = ExtResource("1_ep8oo")
 
 [node name="Ship" parent="." instance=ExtResource("1_776gt")]
-visible = false
 position = Vector2(635, 668)
 
 [node name="WorldBoundary" type="StaticBody2D" parent="."]

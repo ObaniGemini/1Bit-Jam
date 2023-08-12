@@ -28,6 +28,7 @@ size = Vector2(10, 10)
 script = ExtResource("1_tvv31")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(8, 8)
 texture = ExtResource("1_4ekx0")
 
