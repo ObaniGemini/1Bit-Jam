@@ -4,11 +4,11 @@ class_name Asteroids
 
 # Generate a random asteroid with adapted sprite & collision shape
 
-const ASTEROID_SPEED_MIN = 100
-const ASTEROID_SPEED_MAX = 300
+const ASTEROID_SPEED_MIN = 20
+const ASTEROID_SPEED_MAX = 80
 
-const ASTEROID_ANGULAR_MIN = 2
-const ASTEROID_ANGULAR_MAX = 8
+const ASTEROID_ANGULAR_MIN = 0.5
+const ASTEROID_ANGULAR_MAX = 2
 
 static var big_asteroids = [
 	preload("res://scenes/enemies/asteroids/BigAsteroid1.tscn"),
@@ -25,13 +25,10 @@ static var mini_asteroids = [
 static func random_asteroid(big_asteroid_prob):
 	var big_asteroid = randf() < big_asteroid_prob
 	
-	if big_asteroid:
-		var shape = randi_range(0, len(big_asteroids) - 1)
-		return big_asteroids[shape].instantiate()
-	else:
-		var shape = randi_range(0, len(mini_asteroids) - 1)
-		return mini_asteroids[shape].instantiate()
-
+	var arr = mini_asteroids
+	if big_asteroid: arr = big_asteroids
+	
+	return arr.pick_random().instantiate()
 
 func _ready():
 	var speed = randf_range(ASTEROID_SPEED_MIN, ASTEROID_SPEED_MAX)
