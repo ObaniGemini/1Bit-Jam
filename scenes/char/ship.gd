@@ -22,6 +22,7 @@ var mode = Mode_Shoot
 func _ready():
 	if $light.visible:
 		$light.visible = false
+	select_sprite(mode)
 
 func _physics_process(delta):
 	velocity = move_dir * SPEED
@@ -48,6 +49,15 @@ func joy_axis_move(value):
 func switch():
 	mode = (mode + 1) % Mode_Count
 	select(mode)
+	select_sprite(mode)
+
+func select_sprite(mode):
+	if mode == Mode_Light:
+		$Sprite/VesselHeadLights.visible = true
+		$Sprite/VesselWeapons.visible = false
+	else:
+		$Sprite/VesselHeadLights.visible = false
+		$Sprite/VesselWeapons.visible = true
 
 func select(mode):
 	if mode == Mode_Light:

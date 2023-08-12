@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1ayiovksk41k"]
+[gd_scene load_steps=10 format=3 uid="uid://bw4siilxufwyk"]
 
-[ext_resource type="Texture2D" uid="uid://beltxp63ajcnp" path="res://gfx/settings.png" id="1_nssvd"]
 [ext_resource type="Script" path="res://scenes/char/ship.gd" id="1_qdgyp"]
+[ext_resource type="Texture2D" uid="uid://18qhhnfmswpo" path="res://gfx/vessel_headlights.png" id="2_3vup6"]
 [ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/square.png" id="3_66n71"]
+[ext_resource type="Texture2D" uid="uid://bgx1qxe6eg8gm" path="res://gfx/vessel_weapon.png" id="3_tm877"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3agus"]
 size = Vector2(30, 40)
@@ -72,9 +73,13 @@ script = ExtResource("1_qdgyp")
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_3agus")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.1, 0.2)
-texture = ExtResource("1_nssvd")
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="VesselHeadLights" type="Sprite2D" parent="Sprite"]
+texture = ExtResource("2_3vup6")
+
+[node name="VesselWeapons" type="Sprite2D" parent="Sprite"]
+texture = ExtResource("3_tm877")
 
 [node name="shoot_delay" type="Timer" parent="."]
 wait_time = 0.5
