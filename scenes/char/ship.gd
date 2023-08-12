@@ -4,7 +4,7 @@ const bullet = preload("res://scenes/char/bullet.tscn")
 const BULLET_OFFSET = 10
 
 
-const SPEED = 500.0
+const SPEED = 250.0
 const JOYSTICK_MOVE_THRESHOLD = 0.1
 
 var move_dir : Vector2 = Vector2(0, 0)
@@ -52,12 +52,8 @@ func switch():
 	select_sprite(mode)
 
 func select_sprite(mode):
-	if mode == Mode_Light:
-		$Sprite/VesselHeadLights.visible = true
-		$Sprite/VesselWeapons.visible = false
-	else:
-		$Sprite/VesselHeadLights.visible = false
-		$Sprite/VesselWeapons.visible = true
+	$Sprite/VesselHeadLights.visible = mode == Mode_Light
+	$Sprite/VesselWeapons.visible = mode != Mode_Light
 
 func select(mode):
 	if mode == Mode_Light:
