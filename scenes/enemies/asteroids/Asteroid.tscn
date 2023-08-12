@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b05777i4ho2gm"]
+
+[ext_resource type="Script" path="res://scenes/enemies/asteroids/Asteroid.gd" id="1_pv8v1"]
+
+[node name="Asteroids" type="RigidBody2D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+gravity_scale = 0.0
+linear_damp_mode = 1
+angular_damp_mode = 1
+script = ExtResource("1_pv8v1")
