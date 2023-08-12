@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://gbmfkcaw7kc6"]
+[gd_scene load_steps=10 format=3 uid="uid://gbmfkcaw7kc6"]
 
 [ext_resource type="PackedScene" uid="uid://bw4siilxufwyk" path="res://scenes/char/ship.tscn" id="1_776gt"]
 [ext_resource type="Script" path="res://scenes/levels/Level1.gd" id="1_ep8oo"]
@@ -31,6 +31,12 @@ orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 scale_max = 4.0
 
+[sub_resource type="Curve2D" id="Curve2D_5ajft"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -10, 0, 0, 0, 0, 1280, -10, 0, 0, 0, 0, 0, -10, 0, 0, 0, 0, 0, -10)
+}
+point_count = 4
+
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_ep8oo")
 
@@ -59,3 +65,11 @@ amount = 64
 process_material = SubResource("ParticleProcessMaterial_4e25h")
 texture = ExtResource("3_3rh33")
 lifetime = 5.0
+
+[node name="SpawnPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_5ajft")
+
+[node name="SpawnPosition" type="PathFollow2D" parent="SpawnPath"]
+position = Vector2(0, -10)
+
+[node name="AsteroidSpawnTimer" type="Timer" parent="."]
