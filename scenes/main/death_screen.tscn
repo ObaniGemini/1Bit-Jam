@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://dw458jpm37nfm"]
+
+[ext_resource type="Script" path="res://scenes/main/death_screen.gd" id="1_3eajh"]
+[ext_resource type="PackedScene" uid="uid://bav4oj0w0t1o5" path="res://scenes/util/LabelSpell.tscn" id="1_tv0q8"]
+[ext_resource type="Script" path="res://scenes/main/main_menu_button.gd" id="3_16i5e"]
+[ext_resource type="FontFile" uid="uid://chnp1si4jas1m" path="res://fonts/FFFFORWA.TTF" id="3_aimb3"]
+
+[sub_resource type="Theme" id="Theme_h451u"]
+default_font = ExtResource("3_aimb3")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_twab4"]
+size = Vector2(125, 40)
+
+[node name="DeathScreen" type="Node2D"]
+script = ExtResource("1_3eajh")
+
+[node name="LabelSpell" parent="." instance=ExtResource("1_tv0q8")]
+offset_right = 1280.0
+offset_bottom = 720.0
+text = "          "
+horizontal_alignment = 1
+vertical_alignment = 1
+lifetime = 0.0
+
+[node name="Retry" type="Area2D" parent="."]
+visible = false
+position = Vector2(480, 540)
+script = ExtResource("3_16i5e")
+
+[node name="Label" type="Label" parent="Retry"]
+offset_left = -75.0
+offset_top = -20.0
+offset_right = 75.0
+offset_bottom = 30.0
+theme = SubResource("Theme_h451u")
+theme_type_variation = &"HeaderLarge"
+text = "RETRY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Retry"]
+shape = SubResource("RectangleShape2D_twab4")
+
+[node name="Quit" type="Area2D" parent="."]
+visible = false
+position = Vector2(800, 540)
+script = ExtResource("3_16i5e")
+
+[node name="Label" type="Label" parent="Quit"]
+offset_left = -75.0
+offset_top = -20.0
+offset_right = 75.0
+offset_bottom = 30.0
+theme = SubResource("Theme_h451u")
+theme_type_variation = &"HeaderLarge"
+text = "QUIT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Quit"]
+shape = SubResource("RectangleShape2D_twab4")
+
+[connection signal="finished" from="LabelSpell" to="." method="_on_label_spell_finished"]

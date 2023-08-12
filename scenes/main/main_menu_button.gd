@@ -7,8 +7,9 @@ signal pressed
 var is_selected = false
 
 func select():
-	is_selected = true
-	emit_signal("selected")
+	if visible:
+		is_selected = true
+		emit_signal("selected")
 
 func unselect():
 	is_selected = false
@@ -30,5 +31,5 @@ func _input(event):
 		if event.pressed:
 			emit_signal("pressed")
 	
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("ui_accept") or event.is_action_pressed("shoot"):
 		emit_signal("pressed")
