@@ -15,12 +15,10 @@ func tween_btn(obj, scale=Vector2(1, 1)):
 func _ready():
 	$LabelSpell.reset_text(DEATH_TEXTS.pick_random())
 	$Retry.pressed.connect(retry)
-	$Retry.selected.connect($Quit.unselect)
 	$Retry.selected.connect(tween_btn.bind($Retry, Vector2(1.25, 1.25)))
 	$Retry.unselected.connect(tween_btn.bind($Retry))
 	
 	$Quit.pressed.connect(quit)
-	$Quit.selected.connect($Retry.unselect)
 	$Quit.selected.connect(tween_btn.bind($Quit, Vector2(1.25, 1.25)))
 	$Quit.unselected.connect(tween_btn.bind($Quit))
 
@@ -36,8 +34,10 @@ func _input(event):
 	
 	
 	if event.is_action_pressed("ui_left"):
+		$Quit.unselect()
 		$Retry.select()
 	elif event.is_action_pressed("ui_right"):
+		$Retry.unselect()
 		$Quit.select()
 
 
