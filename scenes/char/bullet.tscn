@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dcdj0vvs25cfd"]
+[gd_scene load_steps=10 format=3 uid="uid://dcdj0vvs25cfd"]
 
-[ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/square.png" id="1_4ekx0"]
 [ext_resource type="Script" path="res://scenes/char/bullet.gd" id="1_tvv31"]
+[ext_resource type="Texture2D" uid="uid://by53edq75c6m5" path="res://gfx/sphere.png" id="2_450ui"]
 
 [sub_resource type="Curve" id="Curve_m4wxa"]
 _data = [Vector2(0.438889, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.389474), 0.0, 0.0, 0, 0]
@@ -17,27 +17,65 @@ orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 angle_min = -282.4
 angle_max = 127.0
-scale_min = 4.0
-scale_max = 8.0
+scale_min = 0.02
+scale_max = 0.05
 scale_curve = SubResource("CurveTexture_r5upt")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sf7ue"]
-size = Vector2(10, 10)
+size = Vector2(24, 24)
+
+[sub_resource type="Animation" id="Animation_uvhbi"]
+resource_name = "enter"
+length = 0.25
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.05, 0.05)]
+}
+
+[sub_resource type="Animation" id="Animation_sejaq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(24, 24)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_08udk"]
+_data = {
+"RESET": SubResource("Animation_sejaq"),
+"enter": SubResource("Animation_uvhbi")
+}
 
 [node name="bullet" type="CharacterBody2D"]
 script = ExtResource("1_tvv31")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(8, 8)
-texture = ExtResource("1_4ekx0")
+scale = Vector2(24, 24)
+texture = ExtResource("2_450ui")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-amount = 16
+amount = 12
 process_material = SubResource("ParticleProcessMaterial_3q1pa")
-texture = ExtResource("1_4ekx0")
-lifetime = 0.1
+texture = ExtResource("2_450ui")
+lifetime = 0.15
 fixed_fps = 60
+visibility_rect = Rect2(-100, -100, 200, 1000)
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -45,9 +83,15 @@ fixed_fps = 60
 shape = SubResource("RectangleShape2D_sf7ue")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 one_shot = true
 autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "enter"
+libraries = {
+"": SubResource("AnimationLibrary_08udk")
+}
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

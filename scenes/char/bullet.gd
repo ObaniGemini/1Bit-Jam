@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-const SPEED = 1000.0
+const SPEED = 50.0
+const SPEED_INC = 2000.0
 
 func _ready():
 	velocity.y = -SPEED
@@ -9,6 +10,7 @@ func destroy():
 	queue_free()
 
 func _physics_process(delta):
+	velocity.y -= SPEED_INC * delta
 	move_and_slide()
 
 func _on_timer_timeout():
