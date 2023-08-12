@@ -1,8 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://bav4oj0w0t1o5"]
+[gd_scene load_steps=5 format=3 uid="uid://bav4oj0w0t1o5"]
 
+[ext_resource type="FontFile" uid="uid://chnp1si4jas1m" path="res://fonts/FFFFORWA.TTF" id="1_fojw1"]
 [ext_resource type="Script" path="res://scenes/util/LabelSpell.gd" id="1_gxitf"]
+[ext_resource type="AudioStream" uid="uid://sqgtwmjakvvr" path="res://sfx/tic.ogg" id="2_1lpnk"]
+
+[sub_resource type="Theme" id="Theme_7q8q3"]
+default_font = ExtResource("1_fojw1")
 
 [node name="LabelSpell" type="Label"]
 offset_right = 40.0
 offset_bottom = 23.0
+theme = SubResource("Theme_7q8q3")
+theme_type_variation = &"HeaderLarge"
 script = ExtResource("1_gxitf")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_1lpnk")
+volume_db = -20.25
+pitch_scale = 1.16
+mix_target = 2

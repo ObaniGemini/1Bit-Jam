@@ -32,3 +32,4 @@ func next():
 	idx += 1
 	timer.wait_time = randf_range(SPEED_MIN, SPEED_MAX)
 	timer.start()
+	$AudioStreamPlayer.play()
