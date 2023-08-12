@@ -41,7 +41,9 @@ func _ready():
 	linear_velocity = direction * speed
 	angular_velocity = randf_range(ASTEROID_ANGULAR_MIN, ASTEROID_ANGULAR_MAX)
 	
-
+	add_to_group("enemy")
+	add_to_group("asteroid")
+	
 	gravity_scale = 0
 	linear_damp_mode = RigidBody2D.DAMP_MODE_REPLACE
 	angular_damp_mode = RigidBody2D.DAMP_MODE_REPLACE

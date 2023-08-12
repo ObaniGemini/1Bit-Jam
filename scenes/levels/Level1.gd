@@ -10,3 +10,8 @@ func _on_asteroid_spawn_timer_timeout():
 	add_child(sc_ast)
 	var rand_x = randf_range(OFFSET, 1280-OFFSET)
 	sc_ast.position = Vector2(rand_x, OFFSET)
+
+
+func _on_area_kill_asteroids_body_entered(body):
+	if body.is_in_group("asteroid"):
+		body.queue_free()
