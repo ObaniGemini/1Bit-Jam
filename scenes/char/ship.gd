@@ -36,8 +36,8 @@ func shoot():
 		var b1 = bullet.instantiate()
 		var b2 = bullet.instantiate()
 		
-		b1.position = global_position - Vector2(BULLET_OFFSET, 0)
-		b2.position = global_position + Vector2(BULLET_OFFSET, 0)
+		b1.position = $WeaponsPosition/Left.global_position
+		b2.position = $WeaponsPosition/Right.global_position
 		get_parent().add_child(b1)
 		get_parent().add_child(b2)
 

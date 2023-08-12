@@ -103,3 +103,11 @@ centered = false
 libraries = {
 "": SubResource("AnimationLibrary_2drye")
 }
+
+[node name="WeaponsPosition" type="Node2D" parent="."]
+
+[node name="Right" type="Marker2D" parent="WeaponsPosition"]
+position = Vector2(14, -12)
+
+[node name="Left" type="Marker2D" parent="WeaponsPosition"]
+position = Vector2(-15, -12)
