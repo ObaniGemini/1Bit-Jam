@@ -7,14 +7,9 @@ const WORLD_PATH = "res://scenes/main/world.tscn"
 
 var selected = null
 
-func t_time():
-	return randf_range(TWEEN_TIME_MIN, TWEEN_TIME_MAX)
-
 func tween_btn(obj, prop, pos):
 	var t = get_tree().create_tween().bind_node(self)
 	t.tween_property(obj, prop, pos, randf_range(TWEEN_TIME_MIN, TWEEN_TIME_MAX)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
-
-
 
 
 func select_play():
