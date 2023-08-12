@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const bullet = preload("res://scenes/char/bullet.tscn")
 const BULLET_OFFSET = 10
-
+const CENTER = 640
 
 const SPEED = 250.0
 const JOYSTICK_MOVE_THRESHOLD = 0.1
@@ -23,6 +23,9 @@ func _ready():
 	if $light.visible:
 		$light.visible = false
 	select_sprite(mode)
+
+func _process(delta):
+	$light.rotation = (position.x - CENTER) * -0.0005
 
 func _physics_process(delta):
 	velocity = move_dir * SPEED
