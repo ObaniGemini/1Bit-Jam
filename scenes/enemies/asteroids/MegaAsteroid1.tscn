@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvph08tsmbehn"]
+
+[ext_resource type="Script" path="res://scenes/enemies/asteroids/Asteroid.gd" id="1_hwa60"]
+[ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/square.png" id="2_w0iie"]
+[ext_resource type="Texture2D" uid="uid://obequ1ektshd" path="res://gfx/megaAsteroid1.png" id="3_oxibd"]
+
+[node name="MegaAsteroid1" type="RigidBody2D"]
+position = Vector2(200, 200)
+gravity_scale = 0.0
+script = ExtResource("1_hwa60")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(32, 20)
+scale = Vector2(321.5, 268.5)
+texture = ExtResource("2_w0iie")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("3_oxibd")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(18, -105, 56, -97, 81, -78, 90, -61, 81, -44, 64, -22, 64, 13, 79, 44, 80, 74, 64, 103, 41, 118, 9, 114, 6, 88, 15, 70, 5, 51, -12, 46, -30, 46, -36, 56, -34, 82, -55, 90, -81, 82, -98, 39, -93, -16, -87, -34, -72, -50, -66, -82, -30, -105)
+
+[node name="TurretPositions" type="Node2D" parent="."]
+
+[node name="Pos1" type="Marker2D" parent="TurretPositions"]
+position = Vector2(64, -11)
+
+[node name="Pos2" type="Marker2D" parent="TurretPositions"]
+position = Vector2(-71, 85)
+
+[node name="Pos3" type="Marker2D" parent="TurretPositions"]
+position = Vector2(69, 94)
+
+[node name="Pos4" type="Marker2D" parent="TurretPositions"]
+position = Vector2(-92, -23)
+
+[node name="Pos5" type="Marker2D" parent="TurretPositions"]
+position = Vector2(-68, -72)
