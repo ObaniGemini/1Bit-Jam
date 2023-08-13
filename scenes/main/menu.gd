@@ -7,9 +7,9 @@ const WORLD_PATH = "res://scenes/main/world.tscn"
 
 var selected = 1
 
-@onready var tween_play = [null, null]
-@onready var tween_settings = [null, null]
-@onready var tween_quit = [null, null, null, null]
+var tween_play = [null, null]
+var tween_settings = [null, null]
+var tween_quit = [null, null, null, null]
 
 @onready var buttons = [$Settings, $Play, $Quit]
 

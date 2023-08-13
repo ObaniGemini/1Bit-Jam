@@ -8,7 +8,7 @@ var is_selected = false
 var disabled = false
 
 func select():
-	if visible:
+	if visible && !is_selected:
 		$AudioStreamPlayer2D.play()
 		is_selected = true
 		emit_signal("selected")
