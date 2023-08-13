@@ -70,8 +70,8 @@ var angular_velocity = 0
 var angular_accel = 0
 
 func _ready():
-	if $light.visible:
-		$light.visible = false
+	if $light/Sprite2D2.visible:
+		$light/Sprite2D2.visible = false
 	select_sprite()
 
 func set_camera_mode(m):

@@ -11,7 +11,7 @@ func destroy():
 	set_physics_process(false)
 	$AnimationPlayer.play("explode")
 	for body in $ExplodeArea.get_overlapping_bodies():
-		if body.is_in_group("enemy"):
+		if body.is_in_group("enemy") or body.is_in_group("destroyable"):
 			body.destroy()
 
 func _physics_process(delta):
