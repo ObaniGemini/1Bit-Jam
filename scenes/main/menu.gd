@@ -69,7 +69,14 @@ func _ready():
 
 
 func play():
-	get_tree().change_scene_to_file(WORLD_PATH)
+	$Play.disable(true)
+	$Settings.hide()
+	$Quit.hide()
+	
+	var t = get_tree().create_tween()
+	t.tween_property($Play, "rotation", -PI/2, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE)
+	t.tween_property($Play, "scale", Vector2(40, 40), 2.0).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
+	t.tween_callback(get_tree().change_scene_to_file.bind(WORLD_PATH))
 
 func quit():
 	print("Bye")
@@ -85,6 +92,7 @@ func select(i):
 	if (selected == 0 and i < 0) or (selected == (buttons.size() - 1) and i > 0):
 		return
 	
-	buttons[selected].unselect()
-	selected += i
-	buttons[selected].select()
+	if buttons[selected + i].visible:
+		buttons[selected].unselect()
+		selected += i
+		buttons[selected].select()

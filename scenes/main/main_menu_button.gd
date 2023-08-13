@@ -5,6 +5,7 @@ signal unselected
 signal pressed
 
 var is_selected = false
+var disabled = false
 
 func select():
 	if visible:
@@ -18,13 +19,21 @@ func unselect():
 		if body is Area2D:
 			body.unselect()
 
+func disable(b):
+	disabled = b
+	if disabled:
+		mouse_entered.disconnect(select)
+		mouse_exited.disconnect(unselect)
+	else:
+		mouse_entered.connect(select)
+		mouse_exited.connect(unselect)
+
 func _ready():
-	mouse_entered.connect(select)
-	mouse_exited.connect(unselect)
+	disable(false)
 
 
 func _input(event):
-	if !is_selected:
+	if !is_selected or disabled:
 		return
 	
 	if event is InputEventMouseButton:
