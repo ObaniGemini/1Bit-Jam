@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scenes/main/death_screen.gd" id="1_3eajh"]
 [ext_resource type="PackedScene" uid="uid://bav4oj0w0t1o5" path="res://scenes/util/LabelSpell.tscn" id="1_tv0q8"]
-[ext_resource type="Script" path="res://scenes/main/main_menu_button.gd" id="3_16i5e"]
 [ext_resource type="FontFile" uid="uid://chnp1si4jas1m" path="res://fonts/FFFFORWA.TTF" id="3_aimb3"]
+[ext_resource type="PackedScene" uid="uid://b0jj3g077iadv" path="res://scenes/main/main_menu_button.tscn" id="3_db84o"]
 
 [sub_resource type="Theme" id="Theme_h451u"]
 default_font = ExtResource("3_aimb3")
@@ -22,10 +22,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 lifetime = 0.0
 
-[node name="Retry" type="Area2D" parent="."]
+[node name="Retry" parent="." instance=ExtResource("3_db84o")]
 visible = false
 position = Vector2(480, 540)
-script = ExtResource("3_16i5e")
 
 [node name="Label" type="Label" parent="Retry"]
 offset_left = -75.0
@@ -41,10 +40,9 @@ vertical_alignment = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Retry"]
 shape = SubResource("RectangleShape2D_twab4")
 
-[node name="Quit" type="Area2D" parent="."]
+[node name="Quit" parent="." instance=ExtResource("3_db84o")]
 visible = false
 position = Vector2(800, 540)
-script = ExtResource("3_16i5e")
 
 [node name="Label" type="Label" parent="Quit"]
 offset_left = -75.0
