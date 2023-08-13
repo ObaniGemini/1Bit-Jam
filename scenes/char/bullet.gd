@@ -19,7 +19,5 @@ func _on_timer_timeout():
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("enemy"):
-		### TODO, not just queue_free
-		print("bullet")
 		body.destroy()
 		destroy()
