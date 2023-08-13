@@ -1,7 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://dcdj0vvs25cfd"]
+[gd_scene load_steps=23 format=3 uid="uid://dcdj0vvs25cfd"]
 
 [ext_resource type="Script" path="res://scenes/char/bullet.gd" id="1_tvv31"]
 [ext_resource type="Texture2D" uid="uid://by53edq75c6m5" path="res://gfx/sphere.png" id="2_450ui"]
+[ext_resource type="AudioStream" uid="uid://b7t7a6lj8tw78" path="res://sfx/ship/missile_shoot1.ogg" id="3_n0i1m"]
+[ext_resource type="AudioStream" uid="uid://dj05u1q7mn7gw" path="res://sfx/ship/missile_shoot2.ogg" id="4_t4glo"]
+[ext_resource type="AudioStream" uid="uid://7cvtbcy5lblb" path="res://sfx/ship/missile_shoot3.ogg" id="5_fjscr"]
+[ext_resource type="AudioStream" uid="uid://c45mhpaik0n0v" path="res://sfx/ship/missile_explode1.ogg" id="6_0ccyr"]
+[ext_resource type="AudioStream" uid="uid://vpe1mr2bicaj" path="res://sfx/ship/missile_explode2.ogg" id="7_71olp"]
+[ext_resource type="AudioStream" uid="uid://d360uvsw2fh6g" path="res://sfx/ship/missile_explode3.ogg" id="8_pfoqg"]
 
 [sub_resource type="Curve" id="Curve_m4wxa"]
 _data = [Vector2(0.438889, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.389474), 0.0, 0.0, 0, 0]
@@ -21,8 +27,35 @@ scale_min = 0.02
 scale_max = 0.05
 scale_curve = SubResource("CurveTexture_r5upt")
 
+[sub_resource type="Curve" id="Curve_x1o1j"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.05, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_8hcpi"]
+curve = SubResource("Curve_x1o1j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vnxgf"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 186.98
+initial_velocity_max = 339.75
+orbit_velocity_min = -0.5
+orbit_velocity_max = 0.5
+linear_accel_min = -200.0
+linear_accel_max = 200.0
+radial_accel_min = -1000.0
+radial_accel_max = -500.0
+scale_min = 0.01
+scale_max = 0.08
+scale_curve = SubResource("CurveTexture_8hcpi")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sf7ue"]
 size = Vector2(24, 24)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b1tyr"]
+radius = 32.0
 
 [sub_resource type="Animation" id="Animation_sejaq"]
 length = 0.001
@@ -37,6 +70,54 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(24, 24)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles2D2:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GPUParticles2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("explode:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_uvhbi"]
@@ -55,12 +136,122 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0.05, 0.05)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_3opxd"]
+resource_name = "explode"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D2:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("explode:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_08udk"]
 _data = {
 "RESET": SubResource("Animation_sejaq"),
-"enter": SubResource("Animation_uvhbi")
+"enter": SubResource("Animation_uvhbi"),
+"explode": SubResource("Animation_3opxd")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xic1n"]
+streams_count = 3
+random_pitch = 1.25
+stream_0/stream = ExtResource("3_n0i1m")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("4_t4glo")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("5_fjscr")
+stream_2/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vm21k"]
+streams_count = 3
+stream_0/stream = ExtResource("6_0ccyr")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("7_71olp")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("8_pfoqg")
+stream_2/weight = 1.0
 
 [node name="bullet" type="CharacterBody2D"]
 script = ExtResource("1_tvv31")
@@ -77,12 +268,30 @@ lifetime = 0.15
 fixed_fps = 60
 visibility_rect = Rect2(-100, -100, 200, 1000)
 
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 48
+process_material = SubResource("ParticleProcessMaterial_vnxgf")
+texture = ExtResource("2_450ui")
+lifetime = 0.7
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+visibility_rect = Rect2(-100, -100, 200, 1000)
+
 [node name="Area2D" type="Area2D" parent="." groups=["bullet"]]
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_sf7ue")
+
+[node name="ExplodeArea" type="Area2D" parent="." groups=["bullet"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplodeArea"]
+shape = SubResource("CircleShape2D_b1tyr")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
@@ -94,6 +303,19 @@ autoplay = "enter"
 libraries = {
 "": SubResource("AnimationLibrary_08udk")
 }
+
+[node name="shoot" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_xic1n")
+volume_db = -5.0
+pitch_scale = 0.79
+max_distance = 5000.0
+attenuation = 0.901251
+bus = &"Space"
+
+[node name="explode" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_vm21k")
+volume_db = 5.0
+bus = &"Space"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
