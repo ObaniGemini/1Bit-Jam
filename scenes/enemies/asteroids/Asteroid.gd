@@ -10,25 +10,9 @@ const ASTEROID_SPEED_MAX = 80
 const ASTEROID_ANGULAR_MIN = 0.5
 const ASTEROID_ANGULAR_MAX = 2
 
-static var big_asteroids = [
-	load("res://scenes/enemies/asteroids/BigAsteroid1.tscn"),
-	load("res://scenes/enemies/asteroids/BigAsteroid2.tscn"),
-	load("res://scenes/enemies/asteroids/BigAsteroid3.tscn")
-]
+var Turret = preload("res://scenes/enemies/turrets/Turret.tscn")
+const TURRET_PROBA = 0.5
 
-static var mini_asteroids = [
-	load("res://scenes/enemies/asteroids/MiniAsteroid1.tscn"),
-	load("res://scenes/enemies/asteroids/MiniAsteroid2.tscn"),
-	load("res://scenes/enemies/asteroids/MiniAsteroid3.tscn")
-]
-
-static func random_asteroid(big_asteroid_prob):
-	var big_asteroid = randf() < big_asteroid_prob
-	
-	var arr = mini_asteroids
-	if big_asteroid: arr = big_asteroids
-	
-	return arr.pick_random().instantiate()
 
 func _ready():
 	var speed = randf_range(ASTEROID_SPEED_MIN, ASTEROID_SPEED_MAX)
@@ -36,10 +20,10 @@ func _ready():
 	var direction = Vector2(cos(dir_angle), sin(dir_angle))
 	linear_velocity = direction * speed
 	angular_velocity = randf_range(ASTEROID_ANGULAR_MIN, ASTEROID_ANGULAR_MAX)
-	
+
 	add_to_group("enemy")
 	add_to_group("asteroid")
-	
+
 	gravity_scale = 0
 	linear_damp_mode = RigidBody2D.DAMP_MODE_REPLACE
 	angular_damp_mode = RigidBody2D.DAMP_MODE_REPLACE
@@ -48,7 +32,17 @@ func _ready():
 
 	set_collision_mask_value(2, true)
 	set_collision_mask_value(1, false)
+	
+	if get_node("TurretPositions"):
+		spawn_turrets()
 
-
+func spawn_turrets():
+	var pos = get_node("TurretPositions")
+	for p in pos.get_children():
+		if randf() < TURRET_PROBA:
+			var t = Turret.instantiate()
+			t.position = p.position
+			add_child(t)
+			
 func destroy():
 	queue_free()
