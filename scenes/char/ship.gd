@@ -6,8 +6,8 @@ const CENTER = 640
 
 const SHOOT_RELOAD = 3.0
 
-const SPEED = 200.0
-const ANGULAR_SPEED = 2.0
+const SPEED = 250.0
+const ANGULAR_SPEED = 3.0
 const JOYSTICK_MOVE_THRESHOLD = 0.1
 
 signal player_died
@@ -57,7 +57,13 @@ enum {
 	Shoot_Right
 }
 
+enum {
+	Camera_Static,
+	Camera_Follow
+}
+
 var mode = Mode_Shoot
+var camera_mode = Camera_Static
 @onready var shooter = [ShootProperties.new(self, $WeaponsPosition/Left, $UI/shoot_left), ShootProperties.new(self, $WeaponsPosition/Right, $UI/shoot_right)]
 
 var angular_velocity = 0
@@ -68,11 +74,16 @@ func _ready():
 		$light.visible = false
 	select_sprite()
 
-func _process(_delta):
-	$light.rotation = (position.x - CENTER) * -0.0005
+func set_camera_mode(m):
+	camera_mode = m 
+	$Camera2D.enabled = camera_mode == Camera_Follow
 
 func _physics_process(delta):
-	velocity += move_dir * SPEED * delta
+	var vel = move_dir * SPEED * delta
+	if camera_mode == Camera_Follow:
+		vel = vel.rotated(rotation)
+	
+	velocity += vel
 	angular_velocity += angular_accel * ANGULAR_SPEED * delta
 	rotation += angular_velocity * delta
 	
@@ -94,10 +105,8 @@ func select_sprite():
 	$Sprite/VesselWeapons.visible = mode != Mode_Light
 
 func select():
-	if mode == Mode_Light:
-		$light/AnimationPlayer.play("on")
-	else:
-		$light/AnimationPlayer.play("off")
+	if mode == Mode_Light: $light/AnimationPlayer.play("on")
+	else: $light/AnimationPlayer.play("off")
 
 func _input(event):
 	if event is InputEventJoypadMotion:

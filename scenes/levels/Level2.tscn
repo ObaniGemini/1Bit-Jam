@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://voefqb7styc"]
+
+[ext_resource type="Script" path="res://scenes/levels/Level2.gd" id="1_o4vqa"]
+[ext_resource type="PackedScene" uid="uid://bw4siilxufwyk" path="res://scenes/char/ship.tscn" id="2_u1rvh"]
+[ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/square.png" id="4_xnt3c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o0378"]
+size = Vector2(2000, 720)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4xst"]
+size = Vector2(800, 1024)
+
+[node name="Level2" type="Node2D"]
+script = ExtResource("1_o4vqa")
+
+[node name="bg" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.376471, 0.376471, 0.376471, 1)
+scale = Vector2(100000, 100000)
+texture = ExtResource("4_xnt3c")
+
+[node name="Ship" parent="." instance=ExtResource("2_u1rvh")]
+position = Vector2(635, 668)
+
+[node name="WorldBoundary" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldBoundary"]
+position = Vector2(640, 1128)
+shape = SubResource("RectangleShape2D_o0378")
+
+[node name="Sprite2D" type="Sprite2D" parent="WorldBoundary/CollisionShape2D2"]
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("4_xnt3c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundary"]
+position = Vector2(64, 256)
+shape = SubResource("RectangleShape2D_b4xst")
+
+[node name="Sprite2D" type="Sprite2D" parent="WorldBoundary/CollisionShape2D"]
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("4_xnt3c")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="WorldBoundary"]
+position = Vector2(1216, 256)
+shape = SubResource("RectangleShape2D_b4xst")
+
+[node name="Sprite2D" type="Sprite2D" parent="WorldBoundary/CollisionShape2D3"]
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("4_xnt3c")
+
+[node name="Sounds" type="Node" parent="."]
+
+[connection signal="player_died" from="Ship" to="." method="_on_ship_player_died"]
