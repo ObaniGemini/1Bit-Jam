@@ -24,11 +24,14 @@ enum {
 class ShootProperties:
 	var parent
 	var pos
+	var progressbar
 	var timer
 	
-	func _init(holder, p):
+	func _init(holder, p, pb):
 		parent = holder
 		pos = p
+		progressbar = pb
+		progressbar.value = 100
 		
 		timer = Timer.new()
 		timer.autostart = false
@@ -39,6 +42,11 @@ class ShootProperties:
 	func shoot():
 		if parent.mode == Mode_Shoot and timer.time_left <= 0.0 and !parent.get_node("light/AnimationPlayer").is_playing():
 			timer.start()
+			
+			progressbar.value = 0
+			var t = parent.get_tree().create_tween()
+			t.tween_property(progressbar, "value", 100, SHOOT_RELOAD).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+			
 			var b = bullet.instantiate()
 			b.position = pos.global_position
 			b.rotation = parent.rotation
@@ -50,7 +58,7 @@ enum {
 }
 
 var mode = Mode_Shoot
-@onready var shooter = [ShootProperties.new(self, $WeaponsPosition/Left), ShootProperties.new(self, $WeaponsPosition/Right)]
+@onready var shooter = [ShootProperties.new(self, $WeaponsPosition/Left, $UI/shoot_left), ShootProperties.new(self, $WeaponsPosition/Right, $UI/shoot_right)]
 
 var angular_velocity = 0
 var angular_accel = 0
