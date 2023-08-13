@@ -14,6 +14,10 @@ signal player_died
 
 var move_dir : Vector2 = Vector2(0, 0)
 
+const BULLET_ENERGY = 40.0
+const LIGHT_ENERGY = 2.0
+const RECOVER_ENERGY = 20.0
+
 enum {
 	Mode_Shoot,
 	Mode_Light,
@@ -21,40 +25,54 @@ enum {
 	Mode_Count
 }
 
-class ShootProperties:
+class ArmProperties:
 	var parent
-	var pos
+	var handler
 	var progressbar
+	var light_on
+	var anim
 	var timer
 	
-	func _init(holder, p, pb):
+	func _init(holder, h, pb):
 		parent = holder
-		pos = p
+		handler = h
 		progressbar = pb
 		progressbar.value = 100
+		light_on = false
+		anim = handler.get_node("AnimationPlayer")
 		
 		timer = Timer.new()
-		timer.autostart = false
 		timer.one_shot = true
-		timer.wait_time = SHOOT_RELOAD
-		holder.add_child(timer)
+		timer.autostart = false
+		timer.wait_time = 0.25
+		parent.add_child(timer)
 	
 	func shoot():
-		if parent.mode == Mode_Shoot and timer.time_left <= 0.0 and !parent.get_node("light/AnimationPlayer").is_playing():
+		if progressbar.value >= BULLET_ENERGY and timer.time_left <= 0.0:
 			timer.start()
-			
-			progressbar.value = 0
-			var t = parent.get_tree().create_tween()
-			t.tween_property(progressbar, "value", 100, SHOOT_RELOAD).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+			progressbar.value -= BULLET_ENERGY
 			
 			var b = bullet.instantiate()
-			b.position = pos.global_position
+			b.position = handler.global_position
 			b.rotation = parent.rotation
 			parent.get_parent().add_child(b)
+	
+	func toggle_light():
+		light_on = !light_on
+		if light_on: anim.play("on")
+		else: anim.play("off")
+	
+	func process(delta):
+		if light_on:
+			progressbar.value -= LIGHT_ENERGY * delta
+			if progressbar.value <= 0.0: toggle_light()
+		else:
+			progressbar.value += RECOVER_ENERGY * delta
+
 
 enum {
-	Shoot_Left,
-	Shoot_Right
+	Arm_Left,
+	Arm_Right
 }
 
 enum {
@@ -64,14 +82,14 @@ enum {
 
 var mode = Mode_Shoot
 var camera_mode = Camera_Static
-@onready var shooter = [ShootProperties.new(self, $WeaponsPosition/Left, $UI/shoot_left), ShootProperties.new(self, $WeaponsPosition/Right, $UI/shoot_right)]
+@onready var arm = [ArmProperties.new(self, $WeaponsPosition/Left, $UI/shoot_left), ArmProperties.new(self, $WeaponsPosition/Right, $UI/shoot_right)]
 
 var angular_velocity = 0
 var angular_accel = 0
 
 func _ready():
-	if $light/Sprite2D2.visible:
-		$light/Sprite2D2.visible = false
+	$WeaponsPosition/Left/Sprite2D.visible = false
+	$WeaponsPosition/Right/Sprite2D.visible = false
 	select_sprite()
 
 func set_camera_mode(m):
@@ -82,6 +100,9 @@ func _physics_process(delta):
 	var vel = move_dir * SPEED * delta
 	if camera_mode == Camera_Follow:
 		vel = vel.rotated(rotation)
+	
+	arm[Arm_Left].process(delta)
+	arm[Arm_Right].process(delta)
 	
 	velocity += vel
 	angular_velocity += angular_accel * ANGULAR_SPEED * delta
@@ -115,8 +136,8 @@ func _input(event):
 		
 		if event.axis == JOY_AXIS_RIGHT_X: angular_accel = joy_axis_move(event.axis_value)
 		
-		if event.is_action_pressed("shoot_left"): shooter[Shoot_Left].shoot()
-		if event.is_action_pressed("shoot_right"): shooter[Shoot_Right].shoot()
+		if event.is_action_pressed("shoot_left"): arm[Arm_Left].shoot()
+		if event.is_action_pressed("shoot_right"): arm[Arm_Right].shoot()
 	else:
 		if event.is_action_pressed("ui_left"): move_dir.x -= 1
 		elif event.is_action_released("ui_left"): move_dir.x += 1
@@ -128,10 +149,11 @@ func _input(event):
 		if event.is_action_pressed("ui_down"): move_dir.y += 1
 		elif event.is_action_released("ui_down"): move_dir.y -= 1
 		
-		if event.is_action_pressed("shoot_left"): shooter[Shoot_Left].shoot()
-		if event.is_action_pressed("shoot_right"): shooter[Shoot_Right].shoot()
+		if event.is_action_pressed("shoot_left"): arm[Arm_Left].shoot()
+		if event.is_action_pressed("shoot_right"): arm[Arm_Right].shoot()
 	
-		if event.is_action_pressed("switch"): switch()
+		if event.is_action_pressed("lights_left"): arm[Arm_Left].toggle_light()
+		if event.is_action_pressed("lights_right"): arm[Arm_Right].toggle_light()
 	
 	move_dir.x = clampf(move_dir.x, -1, 1)
 	move_dir.y = clampf(move_dir.y, -1, 1)

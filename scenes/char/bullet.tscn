@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dcdj0vvs25cfd"]
+[gd_scene load_steps=24 format=3 uid="uid://dcdj0vvs25cfd"]
 
 [ext_resource type="Script" path="res://scenes/char/bullet.gd" id="1_tvv31"]
 [ext_resource type="Texture2D" uid="uid://by53edq75c6m5" path="res://gfx/sphere.png" id="2_450ui"]
@@ -24,6 +24,17 @@ orbit_velocity_max = 0.0
 angle_min = -282.4
 angle_max = 127.0
 scale_min = 0.02
+scale_max = 0.05
+scale_curve = SubResource("CurveTexture_r5upt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rmvy1"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -282.4
+angle_max = 127.0
+scale_min = 0.01
 scale_max = 0.05
 scale_curve = SubResource("CurveTexture_r5upt")
 
@@ -74,7 +85,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("GPUParticles2D2:emitting")
+tracks/1/path = NodePath("explosion1:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -86,7 +97,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("GPUParticles2D:visible")
+tracks/2/path = NodePath("trail1:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -119,6 +130,42 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("explosion2:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("trail2:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("trail2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_uvhbi"]
 resource_name = "enter"
@@ -139,7 +186,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("GPUParticles2D:visible")
+tracks/1/path = NodePath("trail1:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -160,6 +207,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("trail2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_3opxd"]
 resource_name = "explode"
@@ -167,7 +226,7 @@ length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GPUParticles2D2:emitting")
+tracks/0/path = NodePath("explosion1:emitting")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -179,7 +238,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("GPUParticles2D:visible")
+tracks/1/path = NodePath("trail1:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -226,6 +285,30 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("explosion2:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("trail2:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_08udk"]
 _data = {
@@ -261,7 +344,7 @@ script = ExtResource("1_tvv31")
 scale = Vector2(24, 24)
 texture = ExtResource("2_450ui")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="trail1" type="GPUParticles2D" parent="."]
 amount = 12
 process_material = SubResource("ParticleProcessMaterial_3q1pa")
 texture = ExtResource("2_450ui")
@@ -269,7 +352,28 @@ lifetime = 0.15
 fixed_fps = 60
 visibility_rect = Rect2(-100, -100, 200, 1000)
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+[node name="trail2" type="GPUParticles2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_rmvy1")
+texture = ExtResource("2_450ui")
+lifetime = 0.15
+fixed_fps = 60
+visibility_rect = Rect2(-100, -100, 200, 1000)
+
+[node name="explosion1" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 48
+process_material = SubResource("ParticleProcessMaterial_vnxgf")
+texture = ExtResource("2_450ui")
+lifetime = 0.7
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+visibility_rect = Rect2(-100, -100, 200, 1000)
+
+[node name="explosion2" type="GPUParticles2D" parent="."]
+modulate = Color(0, 0, 0, 1)
 emitting = false
 amount = 48
 process_material = SubResource("ParticleProcessMaterial_vnxgf")

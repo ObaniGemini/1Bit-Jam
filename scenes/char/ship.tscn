@@ -20,7 +20,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D2:visible")
+tracks/0/path = NodePath("Sprite2D:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -85,7 +85,7 @@ step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D2:visible")
+tracks/0/path = NodePath("Sprite2D:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -126,7 +126,7 @@ step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D2:visible")
+tracks/0/path = NodePath("Sprite2D:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -228,43 +228,71 @@ collision_mask = 2
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_3agus")
 
-[node name="light" type="Node2D" parent="."]
-position = Vector2(0, -12)
+[node name="WeaponsPosition" type="Node2D" parent="."]
 
-[node name="Sprite2D2" type="Sprite2D" parent="light"]
-position = Vector2(0, -640)
+[node name="Left" type="Marker2D" parent="WeaponsPosition"]
+position = Vector2(-14, -12)
+rotation = -0.261799
+
+[node name="Sprite2D" type="Sprite2D" parent="WeaponsPosition/Left"]
 texture = ExtResource("4_ffssy")
+offset = Vector2(0, -640)
 
-[node name="PointLight2D" type="PointLight2D" parent="light"]
+[node name="PointLight2D" type="PointLight2D" parent="WeaponsPosition/Left"]
 blend_mode = 2
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
 texture = ExtResource("5_b17kg")
 texture_scale = 2.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="light"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WeaponsPosition/Left"]
 libraries = {
 "": SubResource("AnimationLibrary_2drye")
 }
 
-[node name="lightopen" type="AudioStreamPlayer" parent="light"]
+[node name="lightopen" type="AudioStreamPlayer2D" parent="WeaponsPosition/Left"]
 stream = ExtResource("5_awld5")
 
-[node name="lightoff" type="AudioStreamPlayer" parent="light"]
+[node name="lightoff" type="AudioStreamPlayer2D" parent="WeaponsPosition/Left"]
 stream = ExtResource("6_0be03")
-volume_db = -12.966
+volume_db = -13.0
 
-[node name="lighton" type="AudioStreamPlayer" parent="light"]
+[node name="lighton" type="AudioStreamPlayer2D" parent="WeaponsPosition/Left"]
 stream = SubResource("AudioStreamOggVorbis_ubusw")
-volume_db = -11.8635
-
-[node name="WeaponsPosition" type="Node2D" parent="."]
-
-[node name="Left" type="Marker2D" parent="WeaponsPosition"]
-position = Vector2(-22, -12)
+volume_db = -15.0
 
 [node name="Right" type="Marker2D" parent="WeaponsPosition"]
-position = Vector2(22, -12)
+position = Vector2(14, -12)
+rotation = 0.261799
+
+[node name="Sprite2D" type="Sprite2D" parent="WeaponsPosition/Right"]
+texture = ExtResource("4_ffssy")
+offset = Vector2(0, -640)
+
+[node name="PointLight2D" type="PointLight2D" parent="WeaponsPosition/Right"]
+rotation = -0.174533
+blend_mode = 2
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+texture = ExtResource("5_b17kg")
+texture_scale = 2.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WeaponsPosition/Right"]
+libraries = {
+"": SubResource("AnimationLibrary_2drye")
+}
+
+[node name="lightopen" type="AudioStreamPlayer2D" parent="WeaponsPosition/Right"]
+stream = ExtResource("5_awld5")
+
+[node name="lightoff" type="AudioStreamPlayer2D" parent="WeaponsPosition/Right"]
+stream = ExtResource("6_0be03")
+volume_db = -13.0
+
+[node name="lighton" type="AudioStreamPlayer2D" parent="WeaponsPosition/Right"]
+stream = SubResource("AudioStreamOggVorbis_ubusw")
+volume_db = -15.0
+panning_strength = 3.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
