@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scenes/char/ship.gd" id="1_qdgyp"]
 [ext_resource type="Texture2D" uid="uid://18qhhnfmswpo" path="res://gfx/vessel_headlights.png" id="2_3vup6"]
-[ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/square.png" id="3_66n71"]
 [ext_resource type="Texture2D" uid="uid://bgx1qxe6eg8gm" path="res://gfx/vessel_weapon.png" id="3_tm877"]
+[ext_resource type="Texture2D" uid="uid://ds1y8jxkei8n1" path="res://gfx/ship/light.png" id="4_ffssy"]
 [ext_resource type="AudioStream" uid="uid://dwsqmn41ricju" path="res://sfx/ship/lightsopen.ogg" id="5_awld5"]
 [ext_resource type="AudioStream" uid="uid://culptf18510tb" path="res://sfx/ship/lightsoff.ogg" id="6_0be03"]
 
@@ -229,13 +229,19 @@ shape = SubResource("RectangleShape2D_3agus")
 
 [node name="light" type="Node2D" parent="."]
 position = Vector2(0, -12)
-scale = Vector2(0.5, 1)
 
 [node name="Sprite2D2" type="Sprite2D" parent="light"]
-rotation = -2.35619
-scale = Vector2(2000, 2000)
-texture = ExtResource("3_66n71")
-centered = false
+position = Vector2(0, -640)
+texture = ExtResource("4_ffssy")
+
+[node name="PointLight2D" type="PointLight2D" parent="light/Sprite2D2"]
+position = Vector2(0, 640)
+blend_mode = 2
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+texture = ExtResource("4_ffssy")
+offset = Vector2(0, -640)
+texture_scale = 1.01
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="light"]
 libraries = {
