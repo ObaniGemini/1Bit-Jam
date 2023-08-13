@@ -18,6 +18,7 @@ var move_dir : Vector2 = Vector2(0, 0)
 const BULLET_ENERGY = 40.0
 const LIGHT_ENERGY = 3.0
 const RECOVER_ENERGY = 20.0
+const LOW_ENERGY = 10.0
 
 enum {
 	Mode_Shoot,
@@ -33,6 +34,7 @@ class ArmProperties:
 	var light_on
 	var anim
 	var timer
+	var rot
 	
 	func _init(holder, h, pb):
 		parent = holder
@@ -41,6 +43,7 @@ class ArmProperties:
 		progressbar.value = 100
 		light_on = false
 		anim = handler.get_node("AnimationPlayer")
+		rot = handler.rotation
 		
 		timer = Timer.new()
 		timer.one_shot = true
@@ -49,7 +52,11 @@ class ArmProperties:
 		parent.add_child(timer)
 	
 	func shoot():
-		if progressbar.value >= BULLET_ENERGY and timer.time_left <= 0.0:
+		if timer.time_left <= 0.0:
+			if progressbar.value < BULLET_ENERGY:
+				progressbar.get_node("blink").play("blink")
+				return
+			
 			timer.start()
 			progressbar.value -= BULLET_ENERGY
 			
@@ -60,13 +67,20 @@ class ArmProperties:
 	
 	func toggle_light():
 		light_on = !light_on
+		
+		anim.speed_scale = 1.0
 		if light_on: anim.play("on")
 		else: anim.play("off")
 	
-	func process(delta):
+	func process(delta, accel):
+		handler.rotation = rot + accel * 0.1
+		
 		if light_on:
 			progressbar.value -= LIGHT_ENERGY * delta
 			if progressbar.value <= 0.0: toggle_light()
+			elif progressbar.value < LOW_ENERGY and anim.current_animation != "weak":
+				anim.speed_scale = randf_range(0.75, 1.5)
+				anim.play("weak")
 		else:
 			progressbar.value += RECOVER_ENERGY * delta
 
@@ -102,13 +116,14 @@ func _physics_process(delta):
 	if camera_mode == Camera_Follow:
 		vel = vel.rotated(rotation)
 	
-	arm[Arm_Left].process(delta)
-	arm[Arm_Right].process(delta)
 	
 	velocity += vel
 	angular_velocity += angular_accel * ANGULAR_SPEED * delta
 	angular_velocity -= signf(angular_velocity) * ANGULAR_DAMPING * delta
 	rotation += angular_velocity * delta
+	
+	arm[Arm_Left].process(delta, angular_velocity)
+	arm[Arm_Right].process(delta, angular_velocity)
 	
 	move_and_slide()
 	velocity = get_real_velocity()
