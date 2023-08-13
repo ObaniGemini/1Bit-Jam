@@ -7,7 +7,8 @@ const CENTER = 640
 const SHOOT_RELOAD = 3.0
 
 const SPEED = 250.0
-const ANGULAR_SPEED = 3.0
+const ANGULAR_SPEED = 4.0
+const ANGULAR_DAMPING = 0.375
 const JOYSTICK_MOVE_THRESHOLD = 0.1
 
 signal player_died
@@ -106,6 +107,7 @@ func _physics_process(delta):
 	
 	velocity += vel
 	angular_velocity += angular_accel * ANGULAR_SPEED * delta
+	angular_velocity -= signf(angular_velocity) * ANGULAR_DAMPING * delta
 	rotation += angular_velocity * delta
 	
 	move_and_slide()
