@@ -13,7 +13,8 @@ func _ready():
 	skip_label.text = ""
 	skip_label.size = Vector2(1280, 720)
 	skip_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
-	skip_label.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM 
+	skip_label.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
+	skip_label.theme_type_variation = "HeaderLarge"
 	
 	timer.wait_time = 0.75
 	timer.timeout.connect(update_text)
@@ -48,8 +49,5 @@ func skip(s):
 		skip_label.text = ""
 
 func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		skip(true)
-	
-	if event.is_action_released("ui_accept"):
-		skip(false)
+	if event.is_action_pressed("ui_accept"): skip(true)
+	if event.is_action_released("ui_accept"): skip(false)

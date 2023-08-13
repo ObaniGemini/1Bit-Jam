@@ -16,7 +16,7 @@ signal player_died
 var move_dir : Vector2 = Vector2(0, 0)
 
 const BULLET_ENERGY = 40.0
-const LIGHT_ENERGY = 2.0
+const LIGHT_ENERGY = 3.0
 const RECOVER_ENERGY = 20.0
 
 enum {

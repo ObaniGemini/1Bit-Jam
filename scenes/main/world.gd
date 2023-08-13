@@ -5,6 +5,7 @@ const LEVELS_PATH = "res://scenes/levels/"
 const GAME_OVER = preload("res://scenes/main/death_screen.tscn")
 
 const LEVELS = [
+	"controls",
 	"cinematic_1",
 	"Level1",
 	"Level2"

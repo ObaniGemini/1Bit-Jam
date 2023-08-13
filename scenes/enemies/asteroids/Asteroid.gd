@@ -43,6 +43,6 @@ func spawn_turrets():
 			var t = Turret.instantiate()
 			t.position = p.position
 			add_child(t)
-			
+
 func destroy():
 	queue_free()
