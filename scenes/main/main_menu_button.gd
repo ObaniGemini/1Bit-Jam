@@ -9,6 +9,7 @@ var disabled = false
 
 func select():
 	if visible:
+		$AudioStreamPlayer2D.play()
 		is_selected = true
 		emit_signal("selected")
 

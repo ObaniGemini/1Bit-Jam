@@ -1,0 +1,28 @@
+[gd_scene load_steps=8 format=3 uid="uid://b0jj3g077iadv"]
+
+[ext_resource type="Script" path="res://scenes/main/main_menu_button.gd" id="1_na8ql"]
+[ext_resource type="AudioStream" uid="uid://e5xq6kugqgu5" path="res://sfx/menu/menu_select1.ogg" id="2_i4rif"]
+[ext_resource type="AudioStream" uid="uid://b5g8lda8g6gxc" path="res://sfx/menu/menu_select2.ogg" id="3_7bt7c"]
+[ext_resource type="AudioStream" uid="uid://ceuh2o8mj1t26" path="res://sfx/menu/menu_select3.ogg" id="4_giijo"]
+[ext_resource type="AudioStream" uid="uid://chphjrqwht3s2" path="res://sfx/menu/menu_select4.ogg" id="5_wv77f"]
+[ext_resource type="AudioStream" uid="uid://d2ygrsyai1tty" path="res://sfx/menu/menu_select5.ogg" id="6_gk6ja"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_a6uv6"]
+streams_count = 5
+random_pitch = 1.05
+stream_0/stream = ExtResource("2_i4rif")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("3_7bt7c")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("4_giijo")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("5_wv77f")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("6_gk6ja")
+stream_4/weight = 1.0
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_na8ql")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_a6uv6")

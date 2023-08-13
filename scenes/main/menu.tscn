@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3mqyfu2srbxu"]
+[gd_scene load_steps=8 format=3 uid="uid://d3mqyfu2srbxu"]
 
 [ext_resource type="Script" path="res://scenes/main/menu.gd" id="1_sqoof"]
-[ext_resource type="Script" path="res://scenes/main/main_menu_button.gd" id="2_4s1g8"]
+[ext_resource type="PackedScene" uid="uid://b0jj3g077iadv" path="res://scenes/main/main_menu_button.tscn" id="2_6xyls"]
 [ext_resource type="Texture2D" uid="uid://c7j8vesv3h5pm" path="res://gfx/tri-rect.png" id="3_i4uqr"]
 [ext_resource type="Texture2D" uid="uid://beltxp63ajcnp" path="res://gfx/settings.png" id="4_1w1pd"]
 [ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/square.png" id="4_c040e"]
+[ext_resource type="AudioStream" uid="uid://hmfuc8kwh2cj" path="res://sfx/menu/menu_whoosh.ogg" id="6_k8s3k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_va28y"]
 size = Vector2(320, 320)
@@ -12,9 +13,8 @@ size = Vector2(320, 320)
 [node name="Main Menu" type="Node2D"]
 script = ExtResource("1_sqoof")
 
-[node name="Play" type="Area2D" parent="."]
+[node name="Play" parent="." instance=ExtResource("2_6xyls")]
 position = Vector2(640, 360)
-script = ExtResource("2_4s1g8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Play"]
 shape = SubResource("RectangleShape2D_va28y")
@@ -29,9 +29,13 @@ position = Vector2(0, 64)
 scale = Vector2(0.5, -0.5)
 texture = ExtResource("3_i4uqr")
 
-[node name="Settings" type="Area2D" parent="."]
+[node name="start" type="AudioStreamPlayer" parent="Play"]
+stream = ExtResource("6_k8s3k")
+volume_db = 2.0
+bus = &"Space"
+
+[node name="Settings" parent="." instance=ExtResource("2_6xyls")]
 position = Vector2(256, 360)
-script = ExtResource("2_4s1g8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Settings"]
 shape = SubResource("RectangleShape2D_va28y")
@@ -46,9 +50,8 @@ position = Vector2(0, 64)
 scale = Vector2(0.5, -0.5)
 texture = ExtResource("4_1w1pd")
 
-[node name="Quit" type="Area2D" parent="."]
+[node name="Quit" parent="." instance=ExtResource("2_6xyls")]
 position = Vector2(1024, 360)
-script = ExtResource("2_4s1g8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Quit"]
 shape = SubResource("RectangleShape2D_va28y")

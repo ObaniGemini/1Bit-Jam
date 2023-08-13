@@ -6,7 +6,8 @@ const GAME_OVER = preload("res://scenes/main/death_screen.tscn")
 
 const LEVELS = [
 	"cinematic_1",
-	"Level1"
+	"Level1",
+	"Level2"
 ]
 
 var level = -1;

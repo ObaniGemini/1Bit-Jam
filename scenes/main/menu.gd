@@ -73,10 +73,15 @@ func play():
 	$Settings.hide()
 	$Quit.hide()
 	
+	$Play/start.play()
+	
 	var t = get_tree().create_tween()
 	t.tween_property($Play, "rotation", -PI/2, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE)
 	t.tween_property($Play, "scale", Vector2(40, 40), 2.0).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
-	t.tween_callback(get_tree().change_scene_to_file.bind(WORLD_PATH))
+	
+	await get_tree().create_timer(4.0, true).timeout
+	
+	get_tree().change_scene_to_file(WORLD_PATH)
 
 func quit():
 	print("Bye")
