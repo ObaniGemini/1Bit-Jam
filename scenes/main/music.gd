@@ -1,7 +1,7 @@
 extends Node
 
-const TWEEN_TIME = 5.0
-const MIN_DB = -40
+const TWEEN_TIME = 3.0
+const MIN_DB = -30
 
 var playing = null
 

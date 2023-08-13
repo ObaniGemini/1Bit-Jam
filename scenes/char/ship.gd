@@ -77,6 +77,7 @@ func _physics_process(delta):
 	rotation += angular_velocity * delta
 	
 	move_and_slide()
+	velocity = get_real_velocity()
 
 
 func joy_axis_move(value):
