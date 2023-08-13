@@ -31,7 +31,7 @@ func _ready():
 func update_text():
 	if skipping:
 		skip_label.text = SKIP_TEXT
-		var grad = float(idx % 2)
+		var grad = float((idx + 1) % 2)
 		skip_label.modulate = Color(grad, grad, grad)
 		for i in range(idx):
 			skip_label.text += "."
