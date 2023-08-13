@@ -151,6 +151,8 @@ lifetime = 15.0
 [node name="AsteroidSpawnTimer" type="Timer" parent="."]
 
 [node name="AreaKillAsteroids" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="AreaKillAsteroids"]
 position = Vector2(1376, 396.5)
@@ -182,4 +184,4 @@ libraries = {
 }
 
 [connection signal="timeout" from="AsteroidSpawnTimer" to="." method="_on_asteroid_spawn_timer_timeout"]
-[connection signal="body_entered" from="AreaKillAsteroids" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="AreaKillAsteroids" to="." method="_on_area_kill_asteroids_body_entered"]
