@@ -4,13 +4,14 @@ const bullet = preload("res://scenes/char/bullet.tscn")
 const BULLET_OFFSET = 10
 const CENTER = 640
 
+const SHOOT_RELOAD = 3.0
+
 const SPEED = 250.0
 const JOYSTICK_MOVE_THRESHOLD = 0.1
 
 signal player_died
 
 var move_dir : Vector2 = Vector2(0, 0)
-var shooting = false
 
 enum {
 	Mode_Shoot,
@@ -19,7 +20,35 @@ enum {
 	Mode_Count
 }
 
+class ShootProperties:
+	var parent
+	var pos
+	var timer
+	
+	func _init(holder, p):
+		parent = holder
+		pos = p
+		
+		timer = Timer.new()
+		timer.autostart = false
+		timer.one_shot = true
+		timer.wait_time = SHOOT_RELOAD
+		holder.add_child(timer)
+	
+	func shoot():
+		if parent.mode == Mode_Shoot and timer.time_left <= 0.0 and !parent.get_node("light/AnimationPlayer").is_playing():
+			timer.start()
+			var b = bullet.instantiate()
+			b.position = pos.global_position
+			parent.get_parent().add_child(b)
+
+enum {
+	Shoot_Left,
+	Shoot_Right
+}
+
 var mode = Mode_Shoot
+@onready var shooter = [ShootProperties.new(self, $WeaponsPosition/Left), ShootProperties.new(self, $WeaponsPosition/Right)]
 
 func _ready():
 	if $light.visible:
@@ -32,19 +61,7 @@ func _process(_delta):
 func _physics_process(_delta):
 	velocity = move_dir * SPEED
 	
-	shoot()
 	move_and_slide()
-
-func shoot():
-	if shooting and mode == Mode_Shoot and $shoot_delay.time_left <= 0.0 and !$light/AnimationPlayer.is_playing():
-		$shoot_delay.start()
-		var b1 = bullet.instantiate()
-		var b2 = bullet.instantiate()
-		
-		b1.position = $WeaponsPosition/Left.global_position
-		b2.position = $WeaponsPosition/Right.global_position
-		get_parent().add_child(b1)
-		get_parent().add_child(b2)
 
 
 func joy_axis_move(value):
@@ -70,6 +87,9 @@ func _input(event):
 	if event is InputEventJoypadMotion:
 		if event.axis == JOY_AXIS_LEFT_X: move_dir.x = joy_axis_move(event.axis_value)
 		elif event.axis == JOY_AXIS_LEFT_Y: move_dir.y = joy_axis_move(event.axis_value)
+		
+		if event.is_action_pressed("shoot_left"): shooter[Shoot_Left].shoot()
+		if event.is_action_pressed("shoot_right"): shooter[Shoot_Right].shoot()
 	else:
 		if event.is_action_pressed("ui_left"): move_dir.x -= 1
 		elif event.is_action_released("ui_left"): move_dir.x += 1
@@ -81,8 +101,8 @@ func _input(event):
 		if event.is_action_pressed("ui_down"): move_dir.y += 1
 		elif event.is_action_released("ui_down"): move_dir.y -= 1
 		
-		if event.is_action_pressed("shoot"): shooting = true
-		elif event.is_action_released("shoot"): shooting = false
+		if event.is_action_pressed("shoot_left"): shooter[Shoot_Left].shoot()
+		if event.is_action_pressed("shoot_right"): shooter[Shoot_Right].shoot()
 	
 		if event.is_action_pressed("switch"): switch()
 	
