@@ -11,15 +11,15 @@ const ASTEROID_ANGULAR_MIN = 0.5
 const ASTEROID_ANGULAR_MAX = 2
 
 static var big_asteroids = [
-	preload("res://scenes/enemies/asteroids/BigAsteroid1.tscn"),
-	preload("res://scenes/enemies/asteroids/BigAsteroid2.tscn"),
-	preload("res://scenes/enemies/asteroids/BigAsteroid3.tscn")
+	load("res://scenes/enemies/asteroids/BigAsteroid1.tscn"),
+	load("res://scenes/enemies/asteroids/BigAsteroid2.tscn"),
+	load("res://scenes/enemies/asteroids/BigAsteroid3.tscn")
 ]
 
 static var mini_asteroids = [
-	preload("res://scenes/enemies/asteroids/MiniAsteroid1.tscn"),
-	preload("res://scenes/enemies/asteroids/MiniAsteroid2.tscn"),
-	preload("res://scenes/enemies/asteroids/MiniAsteroid3.tscn")
+	load("res://scenes/enemies/asteroids/MiniAsteroid1.tscn"),
+	load("res://scenes/enemies/asteroids/MiniAsteroid2.tscn"),
+	load("res://scenes/enemies/asteroids/MiniAsteroid3.tscn")
 ]
 
 static func random_asteroid(big_asteroid_prob):
