@@ -49,7 +49,7 @@ func _input(event):
 		elif event.axis == JOY_AXIS_LEFT_Y: move_dir.y = joy_axis_move(event.axis_value)
 		
 		if event.axis == JOY_AXIS_RIGHT_X: shoot_dir.x = joy_axis_shoot(event.axis_value, shoot_dir.x)
-		elif event.axis == JOY_AXIS_RIGHT_Y: shoot_dir.y = joy_axis_shoot(event.axis_value, shoot_dir.)
+		elif event.axis == JOY_AXIS_RIGHT_Y: shoot_dir.y = joy_axis_shoot(event.axis_value, shoot_dir.y)
 	else:
 		if event.is_action_pressed("ui_left"): move_dir.x -= 1
 		elif event.is_action_released("ui_left"): move_dir.x += 1

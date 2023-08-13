@@ -48,8 +48,8 @@ func skip(s):
 		skip_label.text = ""
 
 func _input(event):
-	if event.is_action_pressed("ui_accept") or event.is_action_pressed("shoot"):
+	if event.is_action_pressed("ui_accept"):
 		skip(true)
 	
-	if event.is_action_released("ui_accept") or event.is_action_released("shoot"):
+	if event.is_action_released("ui_accept"):
 		skip(false)

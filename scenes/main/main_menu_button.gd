@@ -31,5 +31,5 @@ func _input(event):
 		if event.pressed:
 			emit_signal("pressed")
 	
-	if event.is_action_pressed("ui_accept") or event.is_action_pressed("shoot"):
+	if event.is_action_pressed("ui_accept"):
 		emit_signal("pressed")

@@ -106,6 +106,7 @@ script = ExtResource("1_ep8oo")
 
 [node name="Ship" parent="." instance=ExtResource("1_776gt")]
 position = Vector2(635, 668)
+motion_mode = 1
 
 [node name="WorldBoundary" type="StaticBody2D" parent="."]
 

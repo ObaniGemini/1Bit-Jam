@@ -29,7 +29,7 @@ func quit():
 	get_tree().quit()
 
 func _input(event):
-	if event.is_action_pressed("ui_accept") or event.is_action_pressed("shoot"):
+	if event.is_action_pressed("ui_accept"):
 		$LabelSpell.skip()
 	
 	
