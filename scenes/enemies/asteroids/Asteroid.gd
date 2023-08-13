@@ -48,3 +48,7 @@ func _ready():
 
 	set_collision_mask_value(2, true)
 	set_collision_mask_value(1, false)
+
+
+func destroy():
+	queue_free()

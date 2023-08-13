@@ -24,6 +24,21 @@ scale_curve = SubResource("CurveTexture_r5upt")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sf7ue"]
 size = Vector2(24, 24)
 
+[sub_resource type="Animation" id="Animation_sejaq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(24, 24)]
+}
+
 [sub_resource type="Animation" id="Animation_uvhbi"]
 resource_name = "enter"
 length = 0.25
@@ -39,21 +54,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0.05, 0.05)]
-}
-
-[sub_resource type="Animation" id="Animation_sejaq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(24, 24)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_08udk"]
@@ -77,7 +77,9 @@ lifetime = 0.15
 fixed_fps = 60
 visibility_rect = Rect2(-100, -100, 200, 1000)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["bullet"]]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_sf7ue")
