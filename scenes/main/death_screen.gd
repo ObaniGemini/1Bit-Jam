@@ -8,26 +8,14 @@ const DEATH_TEXTS = [
 	"THE INSURANCE WON'T PAY"
 ]
 
-var tweens = [null, null]
-
-func tween_btn(idx, obj, vec=Vector2(1, 1)):
-	if(tweens[idx] != null):
-		tweens[idx].stop()
-	
-	var t = get_tree().create_tween().bind_node(self)
-	t.tween_property(obj, "scale", vec, randf_range(0.1, 0.3)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
-	tweens[idx] = t
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$LabelSpell.reset_text(DEATH_TEXTS.pick_random())
 	$Retry.pressed.connect(retry)
-	$Retry.selected.connect(tween_btn.bind(0, $Retry, Vector2(1.25, 1.25)))
-	$Retry.unselected.connect(tween_btn.bind(0, $Retry))
+	$Retry.default_tween()
 	
 	$Quit.pressed.connect(quit)
-	$Quit.selected.connect(tween_btn.bind(1, $Quit, Vector2(1.25, 1.25)))
-	$Quit.unselected.connect(tween_btn.bind(1, $Quit))
+	$Quit.default_tween()
 
 func retry():
 	get_parent().load_level()

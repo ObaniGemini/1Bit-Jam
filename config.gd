@@ -23,8 +23,8 @@ func load_config():
 		params = cfg.get_var()
 	update_params()
 
-func update(param, val):
-	params[param] = val
+func update(p, val):
+	params[p] = val
 	update_params()
 
 func param(p):

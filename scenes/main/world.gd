@@ -16,6 +16,8 @@ var level_scene: Node = null
 
 func _ready():
 	next_level()
+	$PauseMenu/menu/Fullscreen.pressed.connect($PauseMenu.set_fullscreen)
+	$PauseMenu/menu/Menu.pressed.connect(go_to_menu)
 
 func load_level():
 	if level_scene != null:
@@ -28,14 +30,21 @@ func load_level():
 
 func next_level():
 	level += 1
+	Entities.clear()
+	
 	if level == LEVELS.size():
-		get_tree().change_scene_to_file(MENU_PATH)
+		go_to_menu()
 		return
 	
 	load_level()
+
+func go_to_menu():
+	$PauseMenu.set_pause(false)
+	get_tree().change_scene_to_file(MENU_PATH)
 
 func game_over():
 	var node = GAME_OVER.instantiate()
 	level_scene.queue_free()
 	level_scene = node
+	Entities.clear()
 	add_child(level_scene)

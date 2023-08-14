@@ -56,7 +56,7 @@ class ArmProperties:
 			var b = bullet.instantiate()
 			b.position = handler.global_position
 			b.rotation = parent.rotation
-			parent.get_parent().add_child(b)
+			Entities.add_child(b)
 	
 	func toggle_light():
 		light_on = !light_on

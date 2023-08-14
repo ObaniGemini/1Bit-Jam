@@ -26,7 +26,7 @@ func shoot_bullet():
 	bullet.position = $TurretHead.position
 	bullet.linear_velocity = shooting_direction() * BULLET_SPEED
 	
-	get_parent().get_parent().get_parent().add_child(bullet)
+	Entities.add_child(bullet)
 
 func _on_shooting_timer_timeout():
 	shoot_bullet()
