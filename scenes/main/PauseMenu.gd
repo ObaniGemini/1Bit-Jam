@@ -20,12 +20,14 @@ func set_fullscreen():
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		set_pause(!paused)
-	elif event.is_action_pressed("ui_left"):
-		$menu/Menu.unselect()
-		$menu/Fullscreen.select()
-	elif event.is_action_pressed("ui_right"):
-		$menu/Fullscreen.unselect()
-		$menu/Menu.select()
+	
+	if paused:
+		if event.is_action_pressed("ui_left"):
+			$menu/Menu.unselect()
+			$menu/Fullscreen.select()
+		elif event.is_action_pressed("ui_right"):
+			$menu/Fullscreen.unselect()
+			$menu/Menu.select()
 
 func _ready():
 	$menu/Fullscreen.default_tween()

@@ -4,7 +4,7 @@
 resource_name = "Compressor"
 threshold = -10.0
 ratio = 10.0
-gain = 3.0
+gain = 2.0
 
 [sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_4m7bw"]
 resource_name = "LowPassFilter"
@@ -61,7 +61,6 @@ band_db/3200_hz = -17.2
 band_db/10000_hz = -29.2
 
 [resource]
-bus/0/volume_db = -0.526013
 bus/0/effect/0/effect = SubResource("AudioEffectCompressor_j3a7d")
 bus/0/effect/0/enabled = true
 bus/1/name = &"Comms"

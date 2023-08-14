@@ -229,7 +229,7 @@ tracks/8/path = NodePath("Sprite2D4/Label4:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 20.8),
+"times": PackedFloat32Array(0, 21.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -354,9 +354,11 @@ centered = false
 
 [node name="captain" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("5_hyuvh")
+volume_db = -1.0
 
 [node name="alright" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("6_7lob7")
+volume_db = -1.0
 
 [node name="targetreached" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("7_0t715")
@@ -364,5 +366,6 @@ bus = &"Robot"
 
 [node name="already" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("8_jcivb")
+volume_db = -1.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="finish"]
