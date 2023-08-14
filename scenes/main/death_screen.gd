@@ -14,14 +14,14 @@ func _ready():
 	$Retry.pressed.connect(retry)
 	$Retry.default_tween()
 	
-	$Quit.pressed.connect(quit)
-	$Quit.default_tween()
+	$Menu.pressed.connect(quit)
+	$Menu.default_tween()
 
 func retry():
 	get_parent().load_level()
 
 func quit():
-	get_tree().quit()
+	get_parent().go_to_menu()
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
@@ -29,13 +29,13 @@ func _input(event):
 	
 	
 	if event.is_action_pressed("ui_left"):
-		$Quit.unselect()
+		$Menu.unselect()
 		$Retry.select()
 	elif event.is_action_pressed("ui_right"):
 		$Retry.unselect()
-		$Quit.select()
+		$Menu.select()
 
 
 func _on_label_spell_finished():
 	$Retry.visible = true
-	$Quit.visible = true
+	$Menu.visible = true
