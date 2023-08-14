@@ -148,15 +148,15 @@ scale = Vector2(0.9, 0.9)
 position = Vector2(-1120, 2912)
 
 [node name="Console4" parent="consoles" instance=ExtResource("4_68gym")]
-position = Vector2(160, -5320)
+position = Vector2(160, -5312)
 rotation = 1.5708
 
 [node name="Console5" parent="consoles" instance=ExtResource("4_68gym")]
-position = Vector2(160, -5444)
+position = Vector2(160, -5440)
 rotation = 1.5708
 
 [node name="Console6" parent="consoles" instance=ExtResource("4_68gym")]
-position = Vector2(160, -5188)
+position = Vector2(160, -5184)
 rotation = 1.5708
 
 [node name="ambience" type="AudioStreamPlayer" parent="."]

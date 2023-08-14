@@ -92,6 +92,7 @@ var camera_mode = Camera_Static
 @onready var arm = [ArmProperties.new(self, $WeaponsPosition/Left, $UI/shoot_left), ArmProperties.new(self, $WeaponsPosition/Right, $UI/shoot_right)]
 
 const MAX_HEALTH = 100.0
+const WARNING_HEALTH = 30.0
 
 var angular_velocity = 0
 var angular_accel = 0
@@ -103,10 +104,13 @@ func _ready():
 
 var health_tween = null
 func damage(d):
+	var previous_health = health
 	health -= d
+	
 	if health <= 0.0:
 		kill()
-	
+	elif previous_health > WARNING_HEALTH and health <= WARNING_HEALTH:
+		$UI/HealthCritical.play()
 	
 	$UI/health_bar/left.value = health
 	$UI/health_bar/right.value = health

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bw4siilxufwyk"]
+[gd_scene load_steps=40 format=3 uid="uid://bw4siilxufwyk"]
 
 [ext_resource type="Script" path="res://scenes/char/ship.gd" id="1_qdgyp"]
 [ext_resource type="Texture2D" uid="uid://bgx1qxe6eg8gm" path="res://gfx/vessel_weapon.png" id="3_tm877"]
@@ -7,8 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://cy7oje6n4ed21" path="res://gfx/big_square.png" id="5_b17kg"]
 [ext_resource type="AudioStream" uid="uid://culptf18510tb" path="res://sfx/ship/lightsoff.ogg" id="6_0be03"]
 [ext_resource type="Texture2D" uid="uid://cvgyu35i2i1d3" path="res://gfx/menu/health_bar.png" id="7_h4s5p"]
+[ext_resource type="AudioStream" uid="uid://2semgxo5ev0v" path="res://sfx/voices/robot/lowhp1.ogg" id="8_eovna"]
 [ext_resource type="Texture2D" uid="uid://by53edq75c6m5" path="res://gfx/sphere.png" id="8_tp6fd"]
+[ext_resource type="AudioStream" uid="uid://1x83r8v025ra" path="res://sfx/voices/robot/lowhp2.ogg" id="9_dvf4j"]
 [ext_resource type="AudioStream" uid="uid://b1et3go54ox6f" path="res://sfx/player/player_explode.ogg" id="9_m3ett"]
+[ext_resource type="AudioStream" uid="uid://2ifp3rlt6gha" path="res://sfx/voices/robot/lowhp3.ogg" id="10_y47ix"]
+[ext_resource type="AudioStream" uid="uid://bo7g8rln5chrg" path="res://sfx/voices/robot/lowhp4.ogg" id="11_bngvs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tbcdq"]
 radius = 13.0
@@ -371,6 +375,17 @@ tracks/0/keys = {
 _data = {
 "bug": SubResource("Animation_kipd5")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ufolk"]
+streams_count = 4
+stream_0/stream = ExtResource("8_eovna")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("9_dvf4j")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("10_y47ix")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("11_bngvs")
+stream_3/weight = 1.0
 
 [sub_resource type="Curve" id="Curve_pm1f3"]
 _data = [Vector2(0.0166667, 0.852632), 0.0, 0.0, 0, 0, Vector2(0.466667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -750,6 +765,11 @@ libraries = {
 [node name="Timer" type="Timer" parent="UI/health_bar"]
 one_shot = true
 autostart = true
+
+[node name="HealthCritical" type="AudioStreamPlayer" parent="UI"]
+stream = SubResource("AudioStreamRandomizer_ufolk")
+pitch_scale = 0.8
+bus = &"Robot Comms"
 
 [node name="explosion" type="Node2D" parent="."]
 
