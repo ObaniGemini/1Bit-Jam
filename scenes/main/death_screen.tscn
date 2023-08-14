@@ -40,22 +40,22 @@ vertical_alignment = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Retry"]
 shape = SubResource("RectangleShape2D_twab4")
 
-[node name="Quit" parent="." instance=ExtResource("3_db84o")]
+[node name="Menu" parent="." instance=ExtResource("3_db84o")]
 visible = false
 position = Vector2(800, 540)
 
-[node name="Label" type="Label" parent="Quit"]
+[node name="Label" type="Label" parent="Menu"]
 offset_left = -75.0
 offset_top = -20.0
 offset_right = 75.0
 offset_bottom = 30.0
 theme = SubResource("Theme_h451u")
 theme_type_variation = &"HeaderLarge"
-text = "QUIT"
+text = "MENU"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Quit"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Menu"]
 shape = SubResource("RectangleShape2D_twab4")
 
 [connection signal="finished" from="LabelSpell" to="." method="_on_label_spell_finished"]

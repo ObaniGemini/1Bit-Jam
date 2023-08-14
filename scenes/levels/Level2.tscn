@@ -176,7 +176,6 @@ rotation = 0.785398
 [node name="hatch5" parent="hatches" instance=ExtResource("5_y8v42")]
 position = Vector2(-5496, -8424)
 rotation = 0.785398
-scale = Vector2(1, 1)
 
 [node name="hatch6" parent="hatches" instance=ExtResource("5_y8v42")]
 position = Vector2(-5592, -7832)
