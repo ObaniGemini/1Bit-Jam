@@ -25,6 +25,10 @@ func _on_timer_before_mega_timeout():
 	mega_times += 1
 	var asteroids = AsteroidFactory.spawn_mega(mega_times)
 	for asteroid in asteroids:
+		var x_position = 100.0 + randi_range(1, 3) / 3.0 * (1280 - 300)
+		print(x_position)
+		asteroid.position = Vector2(x_position, OFFSET)
 		add_child(asteroid)
+	
 	$TimerBeforeMega.wait_time = 15
 	$TimerBeforeMega.start()

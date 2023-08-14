@@ -20,13 +20,13 @@ func _ready():
 	var speed = randf_range(ASTEROID_SPEED_MIN, ASTEROID_SPEED_MAX)
 	var dir_angle = randf_range(1.0/6 * PI, 5.0 / 6 * PI)
 	var direction = Vector2(cos(dir_angle), sin(dir_angle))
-	
-	linear_velocity = direction * speed
-	angular_velocity = randf_range(ASTEROID_ANGULAR_MIN, ASTEROID_ANGULAR_MAX)
 
 	if mega:
-		linear_velocity *= 0.1
-		angular_velocity *= 0.01
+		linear_velocity = Vector2.DOWN * ASTEROID_SPEED_MIN
+		angular_velocity = 0.01
+	else:
+		linear_velocity = direction * speed
+		angular_velocity = randf_range(ASTEROID_ANGULAR_MIN, ASTEROID_ANGULAR_MAX)
 
 	add_to_group("enemy")
 	add_to_group("asteroid")
@@ -34,22 +34,18 @@ func _ready():
 	gravity_scale = 0
 	linear_damp_mode = RigidBody2D.DAMP_MODE_REPLACE
 	angular_damp_mode = RigidBody2D.DAMP_MODE_REPLACE
-	set_collision_layer_value(2, true)
-	set_collision_layer_value(1, false)
+	if mega:
+		set_collision_layer_value(5, true)
+		set_collision_layer_value(1, false)
 
-	set_collision_mask_value(2, true)
-	set_collision_mask_value(1, false)
-	
-	if get_node_or_null("Turrets"):
-		spawn_turrets()
+		set_collision_mask_value(5, true)
+		set_collision_mask_value(1, false)
+	else:
+		set_collision_layer_value(2, true)
+		set_collision_layer_value(1, false)
 
-func spawn_turrets():
-	var pos = get_node("Turrets")
-	for p in pos.get_children():
-		if randf() < TURRET_PROBA:
-			var t = Turret.instantiate()
-			t.position = p.position
-			add_child(t)
+		set_collision_mask_value(2, true)
+		set_collision_mask_value(1, false)
 
 func destroy():
 	queue_free()
