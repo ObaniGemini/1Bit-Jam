@@ -23,7 +23,7 @@ func shooting_direction():
 
 func shoot_bullet():
 	var bullet: PhysicsBody2D = EnemyBullet.instantiate()
-	bullet.position = $TurretHead.position
+	bullet.position = $TurretHead.global_position
 	bullet.linear_velocity = shooting_direction() * BULLET_SPEED
 	
 	Entities.add_child(bullet)
