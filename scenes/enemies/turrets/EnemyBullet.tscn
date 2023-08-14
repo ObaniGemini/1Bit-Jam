@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dhbpqf2u65358"]
 
-[ext_resource type="Script" path="res://scenes/enemies/turrets/EnemyBullet.gd" id="1_e2r1k"]
+[ext_resource type="Script" path="res://scenes/enemies/turrets/EnemyBullet.gd" id="1_b4usl"]
 [ext_resource type="Texture2D" uid="uid://sf6lfof4c5bh" path="res://gfx/kill_bullet.png" id="1_esn65"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f152r"]
@@ -14,7 +14,7 @@ max_contacts_reported = 1
 contact_monitor = true
 linear_damp_mode = 1
 angular_damp_mode = 1
-script = ExtResource("1_e2r1k")
+script = ExtResource("1_b4usl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -3)

@@ -6,3 +6,6 @@ func get_damages():
 
 func _on_body_entered(_body):
 	queue_free()
+
+func destroy():
+	queue_free()

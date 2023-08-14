@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/levels/Level1.gd" id="1_ep8oo"]
 [ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/square.png" id="3_3rh33"]
 [ext_resource type="PackedScene" uid="uid://bav4oj0w0t1o5" path="res://scenes/util/LabelSpell.tscn" id="3_yop4o"]
-[ext_resource type="PackedScene" uid="uid://cykug4alhxyx5" path="res://scenes/util/delayed_audio_stream_player.tscn" id="6_1tk6y"]
+[ext_resource type="PackedScene" path="res://scenes/util/delayed_audio_stream_player.tscn" id="6_1tk6y"]
 [ext_resource type="AudioStream" uid="uid://dmhgc5aw6vyyw" path="res://sfx/voices/robot/WARNING.ogg" id="6_wp1dq"]
 [ext_resource type="AudioStream" uid="uid://b4yv5736h6w8b" path="res://music/damntheseinsurance.ogg" id="7_10fe5"]
 [ext_resource type="Texture2D" uid="uid://b0kl6iuh7d0p6" path="res://gfx/ship/big_ship.png" id="8_8epw4"]
@@ -195,7 +195,7 @@ libraries = {
 }
 
 [node name="TimerBeforeMega" type="Timer" parent="."]
-wait_time = 60.0
+wait_time = 5.0
 one_shot = true
 autostart = true
 
