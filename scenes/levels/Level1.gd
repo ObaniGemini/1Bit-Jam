@@ -9,9 +9,6 @@ func _ready():
 	$Ship.set_camera_mode($Ship.Camera_Static)
 	Music.play("level1")
 
-func end_of_level():
-	pass
-
 func _on_asteroid_spawn_timer_timeout():
 	var sc_ast = AsteroidFactory.random_asteroid(0.66)
 	add_child(sc_ast)
@@ -37,4 +34,3 @@ func _on_timer_before_mega_timeout():
 	$TimerBeforeMega.wait_time = 15
 	if mega_times < 3:
 		$TimerBeforeMega.start()
-	end_of_level()
