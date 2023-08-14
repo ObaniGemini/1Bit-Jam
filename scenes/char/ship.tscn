@@ -1,7 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://bw4siilxufwyk"]
+[gd_scene load_steps=22 format=3 uid="uid://bw4siilxufwyk"]
 
 [ext_resource type="Script" path="res://scenes/char/ship.gd" id="1_qdgyp"]
-[ext_resource type="Texture2D" uid="uid://18qhhnfmswpo" path="res://gfx/vessel_headlights.png" id="2_3vup6"]
 [ext_resource type="Texture2D" uid="uid://bgx1qxe6eg8gm" path="res://gfx/vessel_weapon.png" id="3_tm877"]
 [ext_resource type="Texture2D" uid="uid://ds1y8jxkei8n1" path="res://gfx/ship/light.png" id="4_ffssy"]
 [ext_resource type="AudioStream" uid="uid://dwsqmn41ricju" path="res://sfx/ship/lightsopen.ogg" id="5_awld5"]
@@ -213,6 +212,21 @@ loop = true
 bg_color = Color(1, 1, 1, 1)
 border_color = Color(1, 1, 1, 1)
 
+[sub_resource type="Animation" id="Animation_lxqbq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_8oyvb"]
 resource_name = "blink"
 length = 0.125
@@ -228,21 +242,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
-}
-
-[sub_resource type="Animation" id="Animation_lxqbq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m447i"]
@@ -269,12 +268,7 @@ position_smoothing_speed = 10.0
 rotation_smoothing_enabled = true
 rotation_smoothing_speed = 2.0
 
-[node name="Sprite" type="Node2D" parent="."]
-
-[node name="VesselHeadLights" type="Sprite2D" parent="Sprite"]
-texture = ExtResource("2_3vup6")
-
-[node name="VesselWeapons" type="Sprite2D" parent="Sprite"]
+[node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("3_tm877")
 
 [node name="HitboxWorldBoundary" type="CollisionShape2D" parent="."]

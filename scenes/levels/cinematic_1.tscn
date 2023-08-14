@@ -125,7 +125,7 @@ tracks/8/keys = {
 
 [sub_resource type="Animation" id="Animation_lqm5i"]
 resource_name = "scene"
-length = 25.0
+length = 26.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -133,7 +133,7 @@ tracks/0/path = NodePath("Sprite2D:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 9.3),
+"times": PackedFloat32Array(0, 0.5, 9.7),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -145,7 +145,7 @@ tracks/1/path = NodePath("Sprite2D2:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 9.7, 13),
+"times": PackedFloat32Array(0, 10.1, 14),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -157,7 +157,7 @@ tracks/2/path = NodePath("Sprite2D3:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 13.4, 14.8),
+"times": PackedFloat32Array(0, 14.4, 16.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -169,10 +169,10 @@ tracks/3/path = NodePath("Sprite2D4:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 15.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 16.6, 25.6),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [false, true]
+"values": [false, true, false]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -193,7 +193,7 @@ tracks/5/path = NodePath("Sounds/alright:playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(9.6),
+"times": PackedFloat32Array(10),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -205,7 +205,7 @@ tracks/6/path = NodePath("Sounds/targetreached:playing")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(14.7),
+"times": PackedFloat32Array(16),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -217,7 +217,7 @@ tracks/7/path = NodePath("Sounds/already:playing")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(19.7),
+"times": PackedFloat32Array(20.8),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -229,24 +229,10 @@ tracks/8/path = NodePath("Sprite2D4/Label4:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 19.7),
+"times": PackedFloat32Array(0, 20.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
-}
-tracks/9/type = "method"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath(".")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(23.3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"finish"
-}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f5gfy"]
@@ -260,6 +246,7 @@ default_font = ExtResource("2_822qh")
 
 [node name="Cinematic1" type="Node2D"]
 script = ExtResource("1_jiuv6")
+music = "cinematic1"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "scene"
@@ -278,7 +265,7 @@ offset_bottom = 260.0
 theme = SubResource("Theme_55tes")
 theme_type_variation = &"HeaderLarge"
 text = "Shepard, we just located an 
-anomaly in the sector 13 of the
+anomaly in sector 13 of the
 intergalactical highway. A black
 zone keeps showing on our radar.
 I'd like you to investigate"
@@ -373,8 +360,9 @@ stream = ExtResource("6_7lob7")
 
 [node name="targetreached" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("7_0t715")
-volume_db = -5.098
 bus = &"Robot"
 
 [node name="already" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("8_jcivb")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="finish"]

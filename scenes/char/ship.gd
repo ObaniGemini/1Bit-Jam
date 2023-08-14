@@ -20,13 +20,6 @@ const LIGHT_ENERGY = 3.0
 const RECOVER_ENERGY = 20.0
 const LOW_ENERGY = 10.0
 
-enum {
-	Mode_Shoot,
-	Mode_Light,
-	
-	Mode_Count
-}
-
 class ArmProperties:
 	var parent
 	var handler
@@ -95,7 +88,6 @@ enum {
 	Camera_Follow
 }
 
-var mode = Mode_Shoot
 var camera_mode = Camera_Static
 @onready var arm = [ArmProperties.new(self, $WeaponsPosition/Left, $UI/shoot_left), ArmProperties.new(self, $WeaponsPosition/Right, $UI/shoot_right)]
 
@@ -105,7 +97,6 @@ var angular_accel = 0
 func _ready():
 	$WeaponsPosition/Left/Sprite2D.visible = false
 	$WeaponsPosition/Right/Sprite2D.visible = false
-	select_sprite()
 
 func set_camera_mode(m):
 	camera_mode = m 
@@ -132,19 +123,6 @@ func _physics_process(delta):
 func joy_axis_move(value):
 	if abs(value) < JOYSTICK_MOVE_THRESHOLD: return 0.0
 	return value
-
-func switch():
-	mode = (mode + 1) % Mode_Count
-	select()
-	select_sprite()
-
-func select_sprite():
-	$Sprite/VesselHeadLights.visible = mode == Mode_Light
-	$Sprite/VesselWeapons.visible = mode != Mode_Light
-
-func select():
-	if mode == Mode_Light: $light/AnimationPlayer.play("on")
-	else: $light/AnimationPlayer.play("off")
 
 func _input(event):
 	if event is InputEventJoypadMotion:

@@ -3,6 +3,7 @@ extends Label
 signal finished
 
 @export var lifetime : float = 1.0
+@export var wait_time : float = 0.0
 
 const SPEED_MIN = 0.05
 const SPEED_MAX = 0.15
@@ -26,12 +27,17 @@ func reset_text(t):
 	if lifetime > 0.0 and alive_time == null:
 		alive_time = Timer.new()
 		alive_time.timeout.connect(queue_free)
-		alive_time.wait_time = lifetime
+		alive_time.wait_time = lifetime + wait_time
 		add_child(alive_time)
 	
 	if alive_time != null:
 		alive_time.start()
-	next()
+	
+	if wait_time == 0.0:
+		next()
+	else:
+		timer.wait_time = wait_time
+		timer.start()
 
 func skip():
 	text = final_text
