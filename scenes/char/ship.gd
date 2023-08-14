@@ -102,6 +102,11 @@ func set_camera_mode(m):
 	camera_mode = m 
 	$Camera2D.enabled = camera_mode == Camera_Follow
 
+func heatlh_glitch():
+	$UI/health_bar/Timer.wait_time = randf_range(20.0, 90.0)
+	$UI/health_bar/Timer.start()
+	$UI/health_bar/glitch.play("bug")
+
 func _physics_process(delta):
 	var vel = move_dir * SPEED * delta
 	if camera_mode == Camera_Follow:
