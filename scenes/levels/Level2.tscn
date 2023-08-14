@@ -137,6 +137,24 @@ position = Vector2(-4096, 5120)
 [node name="Marker2D5" type="Marker2D" parent="Watchers/Watcher6"]
 position = Vector2(0, 5120)
 
+[node name="decor" type="Node2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="decor"]
+points = PackedVector2Array(576, 704, 576, -384, -768, -384, -1088, 1016, -1088, 2560, -512, 2560, -512, 3392, -1728, 3392, -1728, 2560, -1152, 2560, -1152, -3072, -1984, -3072, -1984, -3584, -2496, -3584, -2496, -4096, -2816, -5344, -3576, -5344, -4160, -5624, -4160, -6528, -4544, -6528, -4544, -8256, -4736, -8448, -4544, -8640, -4352, -8448)
+width = 4.0
+
+[node name="Line2D2" type="Line2D" parent="decor"]
+points = PackedVector2Array(640, 704, 640, -448, -1088, -448, -1088, -3072, -256, -3072, -256, -6336, -2560, -6336, -2816, -5344)
+width = 4.0
+
+[node name="Line2D3" type="Line2D" parent="decor"]
+points = PackedVector2Array(-1088, -384, -832, -384, -1088, 784, -1088, -384)
+width = 4.0
+
+[node name="Line2D4" type="Line2D" parent="decor"]
+points = PackedVector2Array(-4544, -6912, -4160, -6912, -4160, -6528)
+width = 4.0
+
 [node name="Ship" parent="." instance=ExtResource("2_u1rvh")]
 position = Vector2(608, 640)
 

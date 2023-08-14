@@ -1,6 +1,6 @@
 extends Area2D
 
-const DAMAGE_PER_SECOND = 50.0
+const DAMAGE_PER_SECOND = 75.0
 
 @onready var speed = 200
 
