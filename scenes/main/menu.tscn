@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scenes/main/menu.gd" id="1_sqoof"]
 [ext_resource type="PackedScene" uid="uid://b0jj3g077iadv" path="res://scenes/main/main_menu_button.tscn" id="2_6xyls"]
 [ext_resource type="Texture2D" uid="uid://c7j8vesv3h5pm" path="res://gfx/tri-rect.png" id="3_i4uqr"]
-[ext_resource type="Texture2D" uid="uid://beltxp63ajcnp" path="res://gfx/settings.png" id="4_1w1pd"]
 [ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/square.png" id="4_c040e"]
+[ext_resource type="Texture2D" uid="uid://bacj45bhyqul4" path="res://gfx/menu/fullscreen.png" id="5_toabw"]
 [ext_resource type="AudioStream" uid="uid://hmfuc8kwh2cj" path="res://sfx/menu/menu_whoosh.ogg" id="6_k8s3k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_va28y"]
@@ -34,21 +34,36 @@ stream = ExtResource("6_k8s3k")
 volume_db = 2.0
 bus = &"Space"
 
-[node name="Settings" parent="." instance=ExtResource("2_6xyls")]
+[node name="Fullscreen" parent="." instance=ExtResource("2_6xyls")]
 position = Vector2(256, 360)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Settings"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fullscreen"]
 shape = SubResource("RectangleShape2D_va28y")
 
-[node name="Sprite2D" type="Sprite2D" parent="Settings"]
-position = Vector2(0, -64)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_1w1pd")
+[node name="n" type="Node2D" parent="Fullscreen"]
 
-[node name="Sprite2D2" type="Sprite2D" parent="Settings"]
-position = Vector2(0, 64)
-scale = Vector2(0.5, -0.5)
-texture = ExtResource("4_1w1pd")
+[node name="Sprite2D" type="Sprite2D" parent="Fullscreen/n"]
+position = Vector2(64, 64)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_toabw")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Fullscreen/n"]
+position = Vector2(-64, 64)
+rotation = 1.5708
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_toabw")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Fullscreen/n"]
+position = Vector2(-64, -64)
+rotation = -3.14159
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_toabw")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Fullscreen/n"]
+position = Vector2(64, -64)
+rotation = -1.5708
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_toabw")
 
 [node name="Quit" parent="." instance=ExtResource("2_6xyls")]
 position = Vector2(1024, 360)
@@ -88,7 +103,7 @@ offset = Vector2(-0.5, 0)
 
 [connection signal="selected" from="Play" to="." method="select_play"]
 [connection signal="unselected" from="Play" to="." method="unselect_play"]
-[connection signal="selected" from="Settings" to="." method="select_settings"]
-[connection signal="unselected" from="Settings" to="." method="unselect_settings"]
+[connection signal="selected" from="Fullscreen" to="." method="select_fullscreen"]
+[connection signal="unselected" from="Fullscreen" to="." method="unselect_fullscreen"]
 [connection signal="selected" from="Quit" to="." method="select_quit"]
 [connection signal="unselected" from="Quit" to="." method="unselect_quit"]

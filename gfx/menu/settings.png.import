@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://beltxp63ajcnp"
-path="res://.godot/imported/settings.png-a006711f35b01dcff37e001bacf25785.ctex"
+path="res://.godot/imported/settings.png-be96ea79cc8a739e8c8c5d7027dd3dae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gfx/settings.png"
-dest_files=["res://.godot/imported/settings.png-a006711f35b01dcff37e001bacf25785.ctex"]
+source_file="res://gfx/menu/settings.png"
+dest_files=["res://.godot/imported/settings.png-be96ea79cc8a739e8c8c5d7027dd3dae.ctex"]
 
 [params]
 

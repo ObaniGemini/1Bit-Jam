@@ -1,17 +1,17 @@
 extends Node2D
 
-const TWEEN_TIME_MIN = 0.1
-const TWEEN_TIME_MAX = 0.4
+const TWEEN_TIME_MIN = 0.2
+const TWEEN_TIME_MAX = 0.5
 
 const WORLD_PATH = "res://scenes/main/world.tscn"
 
 var selected = 1
 
 var tween_play = [null, null]
-var tween_settings = [null, null]
+var tween_fullscreen = [null, null, null, null, null]
 var tween_quit = [null, null, null, null]
 
-@onready var buttons = [$Settings, $Play, $Quit]
+@onready var buttons = [$Fullscreen, $Play, $Quit]
 
 func tween_btn(array, idx, node, prop, pos):
 	if(array[idx] != null):
@@ -33,14 +33,25 @@ func unselect_play():
 
 
 
-func select_settings():
-	tween_btn(tween_settings, 0, $Settings/Sprite2D, "position:y", -220)
-	tween_btn(tween_settings, 1, $Settings/Sprite2D2, "position:y", 220)
+func select_fullscreen():
+	var basis = 0.0
+	if Config.param("fullscreen"): basis += PI
+	
+	tween_btn(tween_fullscreen, 0, $Fullscreen/n/Sprite2D, "rotation", basis)
+	tween_btn(tween_fullscreen, 1, $Fullscreen/n/Sprite2D2, "rotation", basis - (PI*3)/2)
+	tween_btn(tween_fullscreen, 2, $Fullscreen/n/Sprite2D3, "rotation", basis + PI)
+	tween_btn(tween_fullscreen, 3, $Fullscreen/n/Sprite2D4, "rotation", basis - PI/2)
+	tween_btn(tween_fullscreen, 4, $Fullscreen/n, "scale", Vector2(1.25, 1.25))
 
-func unselect_settings():
-	tween_btn(tween_settings, 0, $Settings/Sprite2D, "position:y", -64)
-	tween_btn(tween_settings, 1, $Settings/Sprite2D2, "position:y", 64)
-
+func unselect_fullscreen():
+	var basis = 0.0
+	if Config.param("fullscreen"): basis += PI
+	
+	tween_btn(tween_fullscreen, 0, $Fullscreen/n/Sprite2D, "rotation", basis + PI)
+	tween_btn(tween_fullscreen, 1, $Fullscreen/n/Sprite2D2, "rotation", basis - PI/2)
+	tween_btn(tween_fullscreen, 2, $Fullscreen/n/Sprite2D3, "rotation", basis + PI*2)
+	tween_btn(tween_fullscreen, 3, $Fullscreen/n/Sprite2D4, "rotation", basis - (PI * 3)/2)
+	tween_btn(tween_fullscreen, 4, $Fullscreen/n, "scale", Vector2(1.0, 1.0))
 
 
 
@@ -60,17 +71,17 @@ func unselect_quit():
 
 
 func _ready():
+	unselect_fullscreen()
+	
 	$Play.pressed.connect(play)
-	
-#	$Settings.pressed.connect(quit)
-	
+	$Fullscreen.pressed.connect(fullscreen)
 	$Quit.pressed.connect(quit)
 
 
 
 func play():
 	$Play.disable(true)
-	$Settings.hide()
+	$Fullscreen.hide()
 	$Quit.hide()
 	
 	$Play/start.play()
@@ -82,6 +93,10 @@ func play():
 	await get_tree().create_timer(4.0, true).timeout
 	
 	get_tree().change_scene_to_file(WORLD_PATH)
+
+func fullscreen():
+	Config.update("fullscreen", !Config.param("fullscreen"))
+	select_fullscreen()
 
 func quit():
 	print("Bye")

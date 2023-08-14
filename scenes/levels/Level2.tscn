@@ -11,10 +11,6 @@ polygon = PackedVector2Array(-192, 64, -191, -192, -158, -224, -97, -239, 96, -2
 
 [node name="Level2" type="Node2D"]
 script = ExtResource("1_o4vqa")
-limit_left = -1000000
-limit_top = -1000000
-limit_right = 1000000
-limit_bottom = 1000000
 
 [node name="Ship" parent="." instance=ExtResource("2_u1rvh")]
 position = Vector2(608, 640)
