@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bk14xkfw7gaoh" path="res://gfx/turret1.png" id="3_nepfh"]
 
 [node name="Turret" type="StaticBody2D"]
+position = Vector2(0, -23)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_ao3g4")
@@ -19,4 +20,14 @@ polygon = PackedVector2Array(-2, -26, -2, -22, -6, -22, -6, -12, -12, -12, -12, 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(-2, -26, -2, -22, -6, -22, -6, -12, -12, -12, -12, 3, -12, 23, 12, 23, 12, 3, 12, -12, 6, -12, 6, -22, 2, -22, 2, -26)
 
+[node name="ShootingTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="TurretHead" type="Marker2D" parent="."]
+position = Vector2(0, -26)
+
+[node name="TurretBase" type="Marker2D" parent="."]
+position = Vector2(0, 23)
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="ShootingTimer" to="." method="_on_shooting_timer_timeout"]

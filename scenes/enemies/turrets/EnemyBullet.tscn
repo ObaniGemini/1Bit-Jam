@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhbpqf2u65358"]
+
+[ext_resource type="Texture2D" uid="uid://sf6lfof4c5bh" path="res://gfx/kill_bullet.png" id="1_esn65"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f152r"]
+size = Vector2(3, 5.5)
+
+[node name="EnemyBullet" type="RigidBody2D"]
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 6)
+texture = ExtResource("1_esn65")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -2.75)
+shape = SubResource("RectangleShape2D_f152r")
