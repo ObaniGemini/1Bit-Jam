@@ -6,6 +6,8 @@ const SKIP_TEXT = "Skipping."
 @onready var timer = Timer.new()
 @onready var skip_timer = Timer.new()
 
+@export var music = ""
+
 var skipping = false
 var idx = 0
 
@@ -23,6 +25,9 @@ func _ready():
 	skip_timer.autostart = false
 	skip_timer.one_shot = false
 	skip_timer.timeout.connect(finish)
+	
+	if music != "":
+		Music.play(music)
 	
 	add_child(skip_label)
 	add_child(timer)
