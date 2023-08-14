@@ -73,7 +73,6 @@ visibility_rect = Rect2(-200, -200, 400, 400)
 stream = SubResource("AudioStreamOggVorbis_2v6a7")
 volume_db = 6.0
 autoplay = true
-stream_paused = true
 max_distance = 1500.0
 attenuation = 1.62451
 panning_strength = 2.0

@@ -11,11 +11,11 @@ func select():
 	if visible && !is_selected:
 		$AudioStreamPlayer2D.play()
 		is_selected = true
-		emit_signal("selected")
+		selected.emit()
 
 func unselect():
 	is_selected = false
-	emit_signal("unselected")
+	unselected.emit()
 	for body in get_children():
 		if body is Area2D:
 			body.unselect()

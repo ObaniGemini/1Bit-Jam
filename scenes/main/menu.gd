@@ -73,10 +73,13 @@ func unselect_quit():
 func _ready():
 	unselect_fullscreen()
 	
-	$Play.pressed.connect(play)
 	$Fullscreen.pressed.connect(fullscreen)
+	$Play.pressed.connect(play)
 	$Quit.pressed.connect(quit)
-
+	
+	$Fullscreen.selected.connect(mouse_select.bind(0))
+	$Play.selected.connect(mouse_select.bind(1))
+	$Quit.selected.connect(mouse_select.bind(2))
 
 
 func play():
@@ -107,6 +110,11 @@ func _input(event):
 		select(-1)
 	elif event.is_action_pressed("ui_right"):
 		select(+1)
+
+func mouse_select(i):
+	if selected != i:
+		buttons[selected].unselect()
+		selected = i
 
 func select(i):
 	if (selected == 0 and i < 0) or (selected == (buttons.size() - 1) and i > 0):
