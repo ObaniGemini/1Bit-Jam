@@ -2,6 +2,8 @@ extends "res://scenes/main/level.gd"
 
 const OFFSET = -20
 
+var mega_times = 0
+
 func _ready():
 	$LabelSpell/AudioStreamPlayer.finished.connect($AsteroidSpawnTimer.start)
 	$Ship.set_camera_mode($Ship.Camera_Static)
@@ -17,3 +19,12 @@ func _on_asteroid_spawn_timer_timeout():
 func _on_area_kill_asteroids_body_entered(body):
 	if body.is_in_group("asteroid"):
 		body.queue_free()
+
+
+func _on_timer_before_mega_timeout():
+	mega_times += 1
+	var asteroids = AsteroidFactory.spawn_mega(mega_times)
+	for asteroid in asteroids:
+		add_child(asteroid)
+	$TimerBeforeMega.wait_time = 15
+	$TimerBeforeMega.start()

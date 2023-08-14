@@ -33,10 +33,10 @@ orbit_velocity_max = 0.0
 scale_max = 4.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ir78t"]
-size = Vector2(32.9375, 975)
+size = Vector2(30, 1343.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tv1yd"]
-size = Vector2(1484, 23)
+size = Vector2(2227, 33.5)
 
 [sub_resource type="Animation" id="Animation_44uyc"]
 length = 0.001
@@ -156,19 +156,19 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="AreaKillAsteroids"]
-position = Vector2(1356, 291)
+position = Vector2(1755, 343.75)
 shape = SubResource("RectangleShape2D_ir78t")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="AreaKillAsteroids"]
-position = Vector2(-95.9375, 291.5)
+position = Vector2(-446, 350)
 shape = SubResource("RectangleShape2D_ir78t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaKillAsteroids"]
-position = Vector2(627, 764.5)
+position = Vector2(660.5, 1025.25)
 shape = SubResource("RectangleShape2D_tv1yd")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="AreaKillAsteroids"]
-position = Vector2(633, -199)
+position = Vector2(663, -329)
 shape = SubResource("RectangleShape2D_tv1yd")
 
 [node name="Sounds" type="Node" parent="."]
@@ -189,6 +189,11 @@ libraries = {
 "": SubResource("AnimationLibrary_dgn5p")
 }
 
+[node name="TimerBeforeMega" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
 [connection signal="player_died" from="Ship" to="." method="_on_ship_player_died"]
 [connection signal="timeout" from="AsteroidSpawnTimer" to="." method="_on_asteroid_spawn_timer_timeout"]
 [connection signal="body_entered" from="AreaKillAsteroids" to="." method="_on_area_kill_asteroids_body_entered"]
+[connection signal="timeout" from="TimerBeforeMega" to="." method="_on_timer_before_mega_timeout"]
