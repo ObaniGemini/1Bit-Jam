@@ -1,6 +1,6 @@
 extends "res://scenes/main/level.gd"
 
-const OFFSET = -20
+const OFFSET = -100
 
 var mega_times = 0
 
@@ -29,9 +29,8 @@ func _on_timer_before_mega_timeout():
 	var asteroids = AsteroidFactory.spawn_mega(mega_times)
 	var x_positions = []
 	for i in range(len(asteroids)):
-		# If 3 asteroids, will spawn on 1/4, 2/4, 3/4 of screen width
+		# If 3 asteroids, will spawn on 1/4, 2/4, 3/4 of ~screen width
 		var x_position = 100.0 + float(i + 1) / (mega_times + 1.0) * (1280 - 300)
-		print(x_position)
 		var asteroid = asteroids[i]
 		asteroid.position = Vector2(x_position, OFFSET)
 		add_child(asteroid)

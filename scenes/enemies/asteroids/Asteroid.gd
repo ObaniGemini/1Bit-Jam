@@ -27,7 +27,7 @@ func _ready():
 
 	if asteroid_type == AsteroidType.MEGA:
 		linear_velocity = Vector2.DOWN * ASTEROID_SPEED_MIN
-		angular_velocity = 0.01
+		angular_velocity = 0.001
 	else:
 		linear_velocity = direction * speed
 		angular_velocity = randf_range(ASTEROID_ANGULAR_MIN, ASTEROID_ANGULAR_MAX)
@@ -38,21 +38,25 @@ func _ready():
 	gravity_scale = 0
 	linear_damp_mode = RigidBody2D.DAMP_MODE_REPLACE
 	angular_damp_mode = RigidBody2D.DAMP_MODE_REPLACE
+	set_collision_layer_value(2, true)
+	set_collision_layer_value(1, false)
+
+	set_collision_mask_value(2, true)
+	set_collision_mask_value(1, false)
+	
+	# Mass to have nice collision
 	if asteroid_type == AsteroidType.MEGA:
-		set_collision_layer_value(5, true)
-		set_collision_layer_value(1, false)
-
-		set_collision_mask_value(5, true)
-		set_collision_mask_value(1, false)
+		mass = 1000
+	elif asteroid_type == AsteroidType.BIG:
+		mass = 100
 	else:
-		set_collision_layer_value(2, true)
-		set_collision_layer_value(1, false)
-
-		set_collision_mask_value(2, true)
-		set_collision_mask_value(1, false)
+		mass = 1
 
 func destroy():
-	queue_free()
+	if asteroid_type == AsteroidType.MEGA:
+		pass
+	else:
+		queue_free()
 
 func get_damages():
 	if asteroid_type == AsteroidType.MINI:

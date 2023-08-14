@@ -37,5 +37,7 @@ static func random_asteroid(big_asteroid_prob):
 static 	func spawn_mega(number):
 	var arr = []
 	for i in  range(number):
-		arr.append(mega_asteroids.pick_random().instantiate())
+		var ast = mega_asteroids.pick_random().instantiate()
+		ast.asteroid_type = Asteroids.AsteroidType.MEGA
+		arr.append(ast)
 	return arr
