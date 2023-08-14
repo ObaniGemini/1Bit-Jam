@@ -186,7 +186,5 @@ func kill():
 
 
 func _on_hitbox_receiver_body_entered(body):
-	if body.is_in_group("asteroid"):
-		kill()
-	elif body.is_in_group("enemy"):
-		kill()
+	if body.is_in_group("enemy"):
+		damage(body.get_damages())

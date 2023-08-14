@@ -24,9 +24,14 @@ static func random_asteroid(big_asteroid_prob):
 	var big_asteroid = randf() < big_asteroid_prob
 	
 	var arr = mini_asteroids
-	if big_asteroid: arr = big_asteroids
+	var ast_type = Asteroids.AsteroidType.MINI
+	if big_asteroid: 
+		arr = big_asteroids
+		ast_type = Asteroids.AsteroidType.BIG
 	
-	return arr.pick_random().instantiate()
+	var ast = arr.pick_random().instantiate()
+	ast.asteroid_type = ast_type
+	return ast
 
 
 static 	func spawn_mega(number):
