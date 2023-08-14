@@ -24,20 +24,22 @@ func next():
 	tween.tween_property(self, "position", targets[idx], position.distance_to(targets[idx]) / speed)
 	tween.tween_callback(next)
 
-func follow(player):
-	$AudioStreamPlayer2D.pitch_scale = 16.0
+func detect(player):
+	$idle.stop()
+	$detected.play()
 	$Timer.timeout.connect(player.kill)
 
-func unfollow(player):
-	$AudioStreamPlayer2D.pitch_scale = 1.0
+func undetect(player):
+	$idle.play()
+	$detected.stop()
 	$Timer.timeout.disconnect(player.kill)
 
 func _on_body_entered(body):
 	if body.is_in_group("player"):
 		body.kill()
-		follow(body)
+		detect(body)
 
 
 func _on_body_exited(body):
 	if body.is_in_group("player"):
-		unfollow(body)
+		undetect(body)
