@@ -56,6 +56,7 @@ class ArmProperties:
 			var b = bullet.instantiate()
 			b.position = handler.global_position
 			b.rotation = parent.rotation
+			b.add_collision_exception_with(parent)
 			Entities.add_child(b)
 	
 	func toggle_light():

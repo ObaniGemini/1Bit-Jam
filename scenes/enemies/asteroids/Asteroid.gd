@@ -5,7 +5,7 @@ class_name Asteroids
 # Generate a random asteroid with adapted sprite & collision shape
 
 const ASTEROID_SPEED_MIN = 20
-const ASTEROID_SPEED_MAX = 80
+const ASTEROID_SPEED_MAX = 60
 
 const ASTEROID_ANGULAR_MIN = 0.5
 const ASTEROID_ANGULAR_MAX = 2
@@ -19,6 +19,14 @@ enum AsteroidType {
 	MEGA
 }
 @export var asteroid_type: AsteroidType = AsteroidType.MINI
+
+var prop = {
+	AsteroidType.MINI: {"mass": 1, "health_min": 1, "health_max": 1, "damage": 1},
+	AsteroidType.BIG: {"mass": 100, "health_min": 1, "health_max": 6, "damage": 20},
+	AsteroidType.MEGA: {"mass": 10000, "health_min": 10000, "health_max": 10000, "damage": 30}
+}
+
+var health = 0
 
 func _ready():
 	var speed = randf_range(ASTEROID_SPEED_MIN, ASTEROID_SPEED_MAX)
@@ -45,23 +53,19 @@ func _ready():
 	set_collision_mask_value(1, false)
 	
 	# Mass to have nice collision
-	if asteroid_type == AsteroidType.MEGA:
-		mass = 1000
-	elif asteroid_type == AsteroidType.BIG:
-		mass = 100
-	else:
-		mass = 1
+	mass = prop[asteroid_type]["mass"]
+	health = randi_range(prop[asteroid_type]["health_min"], prop[asteroid_type]["health_max"])
+	if asteroid_type == AsteroidType.MINI:
+		add_to_group("destroyable")
+
 
 func destroy():
-	if asteroid_type == AsteroidType.MEGA:
-		pass
-	else:
-		queue_free()
+	queue_free()
+
+func damage(i):
+	health -= i
+	if health <= 0:
+		destroy()
 
 func get_damages():
-	if asteroid_type == AsteroidType.MINI:
-		return 1
-	elif asteroid_type == AsteroidType.BIG:
-		return 10
-	elif asteroid_type == AsteroidType.MEGA:
-		return 50
+	return prop[asteroid_type]["damage"]

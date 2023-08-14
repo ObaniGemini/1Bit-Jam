@@ -9,6 +9,9 @@
 [ext_resource type="AudioStream" uid="uid://vpe1mr2bicaj" path="res://sfx/ship/missile_explode2.ogg" id="7_71olp"]
 [ext_resource type="AudioStream" uid="uid://d360uvsw2fh6g" path="res://sfx/ship/missile_explode3.ogg" id="8_pfoqg"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_6fbq8"]
+radius = 12.0
+
 [sub_resource type="Curve" id="Curve_m4wxa"]
 _data = [Vector2(0.438889, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.389474), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -62,11 +65,8 @@ scale_min = 0.01
 scale_max = 0.08
 scale_curve = SubResource("CurveTexture_8hcpi")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sf7ue"]
-size = Vector2(24, 24)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1tyr"]
-radius = 32.0
+radius = 40.0
 
 [sub_resource type="Animation" id="Animation_sejaq"]
 length = 0.001
@@ -336,9 +336,18 @@ stream_1/weight = 1.0
 stream_2/stream = ExtResource("8_pfoqg")
 stream_2/weight = 1.0
 
-[node name="bullet" type="CharacterBody2D" groups=["player"]]
-motion_mode = 1
+
+[node name="bullet" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 2
+mass = 40.0
+gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
 script = ExtResource("1_tvv31")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6fbq8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(24, 24)
@@ -384,13 +393,6 @@ explosiveness = 1.0
 fixed_fps = 60
 visibility_rect = Rect2(-100, -100, 200, 1000)
 
-[node name="Area2D" type="Area2D" parent="." groups=["bullet"]]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_sf7ue")
-
 [node name="ExplodeArea" type="Area2D" parent="." groups=["bullet"]]
 collision_layer = 2
 collision_mask = 2
@@ -422,5 +424,5 @@ stream = SubResource("AudioStreamRandomizer_vm21k")
 volume_db = 5.0
 bus = &"Space"
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
