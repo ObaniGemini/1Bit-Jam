@@ -87,9 +87,5 @@ attenuation = 1.62451
 panning_strength = 2.0
 bus = &"Space"
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 1.5
-one_shot = true
-
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -91,12 +91,25 @@ enum {
 var camera_mode = Camera_Static
 @onready var arm = [ArmProperties.new(self, $WeaponsPosition/Left, $UI/shoot_left), ArmProperties.new(self, $WeaponsPosition/Right, $UI/shoot_right)]
 
+const MAX_HEALTH = 100.0
+
 var angular_velocity = 0
 var angular_accel = 0
+var health = MAX_HEALTH
 
 func _ready():
 	$WeaponsPosition/Left/Sprite2D.visible = false
 	$WeaponsPosition/Right/Sprite2D.visible = false
+
+var health_tween = null
+func damage(d):
+	health -= d
+	if health <= 0.0:
+		kill()
+	
+	
+	$UI/health_bar/left.value = health
+	$UI/health_bar/right.value = health
 
 func set_camera_mode(m):
 	camera_mode = m 

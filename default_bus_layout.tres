@@ -4,7 +4,7 @@
 resource_name = "Compressor"
 threshold = -9.7
 ratio = 16.7
-gain = 4.7
+gain = 4.0
 
 [sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_4m7bw"]
 resource_name = "LowPassFilter"
