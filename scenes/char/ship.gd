@@ -172,7 +172,12 @@ func _input(event):
 	move_dir.y = clampf(move_dir.y, -1, 1)
 
 func kill():
+	set_physics_process(false)
+	set_process_input(false)
 	print("Player died")
+	
+	$explosion/AnimationPlayer.play("explode")
+	await $explosion/AnimationPlayer.animation_finished
 	player_died.emit()
 
 
