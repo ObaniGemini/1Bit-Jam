@@ -16,10 +16,12 @@ func _ready():
 	
 	for node in get_children():
 		if node is Marker2D:
-			targets.append(position + node.position)
+			targets.append(position + node.position * scale)
 	
 	stop_attack()
-	next()
+	
+	if targets.size() > 1:
+		next()
 
 func next():
 	idx = (idx + 1) % targets.size()
@@ -38,12 +40,14 @@ func attack(body):
 	player = body
 	$idle.stop()
 	$detected.play()
+	$AnimationPlayer.speed_scale = 4.0
 	set_physics_process(true)
 
 func stop_attack():
 	set_physics_process(false)
 	$idle.play()
 	$detected.stop()
+	$AnimationPlayer.speed_scale = 1.0
 	player = null
 
 func _on_body_entered(body):
