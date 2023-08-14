@@ -3,7 +3,7 @@ extends Label
 signal finished
 
 @export var lifetime : float = 1.0
-@export var wait_time : float = 30.0
+@export var wait_time : float = 0.0
 
 const SPEED_MIN = 0.05
 const SPEED_MAX = 0.15
