@@ -2,9 +2,9 @@
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3a7d"]
 resource_name = "Compressor"
-threshold = -9.7
-ratio = 16.7
-gain = 4.0
+threshold = -10.0
+ratio = 10.0
+gain = 3.0
 
 [sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_4m7bw"]
 resource_name = "LowPassFilter"
@@ -61,6 +61,7 @@ band_db/3200_hz = -17.2
 band_db/10000_hz = -29.2
 
 [resource]
+bus/0/volume_db = -0.526013
 bus/0/effect/0/effect = SubResource("AudioEffectCompressor_j3a7d")
 bus/0/effect/0/enabled = true
 bus/1/name = &"Comms"
@@ -107,7 +108,7 @@ bus/4/name = &"Music"
 bus/4/solo = false
 bus/4/mute = false
 bus/4/bypass_fx = false
-bus/4/volume_db = -12.9844
+bus/4/volume_db = -11.9576
 bus/4/send = &"Master"
 bus/5/name = &"Space"
 bus/5/solo = false
