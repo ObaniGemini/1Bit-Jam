@@ -11,6 +11,13 @@ var EnemyBullet = preload("res://scenes/enemies/turrets/EnemyBullet.tscn")
 func _ready():
 	$ShootingTimer.wait_time = randf_range(MIN_SHOOTING_TIME, MAX_SHOOTING_TIME)
 
+
+func _physics_process(_delta):
+	var ship = get_node("/root/World").level_scene.get_node("Ship")
+	var angle = global_position.angle_to_point(ship.global_position)
+	rotate(angle)
+
+
 func destroy():
 	queue_free()
 
