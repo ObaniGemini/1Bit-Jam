@@ -154,6 +154,7 @@ func _input(event):
 	move_dir.y = clampf(move_dir.y, -1, 1)
 
 func kill():
+	print("Player died")
 	player_died.emit()
 
 

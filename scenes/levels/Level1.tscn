@@ -128,6 +128,7 @@ DONE TO THE SHIP"
 horizontal_alignment = 1
 vertical_alignment = 1
 lifetime = 10.0
+wait_time = 30.0
 
 [node name="AsteroidSpawnTimer" type="Timer" parent="."]
 

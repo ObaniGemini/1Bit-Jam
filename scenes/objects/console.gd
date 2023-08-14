@@ -2,11 +2,18 @@ extends CharacterBody2D
 
 signal destroyed
 
+var dead = false
+
 func destroy():
+	if dead:
+		return
+	
+	dead = true
 	destroyed.emit()
 	$Timer.stop()
 	$Timer2.stop()
 	$buttons.modulate = Color(0, 0, 0)
+	$AudioStreamPlayer2D.stop()
 
 func flicker():
 	var b = $buttons.get_children()
