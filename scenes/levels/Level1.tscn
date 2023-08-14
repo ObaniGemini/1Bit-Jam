@@ -1,12 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://gbmfkcaw7kc6"]
+[gd_scene load_steps=22 format=3 uid="uid://gbmfkcaw7kc6"]
 
 [ext_resource type="PackedScene" uid="uid://bw4siilxufwyk" path="res://scenes/char/ship.tscn" id="1_776gt"]
 [ext_resource type="Script" path="res://scenes/levels/Level1.gd" id="1_ep8oo"]
 [ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/square.png" id="3_3rh33"]
 [ext_resource type="PackedScene" uid="uid://bav4oj0w0t1o5" path="res://scenes/util/LabelSpell.tscn" id="3_yop4o"]
-[ext_resource type="PackedScene" path="res://scenes/util/delayed_audio_stream_player.tscn" id="6_1tk6y"]
+[ext_resource type="PackedScene" uid="uid://cykug4alhxyx5" path="res://scenes/util/delayed_audio_stream_player.tscn" id="6_1tk6y"]
 [ext_resource type="AudioStream" uid="uid://dmhgc5aw6vyyw" path="res://sfx/voices/robot/WARNING.ogg" id="6_wp1dq"]
 [ext_resource type="AudioStream" uid="uid://b4yv5736h6w8b" path="res://music/damntheseinsurance.ogg" id="7_10fe5"]
+[ext_resource type="Texture2D" uid="uid://b0kl6iuh7d0p6" path="res://gfx/ship/big_ship.png" id="8_8epw4"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_2l01y"]
 b = Vector2(1280, 0)
@@ -75,6 +76,31 @@ _data = {
 "RESET": SubResource("Animation_44uyc"),
 "opening": SubResource("Animation_8gs68")
 }
+
+[sub_resource type="Animation" id="Animation_aps68"]
+resource_name = "move"
+length = 140.0
+step = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ship:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 140),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(640, -1800), Vector2(640, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uidno"]
+_data = {
+"move": SubResource("Animation_aps68")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w1gbj"]
+size = Vector2(1280, 64)
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_ep8oo")
@@ -173,8 +199,36 @@ wait_time = 60.0
 one_shot = true
 autostart = true
 
+[node name="ship" type="Node2D" parent="."]
+position = Vector2(640, -1800)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ship"]
+root_node = NodePath("../..")
+autoplay = "move"
+libraries = {
+"": SubResource("AnimationLibrary_uidno")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="ship"]
+position = Vector2(-640, 0)
+texture = ExtResource("8_8epw4")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ship"]
+position = Vector2(640, 0)
+scale = Vector2(-1, 1)
+texture = ExtResource("8_8epw4")
+centered = false
+
+[node name="Area2D" type="Area2D" parent="ship"]
+position = Vector2(0, 784)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ship/Area2D"]
+shape = SubResource("RectangleShape2D_w1gbj")
+
 [connection signal="player_died" from="Ship" to="." method="_on_ship_player_died"]
 [connection signal="finished" from="bg/Insurance" to="Sounds/DelayedAudioStreamPlayer" method="play_delayed"]
 [connection signal="timeout" from="AsteroidSpawnTimer" to="." method="_on_asteroid_spawn_timer_timeout"]
 [connection signal="body_entered" from="AreaKillAsteroids" to="." method="_on_area_kill_asteroids_body_entered"]
 [connection signal="timeout" from="TimerBeforeMega" to="." method="_on_timer_before_mega_timeout"]
+[connection signal="body_entered" from="ship/Area2D" to="." method="body_entered_end_level"]
