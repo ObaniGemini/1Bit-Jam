@@ -14,6 +14,8 @@ var EnemyBullet = preload("res://scenes/enemies/turrets/EnemyBullet.tscn")
 @onready var MAX_ANGLE = BASE_ANGLE + PI/3
 var ship = null
 
+var shooting = false
+
 func _ready():
 	if get_tree().current_scene.name == "World":
 		ship = get_tree().current_scene.level_scene.get_node("Ship")
@@ -24,7 +26,10 @@ func _ready():
 
 func _physics_process(_delta):
 	var angle = global_position.angle_to_point(ship.global_position) + PI/2 - get_parent().global_rotation
-	rotation = clampf(angle, MIN_ANGLE, MAX_ANGLE)
+	shooting = angle > MIN_ANGLE and angle < MAX_ANGLE
+	
+	if shooting:
+		rotation = clampf(angle, MIN_ANGLE, MAX_ANGLE)
 
 func damage(_hitpoint):
 	destroy()
@@ -37,6 +42,9 @@ func _on_area_2d_body_entered(body):
 		destroy()
 
 func shoot_bullet():
+	if !shooting:
+		return
+	
 	var bullet: PhysicsBody2D = EnemyBullet.instantiate()
 	var bullet_angle = global_rotation - PI/2
 	var direction = Vector2(cos(bullet_angle), sin(bullet_angle))
