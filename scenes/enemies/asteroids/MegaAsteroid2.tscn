@@ -18,26 +18,21 @@ polygon = PackedVector2Array(-105, -80, -111, -43, -114, -35, -114, -18, -99, -1
 [node name="Turrets" type="Node2D" parent="."]
 
 [node name="Turret" parent="Turrets" instance=ExtResource("3_tcugx")]
-position = Vector2(122, 45)
+position = Vector2(127, 51)
 rotation = -0.0872665
-scale = Vector2(0.456, 0.456)
 
 [node name="Turret2" parent="Turrets" instance=ExtResource("3_tcugx")]
-position = Vector2(-4, 26)
-rotation = -3.78736
-scale = Vector2(0.456, 0.456)
+position = Vector2(15, 44)
+rotation = -4.18878
 
 [node name="Turret3" parent="Turrets" instance=ExtResource("3_tcugx")]
-position = Vector2(-59, -9)
-rotation = -4.53786
-scale = Vector2(0.456, 0.456)
+position = Vector2(-79, -5)
+rotation = -4.71238
 
 [node name="Turret4" parent="Turrets" instance=ExtResource("3_tcugx")]
-position = Vector2(-4, -82)
+position = Vector2(-8, -89)
 rotation = -1.20428
-scale = Vector2(0.456, 0.456)
 
 [node name="Turret5" parent="Turrets" instance=ExtResource("3_tcugx")]
-position = Vector2(79, -36)
-rotation = -0.837758
-scale = Vector2(0.45574, 0.45574)
+position = Vector2(85, -35)
+rotation = -0.785398

@@ -227,7 +227,7 @@ position = Vector2(0, 784)
 shape = SubResource("RectangleShape2D_w1gbj")
 
 [node name="MegaAsteroid1" parent="." instance=ExtResource("9_dw5iy")]
-position = Vector2(539, 171)
+position = Vector2(323, 54)
 
 [connection signal="player_died" from="Ship" to="." method="_on_ship_player_died"]
 [connection signal="finished" from="bg/Insurance" to="Sounds/DelayedAudioStreamPlayer" method="play_delayed"]
