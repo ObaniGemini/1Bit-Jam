@@ -12,7 +12,7 @@ func _ready():
 	Music.play("level1")
 
 func compute_big_proba():
-	return spawn_times * 0.05 + 0.05
+	return clampf(spawn_times * 0.05 + 0.05, 0, 1)
 
 func _on_asteroid_spawn_timer_timeout():
 	spawn_times += 1
