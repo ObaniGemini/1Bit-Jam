@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c1e1uikx3vjxw"]
 
-[ext_resource type="Texture2D" uid="uid://by53edq75c6m5" path="res://gfx/sphere.png" id="1_78bex"]
+[ext_resource type="Texture2D" uid="uid://ddg0747spbd6s" path="res://gfx/sphere_small.png" id="1_yf3jp"]
 [ext_resource type="Script" path="res://scenes/util/explosion.gd" id="2_q0rbe"]
 
 [sub_resource type="Curve" id="Curve_64ufo"]
@@ -20,13 +20,14 @@ orbit_velocity_min = -0.5
 orbit_velocity_max = 0.5
 radial_accel_min = 3.92
 radial_accel_max = 27.45
-scale_min = 0.03
-scale_max = 0.05
+scale_min = 0.24
+scale_max = 0.4
 scale_curve = SubResource("CurveTexture_f8xtk")
 
 [node name="Explosion" type="GPUParticles2D"]
+emitting = false
 process_material = SubResource("ParticleProcessMaterial_jtdfj")
-texture = ExtResource("1_78bex")
+texture = ExtResource("1_yf3jp")
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
@@ -34,15 +35,17 @@ script = ExtResource("2_q0rbe")
 
 [node name="Explosion" type="GPUParticles2D" parent="."]
 modulate = Color(0, 0, 0, 1)
+emitting = false
 process_material = SubResource("ParticleProcessMaterial_jtdfj")
-texture = ExtResource("1_78bex")
+texture = ExtResource("1_yf3jp")
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
 
 [node name="Explosion2" type="GPUParticles2D" parent="."]
+emitting = false
 process_material = SubResource("ParticleProcessMaterial_jtdfj")
-texture = ExtResource("1_78bex")
+texture = ExtResource("1_yf3jp")
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0

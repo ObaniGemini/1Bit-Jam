@@ -7,3 +7,7 @@ func set_force(i):
 	$Explosion2.amount = i
 	lifetime = 0.25 + float(i)/32.0
 	$Timer.wait_time = lifetime
+	
+	emitting = true
+	$Explosion.emitting = true
+	$Explosion2.emitting = true

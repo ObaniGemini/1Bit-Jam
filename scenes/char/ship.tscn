@@ -1,6 +1,7 @@
-[gd_scene load_steps=40 format=3 uid="uid://bw4siilxufwyk"]
+[gd_scene load_steps=45 format=3 uid="uid://bw4siilxufwyk"]
 
 [ext_resource type="Script" path="res://scenes/char/ship.gd" id="1_qdgyp"]
+[ext_resource type="Texture2D" uid="uid://ddg0747spbd6s" path="res://gfx/sphere_small.png" id="2_y5kww"]
 [ext_resource type="Texture2D" uid="uid://bgx1qxe6eg8gm" path="res://gfx/vessel_weapon.png" id="3_tm877"]
 [ext_resource type="Texture2D" uid="uid://ds1y8jxkei8n1" path="res://gfx/ship/light.png" id="4_ffssy"]
 [ext_resource type="AudioStream" uid="uid://dwsqmn41ricju" path="res://sfx/ship/lightsopen.ogg" id="5_awld5"]
@@ -13,6 +14,35 @@
 [ext_resource type="AudioStream" uid="uid://b1et3go54ox6f" path="res://sfx/player/player_explode.ogg" id="9_m3ett"]
 [ext_resource type="AudioStream" uid="uid://2ifp3rlt6gha" path="res://sfx/voices/robot/lowhp3.ogg" id="10_y47ix"]
 [ext_resource type="AudioStream" uid="uid://bo7g8rln5chrg" path="res://sfx/voices/robot/lowhp4.ogg" id="11_bngvs"]
+
+[sub_resource type="Curve" id="Curve_p7fyh"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.155556, 0.989474), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_of52x"]
+curve = SubResource("Curve_p7fyh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ppdoy"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 9.81
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.05
+scale_max = 0.15
+scale_curve = SubResource("CurveTexture_of52x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_flo6r"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 9.81
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.1
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_of52x")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tbcdq"]
 radius = 13.0
@@ -608,6 +638,30 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 rotation_smoothing_enabled = true
 rotation_smoothing_speed = 2.0
+
+[node name="boosters" type="Node2D" parent="."]
+position = Vector2(0, 18)
+
+[node name="left" type="GPUParticles2D" parent="boosters"]
+position = Vector2(-14, 0)
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_ppdoy")
+texture = ExtResource("2_y5kww")
+lifetime = 0.25
+
+[node name="right" type="GPUParticles2D" parent="boosters"]
+position = Vector2(14, 0)
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_ppdoy")
+texture = ExtResource("2_y5kww")
+lifetime = 0.25
+
+[node name="center" type="GPUParticles2D" parent="boosters"]
+position = Vector2(0, -4)
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_flo6r")
+texture = ExtResource("2_y5kww")
+lifetime = 0.5
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("3_tm877")
