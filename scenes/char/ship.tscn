@@ -1,19 +1,20 @@
-[gd_scene load_steps=44 format=3 uid="uid://bw4siilxufwyk"]
+[gd_scene load_steps=47 format=3 uid="uid://bw4siilxufwyk"]
 
 [ext_resource type="Script" path="res://scenes/char/ship.gd" id="1_qdgyp"]
-[ext_resource type="Texture2D" uid="uid://ddg0747spbd6s" path="res://gfx/sphere_small.png" id="2_y5kww"]
+[ext_resource type="Texture2D" uid="uid://ddg0747spbd6s" path="res://gfx/abstract/sphere_small.png" id="2_2r851"]
+[ext_resource type="Texture2D" uid="uid://c024xft4j68mb" path="res://gfx/abstract/tightrect.png" id="3_biuda"]
 [ext_resource type="Texture2D" uid="uid://bgx1qxe6eg8gm" path="res://gfx/vessel_weapon.png" id="3_tm877"]
 [ext_resource type="Texture2D" uid="uid://ds1y8jxkei8n1" path="res://gfx/ship/light.png" id="4_ffssy"]
+[ext_resource type="Texture2D" uid="uid://cy7oje6n4ed21" path="res://gfx/abstract/big_square.png" id="5_5co2a"]
 [ext_resource type="AudioStream" uid="uid://dwsqmn41ricju" path="res://sfx/ship/lightsopen.ogg" id="5_awld5"]
-[ext_resource type="Texture2D" uid="uid://cy7oje6n4ed21" path="res://gfx/big_square.png" id="5_b17kg"]
 [ext_resource type="AudioStream" uid="uid://culptf18510tb" path="res://sfx/ship/lightsoff.ogg" id="6_0be03"]
 [ext_resource type="Texture2D" uid="uid://cvgyu35i2i1d3" path="res://gfx/menu/health_bar.png" id="7_h4s5p"]
 [ext_resource type="AudioStream" uid="uid://2semgxo5ev0v" path="res://sfx/voices/robot/lowhp1.ogg" id="8_eovna"]
-[ext_resource type="Texture2D" uid="uid://by53edq75c6m5" path="res://gfx/sphere.png" id="8_tp6fd"]
 [ext_resource type="AudioStream" uid="uid://1x83r8v025ra" path="res://sfx/voices/robot/lowhp2.ogg" id="9_dvf4j"]
 [ext_resource type="AudioStream" uid="uid://b1et3go54ox6f" path="res://sfx/player/player_explode.ogg" id="9_m3ett"]
 [ext_resource type="AudioStream" uid="uid://2ifp3rlt6gha" path="res://sfx/voices/robot/lowhp3.ogg" id="10_y47ix"]
 [ext_resource type="AudioStream" uid="uid://bo7g8rln5chrg" path="res://sfx/voices/robot/lowhp4.ogg" id="11_bngvs"]
+[ext_resource type="Texture2D" uid="uid://by53edq75c6m5" path="res://gfx/abstract/sphere.png" id="13_gtg6u"]
 
 [sub_resource type="Curve" id="Curve_p7fyh"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.155556, 0.989474), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -43,6 +44,65 @@ orbit_velocity_max = 0.0
 scale_min = 0.1
 scale_max = 0.25
 scale_curve = SubResource("CurveTexture_of52x")
+
+[sub_resource type="Animation" id="Animation_6jkne"]
+resource_name = "idle"
+length = 0.15
+loop_mode = 1
+step = 0.075
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("top_left/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.075, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.375), Vector2(1, 0.5), Vector2(0.5, 0.375)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("top_right/Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.075, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 0.5), Vector2(0.5, 0.375), Vector2(1, 0.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("down_left/Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.075, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 0.5), Vector2(0.5, 0.375), Vector2(1, 0.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("down_right/Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.075, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.375), Vector2(1, 0.5), Vector2(0.5, 0.375)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b8ase"]
+_data = {
+"idle": SubResource("Animation_6jkne")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tbcdq"]
 radius = 13.0
@@ -524,6 +584,18 @@ tracks/6/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../boosters:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_drb8o"]
 resource_name = "explode"
@@ -643,22 +715,71 @@ position = Vector2(0, 18)
 position = Vector2(-14, 0)
 amount = 4
 process_material = SubResource("ParticleProcessMaterial_ppdoy")
-texture = ExtResource("2_y5kww")
+texture = ExtResource("2_2r851")
 lifetime = 0.25
 
 [node name="right" type="GPUParticles2D" parent="boosters"]
 position = Vector2(14, 0)
 amount = 4
 process_material = SubResource("ParticleProcessMaterial_ppdoy")
-texture = ExtResource("2_y5kww")
+texture = ExtResource("2_2r851")
 lifetime = 0.25
 
 [node name="center" type="GPUParticles2D" parent="boosters"]
 position = Vector2(0, -4)
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_flo6r")
-texture = ExtResource("2_y5kww")
+texture = ExtResource("2_2r851")
 lifetime = 0.5
+
+[node name="rotaters" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="rotaters"]
+autoplay = "idle"
+speed_scale = 4.0
+libraries = {
+"": SubResource("AnimationLibrary_b8ase")
+}
+
+[node name="top_left" type="Node2D" parent="rotaters"]
+position = Vector2(0, -4)
+rotation = -1.39626
+
+[node name="Sprite2D" type="Sprite2D" parent="rotaters/top_left"]
+scale = Vector2(0.5, 0.375)
+texture = ExtResource("3_biuda")
+centered = false
+offset = Vector2(-4, -64)
+
+[node name="top_right" type="Node2D" parent="rotaters"]
+position = Vector2(0, -4)
+rotation = 1.39626
+
+[node name="Sprite2D" type="Sprite2D" parent="rotaters/top_right"]
+scale = Vector2(0.75, 0.5)
+texture = ExtResource("3_biuda")
+centered = false
+offset = Vector2(-4, -64)
+
+[node name="down_left" type="Node2D" parent="rotaters"]
+position = Vector2(0, 10)
+rotation = -1.74533
+
+[node name="Sprite2D" type="Sprite2D" parent="rotaters/down_left"]
+scale = Vector2(0.75, 0.5)
+texture = ExtResource("3_biuda")
+centered = false
+offset = Vector2(-4, -64)
+
+[node name="down_right" type="Node2D" parent="rotaters"]
+position = Vector2(0, 10)
+rotation = 1.74533
+
+[node name="Sprite2D" type="Sprite2D" parent="rotaters/down_right"]
+scale = Vector2(0.5, 0.375)
+texture = ExtResource("3_biuda")
+centered = false
+offset = Vector2(-4, -64)
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("3_tm877")
@@ -682,7 +803,7 @@ offset = Vector2(0, -640)
 blend_mode = 2
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
-texture = ExtResource("5_b17kg")
+texture = ExtResource("5_5co2a")
 texture_scale = 2.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="WeaponsPosition/Left"]
@@ -714,7 +835,7 @@ rotation = -0.174533
 blend_mode = 2
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
-texture = ExtResource("5_b17kg")
+texture = ExtResource("5_5co2a")
 texture_scale = 2.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="WeaponsPosition/Right"]
@@ -821,7 +942,7 @@ bus = &"Robot Comms"
 emitting = false
 amount = 64
 process_material = SubResource("ParticleProcessMaterial_ugkv2")
-texture = ExtResource("8_tp6fd")
+texture = ExtResource("13_gtg6u")
 lifetime = 3.0
 one_shot = true
 speed_scale = 1.5
@@ -832,7 +953,7 @@ modulate = Color(0, 0, 0, 1)
 emitting = false
 amount = 64
 process_material = SubResource("ParticleProcessMaterial_ugkv2")
-texture = ExtResource("8_tp6fd")
+texture = ExtResource("13_gtg6u")
 lifetime = 3.0
 one_shot = true
 speed_scale = 1.5
@@ -842,7 +963,7 @@ explosiveness = 0.97
 emitting = false
 amount = 64
 process_material = SubResource("ParticleProcessMaterial_ugkv2")
-texture = ExtResource("8_tp6fd")
+texture = ExtResource("13_gtg6u")
 lifetime = 3.0
 one_shot = true
 speed_scale = 1.5

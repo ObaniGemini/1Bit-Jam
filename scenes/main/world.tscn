@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scenes/main/world.gd" id="1_mg8vk"]
 [ext_resource type="Script" path="res://scenes/main/PauseMenu.gd" id="2_3lx71"]
-[ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/square.png" id="2_ynb4q"]
 [ext_resource type="PackedScene" uid="uid://b0jj3g077iadv" path="res://scenes/main/main_menu_button.tscn" id="3_70am0"]
+[ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/abstract/square.png" id="3_il7fi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_le4so"]
 size = Vector2(208, 64)
@@ -25,7 +25,7 @@ position = Vector2(640, 360)
 [node name="Sprite2D" type="Sprite2D" parent="PauseMenu/menu"]
 modulate = Color(0, 0, 0, 1)
 scale = Vector2(640, 240)
-texture = ExtResource("2_ynb4q")
+texture = ExtResource("3_il7fi")
 
 [node name="Fullscreen" parent="PauseMenu/menu" instance=ExtResource("3_70am0")]
 position = Vector2(-128, 0)

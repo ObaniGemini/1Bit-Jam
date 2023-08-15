@@ -1,9 +1,9 @@
 [gd_scene load_steps=25 format=3 uid="uid://dcdj0vvs25cfd"]
 
 [ext_resource type="Script" path="res://scenes/char/bullet.gd" id="1_tvv31"]
-[ext_resource type="Texture2D" uid="uid://by53edq75c6m5" path="res://gfx/sphere.png" id="2_450ui"]
-[ext_resource type="Texture2D" uid="uid://ddg0747spbd6s" path="res://gfx/sphere_small.png" id="3_mg3ws"]
+[ext_resource type="Texture2D" uid="uid://by53edq75c6m5" path="res://gfx/abstract/sphere.png" id="2_5jgxe"]
 [ext_resource type="AudioStream" uid="uid://b7t7a6lj8tw78" path="res://sfx/ship/missile_shoot1.ogg" id="3_n0i1m"]
+[ext_resource type="Texture2D" uid="uid://ddg0747spbd6s" path="res://gfx/abstract/sphere_small.png" id="3_t7fej"]
 [ext_resource type="AudioStream" uid="uid://dj05u1q7mn7gw" path="res://sfx/ship/missile_shoot2.ogg" id="4_t4glo"]
 [ext_resource type="AudioStream" uid="uid://7cvtbcy5lblb" path="res://sfx/ship/missile_shoot3.ogg" id="5_fjscr"]
 [ext_resource type="AudioStream" uid="uid://c45mhpaik0n0v" path="res://sfx/ship/missile_explode1.ogg" id="6_0ccyr"]
@@ -351,12 +351,12 @@ shape = SubResource("CircleShape2D_6fbq8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(24, 24)
-texture = ExtResource("2_450ui")
+texture = ExtResource("2_5jgxe")
 
 [node name="trail1" type="GPUParticles2D" parent="."]
 amount = 12
 process_material = SubResource("ParticleProcessMaterial_3q1pa")
-texture = ExtResource("3_mg3ws")
+texture = ExtResource("3_t7fej")
 lifetime = 0.15
 fixed_fps = 60
 visibility_rect = Rect2(-100, -100, 200, 1000)
@@ -365,7 +365,7 @@ visibility_rect = Rect2(-100, -100, 200, 1000)
 modulate = Color(0, 0, 0, 1)
 amount = 12
 process_material = SubResource("ParticleProcessMaterial_rmvy1")
-texture = ExtResource("3_mg3ws")
+texture = ExtResource("3_t7fej")
 lifetime = 0.15
 fixed_fps = 60
 visibility_rect = Rect2(-100, -100, 200, 1000)
@@ -374,7 +374,7 @@ visibility_rect = Rect2(-100, -100, 200, 1000)
 emitting = false
 amount = 48
 process_material = SubResource("ParticleProcessMaterial_vnxgf")
-texture = ExtResource("3_mg3ws")
+texture = ExtResource("3_t7fej")
 lifetime = 0.7
 one_shot = true
 explosiveness = 1.0
@@ -386,7 +386,7 @@ modulate = Color(0, 0, 0, 1)
 emitting = false
 amount = 48
 process_material = SubResource("ParticleProcessMaterial_vnxgf")
-texture = ExtResource("3_mg3ws")
+texture = ExtResource("3_t7fej")
 lifetime = 0.7
 one_shot = true
 explosiveness = 1.0

@@ -83,10 +83,6 @@ func destroy():
 
 func hit(body):
 	if body.is_in_group("player"):
-		print(linear_velocity)
-		print(body.velocity)
-		print(linear_velocity.distance_to(body.previous_velocity))
-		print("")
 		body.damage(linear_velocity.distance_to(body.previous_velocity) * prop[asteroid_type]["damage"])
 
 func damage(i):

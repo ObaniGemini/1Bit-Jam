@@ -5,8 +5,8 @@
 [ext_resource type="FontFile" uid="uid://chnp1si4jas1m" path="res://fonts/FFFFORWA.TTF" id="2_822qh"]
 [ext_resource type="Texture2D" uid="uid://eisj8usyb8qo" path="res://gfx/cinematic/cinematic1/frame2.png" id="2_b25sr"]
 [ext_resource type="Texture2D" uid="uid://dpqyks51bcobl" path="res://gfx/cinematic/cinematic1/frame3.png" id="3_4y8mm"]
-[ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/square.png" id="3_h6rxu"]
 [ext_resource type="Texture2D" uid="uid://jqn4rbyp2ka0" path="res://gfx/cinematic/cinematic1/frame4.png" id="4_c5e8o"]
+[ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/abstract/square.png" id="4_kc67w"]
 [ext_resource type="AudioStream" uid="uid://cw76ffcuh8ptr" path="res://sfx/voices/captain/captain.ogg" id="5_hyuvh"]
 [ext_resource type="AudioStream" uid="uid://ch2fbu6r87aml" path="res://sfx/voices/shepard/alright.ogg" id="6_7lob7"]
 [ext_resource type="AudioStream" uid="uid://3kb4f0sdos3p" path="res://sfx/voices/robot/targetreached.ogg" id="7_0t715"]
@@ -276,7 +276,7 @@ modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
 position = Vector2(-20, 0)
 scale = Vector2(640, 260)
-texture = ExtResource("3_h6rxu")
+texture = ExtResource("4_kc67w")
 centered = false
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
@@ -299,7 +299,7 @@ modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
 position = Vector2(-20, 0)
 scale = Vector2(640, 120)
-texture = ExtResource("3_h6rxu")
+texture = ExtResource("4_kc67w")
 centered = false
 
 [node name="Sprite2D3" type="Sprite2D" parent="."]
@@ -327,7 +327,7 @@ modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
 position = Vector2(-20, 0)
 scale = Vector2(640, 120)
-texture = ExtResource("3_h6rxu")
+texture = ExtResource("4_kc67w")
 centered = false
 
 [node name="Label4" type="Label" parent="Sprite2D4"]
@@ -347,7 +347,7 @@ modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
 position = Vector2(-20, 0)
 scale = Vector2(640, 120)
-texture = ExtResource("3_h6rxu")
+texture = ExtResource("4_kc67w")
 centered = false
 
 [node name="Sounds" type="Node" parent="."]

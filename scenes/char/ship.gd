@@ -151,6 +151,15 @@ func joy_axis_move(value):
 	if abs(value) < JOYSTICK_MOVE_THRESHOLD: return 0.0
 	return value
 
+func _process(_delta):
+	var right = max(0.0, angular_accel)
+	var left = max(0.0, -angular_accel)
+	
+	$rotaters/top_left.scale.y = right
+	$rotaters/down_right.scale.y = right
+	$rotaters/top_right.scale.y = left
+	$rotaters/down_left.scale.y = left
+
 func update_smoke():
 	var speed = move_dir.length()
 	

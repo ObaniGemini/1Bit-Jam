@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scenes/main/menu.gd" id="1_sqoof"]
 [ext_resource type="PackedScene" uid="uid://b0jj3g077iadv" path="res://scenes/main/main_menu_button.tscn" id="2_6xyls"]
-[ext_resource type="Texture2D" uid="uid://c7j8vesv3h5pm" path="res://gfx/tri-rect.png" id="3_i4uqr"]
-[ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/square.png" id="4_c040e"]
+[ext_resource type="Texture2D" uid="uid://c7j8vesv3h5pm" path="res://gfx/abstract/tri-rect.png" id="3_m8dg4"]
 [ext_resource type="Texture2D" uid="uid://bacj45bhyqul4" path="res://gfx/menu/fullscreen.png" id="5_toabw"]
+[ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/abstract/square.png" id="5_xrifg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_va28y"]
 size = Vector2(320, 320)
@@ -21,12 +21,12 @@ shape = SubResource("RectangleShape2D_va28y")
 [node name="Sprite2D" type="Sprite2D" parent="Play"]
 position = Vector2(0, -64)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_i4uqr")
+texture = ExtResource("3_m8dg4")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Play"]
 position = Vector2(0, 64)
 scale = Vector2(0.5, -0.5)
-texture = ExtResource("3_i4uqr")
+texture = ExtResource("3_m8dg4")
 
 [node name="Fullscreen" parent="." instance=ExtResource("2_6xyls")]
 position = Vector2(256, 360)
@@ -70,28 +70,28 @@ rotation = 0.785398
 
 [node name="Sprite2D" type="Sprite2D" parent="Quit/Node2D"]
 scale = Vector2(48, 128)
-texture = ExtResource("4_c040e")
+texture = ExtResource("5_xrifg")
 centered = false
 offset = Vector2(-0.5, 0)
 
 [node name="Sprite2D2" type="Sprite2D" parent="Quit/Node2D"]
 rotation = 3.14159
 scale = Vector2(48, 128)
-texture = ExtResource("4_c040e")
+texture = ExtResource("5_xrifg")
 centered = false
 offset = Vector2(-0.5, 0)
 
 [node name="Sprite2D3" type="Sprite2D" parent="Quit/Node2D"]
 rotation = 1.5708
 scale = Vector2(48, 128)
-texture = ExtResource("4_c040e")
+texture = ExtResource("5_xrifg")
 centered = false
 offset = Vector2(-0.5, 0)
 
 [node name="Sprite2D4" type="Sprite2D" parent="Quit/Node2D"]
 rotation = 4.71239
 scale = Vector2(48, 128)
-texture = ExtResource("4_c040e")
+texture = ExtResource("5_xrifg")
 centered = false
 offset = Vector2(-0.5, 0)
 

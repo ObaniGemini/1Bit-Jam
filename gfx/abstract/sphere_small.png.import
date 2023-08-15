@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by53edq75c6m5"
-path="res://.godot/imported/sphere.png-28e8e45822dbeb06c7dc2274d5a55c15.ctex"
+uid="uid://ddg0747spbd6s"
+path="res://.godot/imported/sphere_small.png-7ebaebc372aeb7ef31f8d9a8db72dd0d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gfx/sphere.png"
-dest_files=["res://.godot/imported/sphere.png-28e8e45822dbeb06c7dc2274d5a55c15.ctex"]
+source_file="res://gfx/abstract/sphere_small.png"
+dest_files=["res://.godot/imported/sphere_small.png-7ebaebc372aeb7ef31f8d9a8db72dd0d.ctex"]
 
 [params]
 

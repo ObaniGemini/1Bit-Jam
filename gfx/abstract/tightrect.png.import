@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddg0747spbd6s"
-path="res://.godot/imported/sphere_small.png-02488e8106b0c522e61cbab55e6c8641.ctex"
+uid="uid://c024xft4j68mb"
+path="res://.godot/imported/tightrect.png-31b00d93ee4cafec297bdb845b875f9d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gfx/sphere_small.png"
-dest_files=["res://.godot/imported/sphere_small.png-02488e8106b0c522e61cbab55e6c8641.ctex"]
+source_file="res://gfx/abstract/tightrect.png"
+dest_files=["res://.godot/imported/tightrect.png-31b00d93ee4cafec297bdb845b875f9d.ctex"]
 
 [params]
 

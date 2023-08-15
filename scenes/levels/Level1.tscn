@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bw4siilxufwyk" path="res://scenes/char/ship.tscn" id="1_776gt"]
 [ext_resource type="Script" path="res://scenes/levels/Level1.gd" id="1_ep8oo"]
-[ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/square.png" id="3_3rh33"]
+[ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/abstract/square.png" id="3_1ihlt"]
 [ext_resource type="PackedScene" uid="uid://bav4oj0w0t1o5" path="res://scenes/util/LabelSpell.tscn" id="3_yop4o"]
 [ext_resource type="PackedScene" uid="uid://cykug4alhxyx5" path="res://scenes/util/delayed_audio_stream_player.tscn" id="6_1tk6y"]
 [ext_resource type="AudioStream" uid="uid://dmhgc5aw6vyyw" path="res://sfx/voices/robot/WARNING.ogg" id="6_wp1dq"]
@@ -172,7 +172,7 @@ layer = 2
 position = Vector2(640, -16)
 amount = 12
 process_material = SubResource("ParticleProcessMaterial_4e25h")
-texture = ExtResource("3_3rh33")
+texture = ExtResource("3_1ihlt")
 lifetime = 15.0
 
 [node name="LabelSpell" parent="bg" instance=ExtResource("3_yop4o")]

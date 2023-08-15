@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scenes/enemies/turrets/EnemyBullet.gd" id="1_e2r1k"]
 [ext_resource type="Texture2D" uid="uid://sf6lfof4c5bh" path="res://gfx/kill_bullet.png" id="1_esn65"]
-[ext_resource type="Texture2D" uid="uid://cdvtg8c5yp0qw" path="res://gfx/rect.png" id="3_5iq8a"]
-[ext_resource type="Texture2D" uid="uid://ddg0747spbd6s" path="res://gfx/sphere_small.png" id="4_7nod8"]
+[ext_resource type="Texture2D" uid="uid://cdvtg8c5yp0qw" path="res://gfx/abstract/rect.png" id="3_iasdq"]
+[ext_resource type="Texture2D" uid="uid://ddg0747spbd6s" path="res://gfx/abstract/sphere_small.png" id="4_xjxd4"]
 [ext_resource type="AudioStream" uid="uid://c45mhpaik0n0v" path="res://sfx/ship/missile_explode1.ogg" id="5_8bktx"]
 [ext_resource type="AudioStream" uid="uid://vpe1mr2bicaj" path="res://sfx/ship/missile_explode2.ogg" id="6_rhft7"]
 [ext_resource type="AudioStream" uid="uid://d360uvsw2fh6g" path="res://sfx/ship/missile_explode3.ogg" id="7_m7qce"]
@@ -285,20 +285,20 @@ shape = SubResource("RectangleShape2D_f152r")
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_xpoak")
-texture = ExtResource("3_5iq8a")
+texture = ExtResource("3_iasdq")
 lifetime = 0.5
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
 modulate = Color(0, 0, 0, 1)
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_xpoak")
-texture = ExtResource("3_5iq8a")
+texture = ExtResource("3_iasdq")
 lifetime = 0.5
 
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_h3fuk")
-texture = ExtResource("3_5iq8a")
+texture = ExtResource("3_iasdq")
 lifetime = 0.5
 
 [node name="Node2D" type="Node2D" parent="."]
@@ -307,7 +307,7 @@ lifetime = 0.5
 emitting = false
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_vtcwa")
-texture = ExtResource("4_7nod8")
+texture = ExtResource("4_xjxd4")
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
@@ -317,7 +317,7 @@ modulate = Color(0, 0, 0, 1)
 emitting = false
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_ipqql")
-texture = ExtResource("4_7nod8")
+texture = ExtResource("4_xjxd4")
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0

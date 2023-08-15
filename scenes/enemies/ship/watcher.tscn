@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://ewvmgd1f1u0x"]
 
 [ext_resource type="Script" path="res://scenes/enemies/ship/watcher.gd" id="1_1gvd1"]
-[ext_resource type="Texture2D" uid="uid://by53edq75c6m5" path="res://gfx/sphere.png" id="1_m5gy5"]
+[ext_resource type="Texture2D" uid="uid://by53edq75c6m5" path="res://gfx/abstract/sphere.png" id="2_dboob"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ooeuf"]
 radius = 236.0
@@ -54,7 +54,7 @@ script = ExtResource("1_1gvd1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.990459, 0.990459)
-texture = ExtResource("1_m5gy5")
+texture = ExtResource("2_dboob")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ooeuf")

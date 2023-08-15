@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://c20hbxi8f3vkv"]
 
 [ext_resource type="Script" path="res://scenes/objects/console.gd" id="1_783cn"]
-[ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/square.png" id="1_w7aqf"]
+[ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/abstract/square.png" id="2_tmna1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m47e5"]
 size = Vector2(128, 32)
@@ -32,268 +32,268 @@ shape = SubResource("RectangleShape2D_m47e5")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
 scale = Vector2(128, 64)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="buttons" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="buttons"]
 position = Vector2(-48, -16)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D2" type="Sprite2D" parent="buttons"]
 position = Vector2(-40, -16)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D3" type="Sprite2D" parent="buttons"]
 position = Vector2(-48, -8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D4" type="Sprite2D" parent="buttons"]
 position = Vector2(-40, -8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D5" type="Sprite2D" parent="buttons"]
 position = Vector2(-32, -16)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D6" type="Sprite2D" parent="buttons"]
 position = Vector2(-24, -16)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D7" type="Sprite2D" parent="buttons"]
 position = Vector2(-32, -8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D8" type="Sprite2D" parent="buttons"]
 position = Vector2(-24, -8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D9" type="Sprite2D" parent="buttons"]
 position = Vector2(-48, 0)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D10" type="Sprite2D" parent="buttons"]
 position = Vector2(-40, 0)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D11" type="Sprite2D" parent="buttons"]
 position = Vector2(-32, 0)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D12" type="Sprite2D" parent="buttons"]
 position = Vector2(-24, 0)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D13" type="Sprite2D" parent="buttons"]
 position = Vector2(-48, 8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D14" type="Sprite2D" parent="buttons"]
 position = Vector2(-40, 8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D15" type="Sprite2D" parent="buttons"]
 position = Vector2(-32, 8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D16" type="Sprite2D" parent="buttons"]
 position = Vector2(-24, 8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D17" type="Sprite2D" parent="buttons"]
 position = Vector2(-16, -16)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D18" type="Sprite2D" parent="buttons"]
 position = Vector2(-16, -8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D19" type="Sprite2D" parent="buttons"]
 position = Vector2(-16, 0)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D20" type="Sprite2D" parent="buttons"]
 position = Vector2(-16, 8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D21" type="Sprite2D" parent="buttons"]
 position = Vector2(-8, -16)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D22" type="Sprite2D" parent="buttons"]
 position = Vector2(-8, -8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D23" type="Sprite2D" parent="buttons"]
 position = Vector2(-8, 0)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D24" type="Sprite2D" parent="buttons"]
 position = Vector2(-8, 8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D25" type="Sprite2D" parent="buttons"]
 position = Vector2(0, -16)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D26" type="Sprite2D" parent="buttons"]
 position = Vector2(0, -8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D27" type="Sprite2D" parent="buttons"]
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D28" type="Sprite2D" parent="buttons"]
 position = Vector2(0, 8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D29" type="Sprite2D" parent="buttons"]
 position = Vector2(8, -16)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D30" type="Sprite2D" parent="buttons"]
 position = Vector2(8, -8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D31" type="Sprite2D" parent="buttons"]
 position = Vector2(8, 0)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D32" type="Sprite2D" parent="buttons"]
 position = Vector2(8, 8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D33" type="Sprite2D" parent="buttons"]
 position = Vector2(16, -16)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D34" type="Sprite2D" parent="buttons"]
 position = Vector2(16, -8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D35" type="Sprite2D" parent="buttons"]
 position = Vector2(16, 0)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D36" type="Sprite2D" parent="buttons"]
 position = Vector2(16, 8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D37" type="Sprite2D" parent="buttons"]
 position = Vector2(24, -16)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D38" type="Sprite2D" parent="buttons"]
 position = Vector2(24, -8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D39" type="Sprite2D" parent="buttons"]
 position = Vector2(24, 0)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D40" type="Sprite2D" parent="buttons"]
 position = Vector2(24, 8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D41" type="Sprite2D" parent="buttons"]
 position = Vector2(32, -16)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D42" type="Sprite2D" parent="buttons"]
 position = Vector2(32, -8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D43" type="Sprite2D" parent="buttons"]
 position = Vector2(32, 0)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D44" type="Sprite2D" parent="buttons"]
 position = Vector2(32, 8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D45" type="Sprite2D" parent="buttons"]
 position = Vector2(40, -16)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D46" type="Sprite2D" parent="buttons"]
 position = Vector2(40, -8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D47" type="Sprite2D" parent="buttons"]
 position = Vector2(40, 0)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D48" type="Sprite2D" parent="buttons"]
 position = Vector2(40, 8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D49" type="Sprite2D" parent="buttons"]
 position = Vector2(48, -16)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D50" type="Sprite2D" parent="buttons"]
 position = Vector2(48, -8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D51" type="Sprite2D" parent="buttons"]
 position = Vector2(48, 0)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Sprite2D52" type="Sprite2D" parent="buttons"]
 position = Vector2(48, 8)
 scale = Vector2(2, 2)
-texture = ExtResource("1_w7aqf")
+texture = ExtResource("2_tmna1")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
