@@ -23,3 +23,10 @@ func play(sound):
 		playing.play()
 	else:
 		print("Music '" + sound + "' isn't in the game!")
+
+func stop():
+	if playing != null:
+		var t = get_tree().create_tween().bind_node(playing)
+		t.tween_property(playing, "volume_db", MIN_DB, TWEEN_TIME).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
+		t.tween_callback(playing.stop)
+		playing = null

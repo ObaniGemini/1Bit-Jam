@@ -71,6 +71,7 @@ func unselect_quit():
 
 
 func _ready():
+	Music.play("menu")
 	unselect_fullscreen()
 	
 	$Fullscreen.pressed.connect(fullscreen)
@@ -83,6 +84,7 @@ func _ready():
 
 
 func play():
+	Music.stop()
 	$Play.disable(true)
 	$Fullscreen.hide()
 	$Quit.hide()

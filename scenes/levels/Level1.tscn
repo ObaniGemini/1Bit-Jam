@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bav4oj0w0t1o5" path="res://scenes/util/LabelSpell.tscn" id="3_yop4o"]
 [ext_resource type="PackedScene" path="res://scenes/util/delayed_audio_stream_player.tscn" id="6_1tk6y"]
 [ext_resource type="AudioStream" uid="uid://dmhgc5aw6vyyw" path="res://sfx/voices/robot/WARNING.ogg" id="6_wp1dq"]
-[ext_resource type="AudioStream" uid="uid://b4yv5736h6w8b" path="res://music/damntheseinsurance.ogg" id="7_10fe5"]
+[ext_resource type="AudioStream" uid="uid://cfcjgtgqqh0c6" path="res://sfx/voices/shepard/damntheseinsurance.ogg" id="7_khmxi"]
 [ext_resource type="Texture2D" uid="uid://b0kl6iuh7d0p6" path="res://gfx/ship/big_ship.png" id="8_8epw4"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_2l01y"]
@@ -189,7 +189,7 @@ stream = ExtResource("6_wp1dq")
 bus = &"Robot Comms"
 
 [node name="DelayedAudioStreamPlayer" parent="Sounds" instance=ExtResource("6_1tk6y")]
-stream = ExtResource("7_10fe5")
+stream = ExtResource("7_khmxi")
 bus = &"Comms"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
