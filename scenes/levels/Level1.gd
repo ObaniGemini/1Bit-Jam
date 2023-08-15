@@ -6,6 +6,7 @@ var mega_times = 0
 
 func _ready():
 	$bg/LabelSpell/AudioStreamPlayer.finished.connect($AsteroidSpawnTimer.start)
+	$bg/LabelSpell/AudioStreamPlayer.finished.connect($TimerBeforeMega.start)
 	$Ship.set_camera_mode($Ship.Camera_Static)
 	Music.play("level1")
 
@@ -31,6 +32,6 @@ func _on_timer_before_mega_timeout():
 		asteroid.position = Vector2(x_position, OFFSET)
 		add_child(asteroid)
 		
-	$TimerBeforeMega.wait_time = 15
+	$TimerBeforeMega.wait_time = 45
 	if mega_times < 3:
 		$TimerBeforeMega.start()
