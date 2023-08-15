@@ -5,10 +5,12 @@ func get_damages():
 	return 15
 
 func _on_body_entered(_body):
-	queue_free()
+	destroy()
 
 func damage(_hitpoint):
 	destroy()
 
 func destroy():
-	queue_free()
+	collision_layer = 0
+	collision_mask = 0
+	$Node2D/AnimationPlayer.play("explode")

@@ -9,6 +9,9 @@ func _ready():
 
 func destroy():
 	set_physics_process(false)
+	collision_layer = 0
+	collision_mask = 0
+	
 	$AnimationPlayer.play("explode")
 	for body in $ExplodeArea.get_overlapping_bodies():
 		print(body)

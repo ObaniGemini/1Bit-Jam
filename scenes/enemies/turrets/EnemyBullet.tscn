@@ -1,10 +1,233 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhbpqf2u65358"]
+[gd_scene load_steps=17 format=3 uid="uid://dhbpqf2u65358"]
 
 [ext_resource type="Script" path="res://scenes/enemies/turrets/EnemyBullet.gd" id="1_e2r1k"]
 [ext_resource type="Texture2D" uid="uid://sf6lfof4c5bh" path="res://gfx/kill_bullet.png" id="1_esn65"]
+[ext_resource type="Texture2D" uid="uid://cdvtg8c5yp0qw" path="res://gfx/rect.png" id="3_5iq8a"]
+[ext_resource type="Texture2D" uid="uid://by53edq75c6m5" path="res://gfx/sphere.png" id="4_38hsv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f152r"]
 size = Vector2(4, 6)
+
+[sub_resource type="Curve" id="Curve_2ryyk"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.316667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_q254c"]
+curve = SubResource("Curve_2ryyk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xpoak"]
+lifetime_randomness = 0.78
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+radial_accel_max = 200.0
+angle_min = -720.0
+angle_max = 720.0
+scale_min = 3.0
+scale_max = 6.0
+scale_curve = SubResource("CurveTexture_q254c")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h3fuk"]
+lifetime_randomness = 0.78
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+radial_accel_max = 200.0
+angle_min = -720.0
+angle_max = 720.0
+scale_min = 2.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_q254c")
+
+[sub_resource type="Curve" id="Curve_fjiwh"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.211111, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_cj551"]
+curve = SubResource("Curve_fjiwh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vtcwa"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 19.61
+initial_velocity_max = 88.24
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_min = 1.25
+radial_accel_max = 71.84
+scale_min = 0.01
+scale_max = 0.05
+scale_curve = SubResource("CurveTexture_cj551")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ipqql"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 19.61
+initial_velocity_max = 88.24
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_min = 1.25
+radial_accel_max = 71.84
+angle_min = -720.0
+angle_max = 720.0
+scale_min = 0.01
+scale_max = 0.02
+scale_curve = SubResource("CurveTexture_cj551")
+
+[sub_resource type="Animation" id="Animation_1toce"]
+resource_name = "explode"
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("explosion:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("explosion2:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../GPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../GPUParticles2D2:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../GPUParticles2D3:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_f3ov2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("explosion:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("explosion2:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../GPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../GPUParticles2D2:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../GPUParticles2D3:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u4p82"]
+_data = {
+"RESET": SubResource("Animation_f3ov2"),
+"explode": SubResource("Animation_1toce")
+}
 
 [node name="EnemyBullet" type="RigidBody2D" groups=["enemy"]]
 collision_layer = 2
@@ -17,11 +240,55 @@ angular_damp_mode = 1
 script = ExtResource("1_e2r1k")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -3)
+rotation = 1.5708
 texture = ExtResource("1_esn65")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_f152r")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_xpoak")
+texture = ExtResource("3_5iq8a")
+lifetime = 0.5
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_xpoak")
+texture = ExtResource("3_5iq8a")
+lifetime = 0.5
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_h3fuk")
+texture = ExtResource("3_5iq8a")
+lifetime = 0.5
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="explosion" type="GPUParticles2D" parent="Node2D"]
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_vtcwa")
+texture = ExtResource("4_38hsv")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+
+[node name="explosion2" type="GPUParticles2D" parent="Node2D"]
+modulate = Color(0, 0, 0, 1)
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_ipqql")
+texture = ExtResource("4_38hsv")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
+libraries = {
+"": SubResource("AnimationLibrary_u4p82")
+}
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
