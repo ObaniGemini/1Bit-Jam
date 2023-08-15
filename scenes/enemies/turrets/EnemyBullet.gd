@@ -1,10 +1,10 @@
 extends RigidBody2D
 
-
-func get_damages():
-	return 15
-
-func _on_body_entered(_body):
+func _on_body_entered(body):
+	if body.is_in_group("enemy"):
+		body.damage(1)
+	elif body.is_in_group("player"):
+		body.damage(15)
 	destroy()
 
 func damage(_hitpoint):

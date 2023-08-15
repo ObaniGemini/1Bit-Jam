@@ -26,9 +26,9 @@ enum AsteroidType {
 @export var asteroid_type: AsteroidType = AsteroidType.MINI
 
 var prop = {
-	AsteroidType.MINI: {"mass": 1, "health_min": 1, "health_max": 1, "damage": 1},
-	AsteroidType.BIG: {"mass": 1000, "health_min": 1, "health_max": 4, "damage": 15},
-	AsteroidType.MEGA: {"mass": 10000, "health_min": 30, "health_max": 40, "damage": 15}
+	AsteroidType.MINI: {"mass": 1, "health_min": 1, "health_max": 1, "damage": 0.01},
+	AsteroidType.BIG: {"mass": 1000, "health_min": 1, "health_max": 4, "damage": 0.04},
+	AsteroidType.MEGA: {"mass": 10000, "health_min": 30, "health_max": 40, "damage": 0.1}
 }
 
 var health = 0
@@ -63,6 +63,11 @@ func init():
 	health = randi_range(prop[asteroid_type]["health_min"], prop[asteroid_type]["health_max"])
 	if asteroid_type == AsteroidType.MINI:
 		add_to_group("destroyable")
+	
+	contact_monitor = true
+	max_contacts_reported = 1
+	
+	body_entered.connect(hit)
 
 func _ready():
 	init()
@@ -76,10 +81,15 @@ func destroy():
 		Entities.add_child(explosion)
 	queue_free()
 
+func hit(body):
+	if body.is_in_group("player"):
+		print(linear_velocity)
+		print(body.velocity)
+		print(linear_velocity.distance_to(body.previous_velocity))
+		print("")
+		body.damage(linear_velocity.distance_to(body.previous_velocity) * prop[asteroid_type]["damage"])
+
 func damage(i):
 	health -= i
 	if health <= 0:
 		destroy()
-
-func get_damages():
-	return prop[asteroid_type]["damage"]

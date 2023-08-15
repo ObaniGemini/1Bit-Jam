@@ -126,7 +126,10 @@ func heatlh_glitch():
 	$UI/health_bar/Timer.start()
 	$UI/health_bar/glitch.play("bug")
 
+var previous_velocity = Vector2()
 func _physics_process(delta):
+	previous_velocity = velocity
+	
 	var vel = move_dir * SPEED * delta
 	if camera_mode == Camera_Follow:
 		vel = vel.rotated(rotation)
@@ -185,16 +188,18 @@ func _input(event):
 	move_dir.y = clampf(move_dir.y, -1, 1)
 	update_smoke()
 
+var dead = false
 func kill():
+	if dead:
+		return
+	
+	dead = true
 	set_physics_process(false)
 	set_process_input(false)
+	move_dir = Vector2()
+	update_smoke()
 	print("Player died")
 	
 	$explosion/AnimationPlayer.play("explode")
 	await $explosion/AnimationPlayer.animation_finished
 	player_died.emit()
-
-
-func _on_hitbox_receiver_body_entered(body):
-	if body.is_in_group("enemy"):
-		damage(body.get_damages())
