@@ -14,7 +14,6 @@ func destroy():
 	
 	$AnimationPlayer.play("explode")
 	for body in $ExplodeArea.get_overlapping_bodies():
-		print(body)
 		if body.is_in_group("destroyable"):
 			body.destroy()
 		elif body.is_in_group("enemy"):

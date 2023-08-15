@@ -33,7 +33,7 @@ func _on_area_kill_asteroids_body_entered(body):
 
 func _on_timer_before_mega_timeout():
 	mega_times += 1
-	var asteroids = AsteroidFactory.spawn_mega(mega_times)
+	var asteroids = AsteroidFactory.spawn_mega(min(mega_times, 2))
 	for i in range(len(asteroids)):
 		# If 3 asteroids, will spawn on 1/4, 2/4, 3/4 of ~screen width
 		var x_position = 100.0 + float(i + 1) / (mega_times + 1.0) * (1280 - 300)
@@ -42,7 +42,7 @@ func _on_timer_before_mega_timeout():
 		add_child(asteroid)
 	
 	$TimerBeforeMega.wait_time = 45
-	if mega_times < 4:
+	if mega_times < 5:
 		$TimerBeforeMega.start()
 
 
