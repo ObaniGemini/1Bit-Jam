@@ -23,13 +23,13 @@ func _ready():
 		ship = get_tree().current_scene.get_node("Ship")
 	$ShootingTimer.wait_time = randf_range(MIN_SHOOTING_TIME, MAX_SHOOTING_TIME)
 
-
-func _physics_process(_delta):
+const TURNING_SPEED = 4.0
+func _physics_process(delta):
 	var angle = global_position.angle_to_point(ship.global_position) + PI/2 - get_parent().global_rotation
 	shooting = angle > MIN_ANGLE and angle < MAX_ANGLE
 	
 	if shooting:
-		rotation = clampf(angle, MIN_ANGLE, MAX_ANGLE)
+		rotation += (angle - rotation) * delta * TURNING_SPEED
 
 func damage(_hitpoint):
 	destroy()
