@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://scenes/main/entities.gd" id="1_fdqwq"]
 
 [node name="Entities" type="Node2D"]
+z_index = 1
 script = ExtResource("1_fdqwq")

@@ -7,7 +7,8 @@ const MAX_DISTANCE = 450.0
 const BULLET_SPEED = 300
 const BULLET_OFFSET = 20
 
-var EnemyBullet = preload("res://scenes/enemies/turrets/EnemyBullet.tscn")
+const EnemyBullet = preload("res://scenes/enemies/turrets/EnemyBullet.tscn")
+const EXPLOSION_CLASS = preload("res://scenes/util/explosion.tscn")
 
 # Called when the node enters the scene tree for the first time.
 @onready var MIN_ANGLE = -PI/4
@@ -32,6 +33,10 @@ func _physics_process(_delta):
 		holder.rotation = angle
 
 func destroy():
+	var explosion = EXPLOSION_CLASS.instantiate()
+	explosion.set_force(16 + randi() % 16)
+	explosion.position = global_position
+	Entities.add_child(explosion)
 	queue_free()
 
 func shoot_bullet():

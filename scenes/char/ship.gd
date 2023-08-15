@@ -102,6 +102,7 @@ var health = MAX_HEALTH
 func _ready():
 	$WeaponsPosition/Left/Sprite2D.visible = false
 	$WeaponsPosition/Right/Sprite2D.visible = false
+	update_smoke()
 
 var health_tween = null
 func damage(d):
@@ -147,6 +148,13 @@ func joy_axis_move(value):
 	if abs(value) < JOYSTICK_MOVE_THRESHOLD: return 0.0
 	return value
 
+func update_smoke():
+	var speed = move_dir.length()
+	
+	$boosters/left.emitting = speed > 0.1
+	$boosters/right.emitting = speed > 0.1
+	$boosters/center.emitting = speed > 0.9
+
 func _input(event):
 	if event is InputEventJoypadMotion:
 		if event.axis == JOY_AXIS_LEFT_X: move_dir.x = joy_axis_move(event.axis_value)
@@ -175,6 +183,7 @@ func _input(event):
 	
 	move_dir.x = clampf(move_dir.x, -1, 1)
 	move_dir.y = clampf(move_dir.y, -1, 1)
+	update_smoke()
 
 func kill():
 	set_physics_process(false)
