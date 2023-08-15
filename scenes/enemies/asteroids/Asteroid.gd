@@ -2,6 +2,8 @@ extends RigidBody2D
 
 class_name Asteroids
 
+const EXPLOSION_CLASS = preload("res://scenes/util/explosion.tscn")
+
 # Generate a random asteroid with adapted sprite & collision shape
 
 const ASTEROID_SPEED_MIN = 20
@@ -25,8 +27,8 @@ enum AsteroidType {
 
 var prop = {
 	AsteroidType.MINI: {"mass": 1, "health_min": 1, "health_max": 1, "damage": 1},
-	AsteroidType.BIG: {"mass": 1000, "health_min": 1, "health_max": 6, "damage": 20},
-	AsteroidType.MEGA: {"mass": 10000, "health_min": 10000, "health_max": 10000, "damage": 30}
+	AsteroidType.BIG: {"mass": 1000, "health_min": 1, "health_max": 4, "damage": 15},
+	AsteroidType.MEGA: {"mass": 10000, "health_min": 30, "health_max": 40, "damage": 15}
 }
 
 var health = 0
@@ -35,13 +37,13 @@ func init():
 	var speed = randf_range(ASTEROID_SPEED_MIN, ASTEROID_SPEED_MAX)
 	var direction = Vector2((randf() - 0.5) * 0.25, 1.0)
 
-	var sign = signf(randf() - 0.5)
+	var s = signf(randf() - 0.5)
 	if asteroid_type == AsteroidType.MEGA:
 		linear_velocity = Vector2.DOWN * ASTEROID_SPEED_MIN
-		angular_velocity = sign * randf_range(ASTEROID_MEGA_ANGULAR_MIN, ASTEROID_MEGA_ANGULAR_MAX)
+		angular_velocity = s * randf_range(ASTEROID_MEGA_ANGULAR_MIN, ASTEROID_MEGA_ANGULAR_MAX)
 	else:
 		linear_velocity = direction * speed
-		angular_velocity = sign * randf_range(ASTEROID_ANGULAR_MIN, ASTEROID_ANGULAR_MAX)
+		angular_velocity = s * randf_range(ASTEROID_ANGULAR_MIN, ASTEROID_ANGULAR_MAX)
 
 	add_to_group("enemy")
 	add_to_group("asteroid")
@@ -66,6 +68,12 @@ func _ready():
 	init()
 
 func destroy():
+	if asteroid_type != AsteroidType.MINI:
+		var explosion = EXPLOSION_CLASS.instantiate()
+		if asteroid_type == AsteroidType.BIG: explosion.set_force(16 + randi() % 32)
+		else: explosion.set_force(64 + randi() % 64)
+		explosion.position = global_position
+		Entities.add_child(explosion)
 	queue_free()
 
 func damage(i):
