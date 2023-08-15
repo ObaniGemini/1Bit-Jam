@@ -2,6 +2,7 @@ extends "res://scenes/main/level.gd"
 
 const OFFSET = -100
 
+var spawn_times = 0
 var mega_times = 0
 
 func _ready():
@@ -10,8 +11,13 @@ func _ready():
 	$Ship.set_camera_mode($Ship.Camera_Static)
 	Music.play("level1")
 
+func compute_big_proba():
+	return spawn_times * 0.05 + 0.05
+
 func _on_asteroid_spawn_timer_timeout():
-	var sc_ast = AsteroidFactory.random_asteroid(0.66)
+	spawn_times += 1
+	var big_proba = compute_big_proba()
+	var sc_ast = AsteroidFactory.random_asteroid(big_proba)
 	add_child(sc_ast)
 	var rand_x = randf_range(OFFSET, 1280-OFFSET)
 	sc_ast.position = Vector2(rand_x, OFFSET)
