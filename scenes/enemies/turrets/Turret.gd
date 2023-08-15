@@ -14,11 +14,13 @@ func _ready():
 
 func _physics_process(_delta):
 	var ship = get_node("/root/World").level_scene.get_node("Ship")
-	var angle = $TurretBase.global_position.angle_to_point(ship.global_position)
+	var angle = $TurretHead.global_position.angle_to_point(ship.global_position)
 	if (rotation - angle) > PI or (rotation - angle) < -PI:
 		angle = rotation
 	rotation = angle
 
+func damage(_hitpoint):
+	destroy()
 
 func destroy():
 	queue_free()

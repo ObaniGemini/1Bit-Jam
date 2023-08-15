@@ -7,5 +7,8 @@ func get_damages():
 func _on_body_entered(_body):
 	queue_free()
 
+func damage(_hitpoint):
+	destroy()
+
 func destroy():
 	queue_free()
