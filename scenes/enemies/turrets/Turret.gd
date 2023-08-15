@@ -9,9 +9,9 @@ const BULLET_OFFSET = 20
 var EnemyBullet = preload("res://scenes/enemies/turrets/EnemyBullet.tscn")
 
 # Called when the node enters the scene tree for the first time.
-@onready var BASE_ANGLE = rotation
-@onready var MIN_ANGLE = BASE_ANGLE - PI/3
-@onready var MAX_ANGLE = BASE_ANGLE + PI/3
+@onready var MIN_ANGLE = -PI/4
+@onready var MAX_ANGLE = PI/4
+@onready var holder = $Sprites/holder
 var ship = null
 
 var shooting = false
@@ -25,11 +25,11 @@ func _ready():
 
 const TURNING_SPEED = 4.0
 func _physics_process(delta):
-	var angle = global_position.angle_to_point(ship.global_position) + PI/2 - get_parent().global_rotation
+	var angle = global_position.angle_to_point(ship.global_position) - global_rotation
 	shooting = angle > MIN_ANGLE and angle < MAX_ANGLE
 	
 	if shooting:
-		rotation += (angle - rotation) * delta * TURNING_SPEED
+		holder.rotation = angle
 
 func damage(_hitpoint):
 	destroy()
@@ -46,12 +46,13 @@ func shoot_bullet():
 		return
 	
 	var bullet: PhysicsBody2D = EnemyBullet.instantiate()
-	var bullet_angle = global_rotation - PI/2
+	var bullet_angle = holder.global_rotation
 	var direction = Vector2(cos(bullet_angle), sin(bullet_angle))
 	bullet.position = global_position + direction * BULLET_OFFSET
 	bullet.linear_velocity = direction * BULLET_SPEED
 	bullet.rotation = bullet_angle
 	Entities.add_child(bullet)
+	$Sprites/shoot.play("shoot")
 
 func _on_shooting_timer_timeout():
 	shoot_bullet()

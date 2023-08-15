@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdl4j8srvsb3o"]
+[gd_scene load_steps=10 format=3 uid="uid://cdl4j8srvsb3o"]
 
 [ext_resource type="Script" path="res://scenes/enemies/turrets/Turret.gd" id="1_ao3g4"]
-[ext_resource type="Texture2D" uid="uid://bosr65bpo4ukq" path="res://gfx/turret1.png" id="3_nepfh"]
+[ext_resource type="Texture2D" uid="uid://dfbsm4ksb44kb" path="res://gfx/turret/base.png" id="3_x21mj"]
+[ext_resource type="Texture2D" uid="uid://si0uyc8bfm0q" path="res://gfx/turret/holder.png" id="4_4ngxn"]
+[ext_resource type="Texture2D" uid="uid://b1f140k5p0v8j" path="res://gfx/turret/cannon.png" id="5_w77rs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i1ff4"]
 size = Vector2(24, 35)
@@ -9,27 +11,173 @@ size = Vector2(24, 35)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jwwq"]
 size = Vector2(25, 36)
 
+[sub_resource type="Animation" id="Animation_xhwni"]
+resource_name = "shoot"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("holder/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 1),
+"transitions": PackedFloat32Array(0.138696, 3, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 16), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("holder/Sprite2D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(0.15, 3, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 16), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("holder/cannon/Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(0.0989632, 3, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 32), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("holder/cannon/Sprite2D2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(0.126134, 3, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 32), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cgdbr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("holder/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("holder/Sprite2D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("holder/cannon/Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("holder/cannon/Sprite2D2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cg3jl"]
+_data = {
+"RESET": SubResource("Animation_cgdbr"),
+"shoot": SubResource("Animation_xhwni")
+}
+
 [node name="Turret" type="StaticBody2D" groups=["destroyable"]]
-position = Vector2(0, -23)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_ao3g4")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_nepfh")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_i1ff4")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_1jwwq")
 
 [node name="ShootingTimer" type="Timer" parent="."]
+wait_time = 5.0
 autostart = true
+
+[node name="Sprites" type="Node2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+rotation = 1.5708
+
+[node name="base" type="Node2D" parent="Sprites"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprites/base"]
+texture = ExtResource("3_x21mj")
+offset = Vector2(-16, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprites/base"]
+scale = Vector2(-1, 1)
+texture = ExtResource("3_x21mj")
+offset = Vector2(-16, 0)
+
+[node name="holder" type="Node2D" parent="Sprites"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprites/holder"]
+texture = ExtResource("4_4ngxn")
+offset = Vector2(-8, -12)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprites/holder"]
+scale = Vector2(-1, 1)
+texture = ExtResource("4_4ngxn")
+offset = Vector2(-8, -12)
+
+[node name="cannon" type="Node2D" parent="Sprites/holder"]
+position = Vector2(0, -4)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprites/holder/cannon"]
+texture = ExtResource("5_w77rs")
+offset = Vector2(-4, -24)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprites/holder/cannon"]
+scale = Vector2(-1, 1)
+texture = ExtResource("5_w77rs")
+offset = Vector2(-4, -24)
+
+[node name="shoot" type="AnimationPlayer" parent="Sprites"]
+libraries = {
+"": SubResource("AnimationLibrary_cg3jl")
+}
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="ShootingTimer" to="." method="_on_shooting_timer_timeout"]
