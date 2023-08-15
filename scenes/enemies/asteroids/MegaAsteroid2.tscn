@@ -1,16 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://bl75v7an2o1yg"]
 
-[ext_resource type="Script" path="res://scenes/enemies/asteroids/Asteroid.gd" id="1_cvq5b"]
+[ext_resource type="Script" path="res://scenes/enemies/asteroids/MegaAsteroid.gd" id="1_d1f2k"]
+[ext_resource type="Texture2D" uid="uid://d0gtafvft4qi" path="res://gfx/asteroids/megaAsteroid2.png" id="2_tmw52"]
 [ext_resource type="PackedScene" uid="uid://cdl4j8srvsb3o" path="res://scenes/enemies/turrets/Turret.tscn" id="3_tcugx"]
-[ext_resource type="Texture2D" uid="uid://d0gtafvft4qi" path="res://gfx/megaAsteroid2.png" id="3_wndos"]
 
 [node name="MegaAsteroid2" type="RigidBody2D"]
 gravity_scale = 0.0
-script = ExtResource("1_cvq5b")
+script = ExtResource("1_d1f2k")
 asteroid_type = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_wndos")
+texture = ExtResource("2_tmw52")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-105, -80, -111, -43, -114, -35, -114, -18, -99, -13, -80, -17, -43, -11, -12, 7, 6, 31, 44, 55, 54, 74, 65, 85, 89, 91, 115, 88, 120, 80, 118, 62, 116, 29, 108, 6, 87, -22, 49, -56, -6, -78, -54, -97, -77, -95, -86, -87)
@@ -21,33 +21,23 @@ polygon = PackedVector2Array(-105, -80, -111, -43, -114, -35, -114, -18, -99, -1
 position = Vector2(122, 45)
 rotation = -0.0872665
 scale = Vector2(0.456, 0.456)
-collision_layer = 8
-collision_mask = 8
 
 [node name="Turret2" parent="Turrets" instance=ExtResource("3_tcugx")]
 position = Vector2(-4, 26)
 rotation = -3.78736
 scale = Vector2(0.456, 0.456)
-collision_layer = 8
-collision_mask = 8
 
 [node name="Turret3" parent="Turrets" instance=ExtResource("3_tcugx")]
 position = Vector2(-59, -9)
 rotation = -4.53786
 scale = Vector2(0.456, 0.456)
-collision_layer = 8
-collision_mask = 8
 
 [node name="Turret4" parent="Turrets" instance=ExtResource("3_tcugx")]
 position = Vector2(-4, -82)
 rotation = -1.20428
 scale = Vector2(0.456, 0.456)
-collision_layer = 8
-collision_mask = 8
 
 [node name="Turret5" parent="Turrets" instance=ExtResource("3_tcugx")]
 position = Vector2(79, -36)
 rotation = -0.837758
 scale = Vector2(0.45574, 0.45574)
-collision_layer = 8
-collision_mask = 8

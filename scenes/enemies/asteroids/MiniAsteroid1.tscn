@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cj34ko2tpbgsh"]
 
 [ext_resource type="Script" path="res://scenes/enemies/asteroids/Asteroid.gd" id="1_ycbcm"]
-[ext_resource type="Texture2D" uid="uid://bissina8pfgcy" path="res://gfx/mini_asteroid1.png" id="2_80umv"]
+[ext_resource type="Texture2D" uid="uid://bissina8pfgcy" path="res://gfx/asteroids/mini_asteroid1.png" id="2_80umv"]
 
 [node name="MiniAsteroid1" type="RigidBody2D"]
 script = ExtResource("1_ycbcm")

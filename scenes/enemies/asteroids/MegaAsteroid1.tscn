@@ -1,16 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://dvph08tsmbehn"]
 
-[ext_resource type="Script" path="res://scenes/enemies/asteroids/Asteroid.gd" id="1_hwa60"]
+[ext_resource type="Script" path="res://scenes/enemies/asteroids/MegaAsteroid.gd" id="1_n3wvq"]
+[ext_resource type="Texture2D" uid="uid://obequ1ektshd" path="res://gfx/asteroids/megaAsteroid1.png" id="2_72rkf"]
 [ext_resource type="PackedScene" uid="uid://cdl4j8srvsb3o" path="res://scenes/enemies/turrets/Turret.tscn" id="3_n7g2t"]
-[ext_resource type="Texture2D" uid="uid://obequ1ektshd" path="res://gfx/megaAsteroid1.png" id="3_oxibd"]
 
 [node name="MegaAsteroid1" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 2
 gravity_scale = 0.0
-script = ExtResource("1_hwa60")
+script = ExtResource("1_n3wvq")
 asteroid_type = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_oxibd")
+texture = ExtResource("2_72rkf")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(18, -105, 56, -97, 81, -78, 90, -61, 81, -44, 64, -22, 64, 13, 79, 44, 80, 74, 64, 103, 41, 118, 9, 114, 6, 88, 15, 70, 5, 51, -12, 46, -30, 46, -36, 56, -34, 82, -55, 90, -81, 82, -98, 39, -93, -16, -87, -34, -72, -50, -66, -82, -30, -105)
@@ -21,32 +23,22 @@ polygon = PackedVector2Array(18, -105, 56, -97, 81, -78, 90, -61, 81, -44, 64, -
 position = Vector2(75, 92)
 rotation = 0.488692
 scale = Vector2(0.456, 0.456)
-collision_layer = 8
-collision_mask = 8
 
 [node name="Turret2" parent="Turrets" instance=ExtResource("3_n7g2t")]
 position = Vector2(-69, 90)
 rotation = -4.41568
 scale = Vector2(0.456, 0.456)
-collision_layer = 8
-collision_mask = 8
 
 [node name="Turret3" parent="Turrets" instance=ExtResource("3_n7g2t")]
 position = Vector2(-94, -26)
 rotation = -2.77507
 scale = Vector2(0.456, 0.456)
-collision_layer = 8
-collision_mask = 8
 
 [node name="Turret4" parent="Turrets" instance=ExtResource("3_n7g2t")]
 position = Vector2(-75, -69)
 rotation = -2.96706
 scale = Vector2(0.456, 0.456)
-collision_layer = 8
-collision_mask = 8
 
 [node name="Turret5" parent="Turrets" instance=ExtResource("3_n7g2t")]
 position = Vector2(69, -7)
 scale = Vector2(0.45574, 0.45574)
-collision_layer = 8
-collision_mask = 8

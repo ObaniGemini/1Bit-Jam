@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dpjdbvgdbhv2v"]
 
 [ext_resource type="Script" path="res://scenes/enemies/asteroids/Asteroid.gd" id="1_gyi3u"]
-[ext_resource type="Texture2D" uid="uid://c03430lxqe4xp" path="res://gfx/mini_asteroid2.png" id="2_0dfpo"]
+[ext_resource type="Texture2D" uid="uid://c03430lxqe4xp" path="res://gfx/asteroids/mini_asteroid2.png" id="2_0dfpo"]
 
 [node name="MiniAsteroid2" type="RigidBody2D"]
 gravity_scale = 0.0

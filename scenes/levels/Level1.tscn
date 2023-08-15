@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dmhgc5aw6vyyw" path="res://sfx/voices/robot/WARNING.ogg" id="6_wp1dq"]
 [ext_resource type="AudioStream" uid="uid://cfcjgtgqqh0c6" path="res://sfx/voices/shepard/damntheseinsurance.ogg" id="7_khmxi"]
 [ext_resource type="Texture2D" uid="uid://b0kl6iuh7d0p6" path="res://gfx/ship/big_ship.png" id="8_8epw4"]
-[ext_resource type="PackedScene" uid="uid://dvph08tsmbehn" path="res://scenes/enemies/asteroids/MegaAsteroid1.tscn" id="9_vq5r5"]
+[ext_resource type="PackedScene" uid="uid://dvph08tsmbehn" path="res://scenes/enemies/asteroids/MegaAsteroid1.tscn" id="9_dw5iy"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_2l01y"]
 b = Vector2(1280, 0)
@@ -105,11 +105,6 @@ size = Vector2(1280, 64)
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_ep8oo")
-
-[node name="Line2D" type="Line2D" parent="."]
-z_index = -2
-points = PackedVector2Array(-29, -26, 1364, 816)
-width = 1024.0
 
 [node name="Ship" parent="." instance=ExtResource("1_776gt")]
 position = Vector2(635, 668)
@@ -231,8 +226,8 @@ position = Vector2(0, 784)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ship/Area2D"]
 shape = SubResource("RectangleShape2D_w1gbj")
 
-[node name="MegaAsteroid1" parent="." instance=ExtResource("9_vq5r5")]
-position = Vector2(447, 156)
+[node name="MegaAsteroid1" parent="." instance=ExtResource("9_dw5iy")]
+position = Vector2(539, 171)
 
 [connection signal="player_died" from="Ship" to="." method="_on_ship_player_died"]
 [connection signal="finished" from="bg/Insurance" to="Sounds/DelayedAudioStreamPlayer" method="play_delayed"]

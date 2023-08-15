@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends CharacterBody2D
 
 const MIN_SHOOTING_TIME = 2.0
 const MAX_SHOOTING_TIME = 4.0
@@ -30,15 +30,8 @@ func _physics_process(_delta):
 	if shooting:
 		holder.rotation = angle
 
-func damage(_hitpoint):
-	destroy()
-
 func destroy():
 	queue_free()
-
-func _on_area_2d_body_entered(body):
-	if body.is_in_group("bullet") or body.is_in_group("player"):
-		destroy()
 
 func shoot_bullet():
 	if !shooting:

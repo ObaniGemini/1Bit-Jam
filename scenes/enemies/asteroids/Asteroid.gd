@@ -28,7 +28,7 @@ var prop = {
 
 var health = 0
 
-func _ready():
+func init():
 	var speed = randf_range(ASTEROID_SPEED_MIN, ASTEROID_SPEED_MAX)
 	var dir_angle = randf_range(1.0/6 * PI, 5.0 / 6 * PI)
 	var direction = Vector2(cos(dir_angle), sin(dir_angle))
@@ -58,6 +58,8 @@ func _ready():
 	if asteroid_type == AsteroidType.MINI:
 		add_to_group("destroyable")
 
+func _ready():
+	init()
 
 func destroy():
 	queue_free()
