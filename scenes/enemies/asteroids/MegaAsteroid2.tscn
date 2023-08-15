@@ -18,7 +18,7 @@ polygon = PackedVector2Array(-105, -80, -111, -43, -114, -35, -114, -18, -99, -1
 [node name="Turrets" type="Node2D" parent="."]
 
 [node name="Turret" parent="Turrets" instance=ExtResource("3_tcugx")]
-position = Vector2(124, 45)
+position = Vector2(122, 45)
 rotation = -0.0872665
 scale = Vector2(0.456, 0.456)
 collision_layer = 8
@@ -32,21 +32,21 @@ collision_layer = 8
 collision_mask = 8
 
 [node name="Turret3" parent="Turrets" instance=ExtResource("3_tcugx")]
-position = Vector2(-59, -7)
+position = Vector2(-59, -9)
 rotation = -4.53786
 scale = Vector2(0.456, 0.456)
 collision_layer = 8
 collision_mask = 8
 
 [node name="Turret4" parent="Turrets" instance=ExtResource("3_tcugx")]
-position = Vector2(-3, -84)
+position = Vector2(-4, -82)
 rotation = -1.20428
 scale = Vector2(0.456, 0.456)
 collision_layer = 8
 collision_mask = 8
 
 [node name="Turret5" parent="Turrets" instance=ExtResource("3_tcugx")]
-position = Vector2(81, -37)
+position = Vector2(79, -36)
 rotation = -0.837758
 scale = Vector2(0.45574, 0.45574)
 collision_layer = 8

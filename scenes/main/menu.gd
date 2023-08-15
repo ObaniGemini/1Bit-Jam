@@ -84,12 +84,11 @@ func _ready():
 
 
 func play():
-	Music.stop()
 	$Play.disable(true)
 	$Fullscreen.hide()
 	$Quit.hide()
 	
-	$Play/start.play()
+	Music.play("wind")
 	
 	var t = get_tree().create_tween()
 	t.tween_property($Play, "rotation", -PI/2, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE)

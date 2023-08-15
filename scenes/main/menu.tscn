@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3mqyfu2srbxu"]
+[gd_scene load_steps=7 format=3 uid="uid://d3mqyfu2srbxu"]
 
 [ext_resource type="Script" path="res://scenes/main/menu.gd" id="1_sqoof"]
 [ext_resource type="PackedScene" uid="uid://b0jj3g077iadv" path="res://scenes/main/main_menu_button.tscn" id="2_6xyls"]
 [ext_resource type="Texture2D" uid="uid://c7j8vesv3h5pm" path="res://gfx/tri-rect.png" id="3_i4uqr"]
 [ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/square.png" id="4_c040e"]
 [ext_resource type="Texture2D" uid="uid://bacj45bhyqul4" path="res://gfx/menu/fullscreen.png" id="5_toabw"]
-[ext_resource type="AudioStream" uid="uid://hmfuc8kwh2cj" path="res://sfx/menu/menu_whoosh.ogg" id="6_k8s3k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_va28y"]
 size = Vector2(320, 320)
@@ -28,11 +27,6 @@ texture = ExtResource("3_i4uqr")
 position = Vector2(0, 64)
 scale = Vector2(0.5, -0.5)
 texture = ExtResource("3_i4uqr")
-
-[node name="start" type="AudioStreamPlayer" parent="Play"]
-stream = ExtResource("6_k8s3k")
-volume_db = 2.0
-bus = &"Space"
 
 [node name="Fullscreen" parent="." instance=ExtResource("2_6xyls")]
 position = Vector2(256, 360)

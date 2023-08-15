@@ -23,8 +23,7 @@ func _ready():
 		ship = get_tree().current_scene.get_node("Ship")
 	$ShootingTimer.wait_time = randf_range(MIN_SHOOTING_TIME, MAX_SHOOTING_TIME)
 
-const TURNING_SPEED = 4.0
-func _physics_process(delta):
+func _physics_process(_delta):
 	var angle = global_position.angle_to_point(ship.global_position) - global_rotation
 	shooting = angle > MIN_ANGLE and angle < MAX_ANGLE
 	
@@ -46,7 +45,7 @@ func shoot_bullet():
 		return
 	
 	var bullet: PhysicsBody2D = EnemyBullet.instantiate()
-	var bullet_angle = holder.global_rotation
+	var bullet_angle = holder.global_rotation - PI/2
 	var direction = Vector2(cos(bullet_angle), sin(bullet_angle))
 	bullet.position = global_position + direction * BULLET_OFFSET
 	bullet.linear_velocity = direction * BULLET_SPEED
