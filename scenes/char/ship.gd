@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal player_died
+
 const bullet = preload("res://scenes/char/bullet.tscn")
 const BULLET_OFFSET = 10
 const CENTER = 640
@@ -10,8 +12,6 @@ const SPEED = 250.0
 const ANGULAR_SPEED = 4.0
 const ANGULAR_DAMPING = 0.375
 const JOYSTICK_MOVE_THRESHOLD = 0.1
-
-signal player_died
 
 var move_dir : Vector2 = Vector2(0, 0)
 

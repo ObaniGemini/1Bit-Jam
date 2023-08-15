@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://gbmfkcaw7kc6"]
+[gd_scene load_steps=22 format=3 uid="uid://gbmfkcaw7kc6"]
 
 [ext_resource type="PackedScene" uid="uid://bw4siilxufwyk" path="res://scenes/char/ship.tscn" id="1_776gt"]
 [ext_resource type="Script" path="res://scenes/levels/Level1.gd" id="1_ep8oo"]
@@ -8,7 +8,6 @@
 [ext_resource type="AudioStream" uid="uid://dmhgc5aw6vyyw" path="res://sfx/voices/robot/WARNING.ogg" id="6_wp1dq"]
 [ext_resource type="AudioStream" uid="uid://cfcjgtgqqh0c6" path="res://sfx/voices/shepard/damntheseinsurance.ogg" id="7_khmxi"]
 [ext_resource type="Texture2D" uid="uid://b0kl6iuh7d0p6" path="res://gfx/ship/big_ship.png" id="8_8epw4"]
-[ext_resource type="PackedScene" uid="uid://dvph08tsmbehn" path="res://scenes/enemies/asteroids/MegaAsteroid1.tscn" id="9_dw5iy"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_2l01y"]
 b = Vector2(1280, 0)
@@ -158,10 +157,15 @@ lifetime = 10.0
 wait_time = 30.0
 
 [node name="AsteroidSpawnTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
 
 [node name="TimerBeforeMega" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="SpeedIncrease" type="Timer" parent="."]
+wait_time = 5.0
 
 [node name="AreaKillAsteroids" type="Area2D" parent="."]
 collision_layer = 2
@@ -226,12 +230,10 @@ position = Vector2(0, 784)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ship/Area2D"]
 shape = SubResource("RectangleShape2D_w1gbj")
 
-[node name="MegaAsteroid1" parent="." instance=ExtResource("9_dw5iy")]
-position = Vector2(323, 54)
-
 [connection signal="player_died" from="Ship" to="." method="_on_ship_player_died"]
 [connection signal="finished" from="bg/Insurance" to="Sounds/DelayedAudioStreamPlayer" method="play_delayed"]
 [connection signal="timeout" from="AsteroidSpawnTimer" to="." method="_on_asteroid_spawn_timer_timeout"]
 [connection signal="timeout" from="TimerBeforeMega" to="." method="_on_timer_before_mega_timeout"]
+[connection signal="timeout" from="SpeedIncrease" to="." method="_on_speed_increase_timeout"]
 [connection signal="body_entered" from="AreaKillAsteroids" to="." method="_on_area_kill_asteroids_body_entered"]
 [connection signal="body_entered" from="ship/Area2D" to="." method="body_entered_end_level"]

@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
-const MIN_SHOOTING_TIME = 2.0
-const MAX_SHOOTING_TIME = 4.0
+const MIN_SHOOTING_TIME = 3.0
+const MAX_SHOOTING_TIME = 6.0
+const MAX_DISTANCE = 450.0
 
 const BULLET_SPEED = 300
 const BULLET_OFFSET = 20
@@ -25,7 +26,7 @@ func _ready():
 
 func _physics_process(_delta):
 	var angle = global_position.angle_to_point(ship.global_position) - global_rotation
-	shooting = angle > MIN_ANGLE and angle < MAX_ANGLE
+	shooting = angle > MIN_ANGLE and angle < MAX_ANGLE and global_position.distance_to(ship.global_position) < MAX_DISTANCE
 	
 	if shooting:
 		holder.rotation = angle
