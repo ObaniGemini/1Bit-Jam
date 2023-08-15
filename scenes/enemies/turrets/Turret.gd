@@ -4,6 +4,7 @@ const MIN_SHOOTING_TIME = 2.0
 const MAX_SHOOTING_TIME = 4.0
 
 const BULLET_SPEED = 300
+const BULLET_OFFSET = 20
 
 var EnemyBullet = preload("res://scenes/enemies/turrets/EnemyBullet.tscn")
 
@@ -22,7 +23,7 @@ func _ready():
 
 
 func _physics_process(_delta):
-	var angle = $TurretBase.global_position.angle_to_point(ship.global_position) + PI/2 - get_parent().global_rotation
+	var angle = global_position.angle_to_point(ship.global_position) + PI/2 - get_parent().global_rotation
 	rotation = clampf(angle, MIN_ANGLE, MAX_ANGLE)
 
 func damage(_hitpoint):
@@ -35,14 +36,13 @@ func _on_area_2d_body_entered(body):
 	if body.is_in_group("bullet") or body.is_in_group("player"):
 		destroy()
 
-func shooting_direction():
-	return ($TurretHead.global_position - $TurretBase.global_position).normalized()
-
 func shoot_bullet():
-	pass
 	var bullet: PhysicsBody2D = EnemyBullet.instantiate()
-	bullet.position = $TurretHead.global_position
-	bullet.linear_velocity = shooting_direction() * BULLET_SPEED
+	var bullet_angle = global_rotation - PI/2
+	var direction = Vector2(cos(bullet_angle), sin(bullet_angle))
+	bullet.position = global_position + direction * BULLET_OFFSET
+	bullet.linear_velocity = direction * BULLET_SPEED
+	bullet.rotation = bullet_angle
 	Entities.add_child(bullet)
 
 func _on_shooting_timer_timeout():
