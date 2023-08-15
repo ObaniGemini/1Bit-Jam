@@ -1,6 +1,6 @@
 extends "res://scenes/main/level.gd"
 
-const OFFSET = -100
+const OFFSET = -800
 
 var spawn_times = 0
 var mega_times = 0
