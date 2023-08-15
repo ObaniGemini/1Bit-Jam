@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/levels/Level1.gd" id="1_ep8oo"]
 [ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/square.png" id="3_3rh33"]
 [ext_resource type="PackedScene" uid="uid://bav4oj0w0t1o5" path="res://scenes/util/LabelSpell.tscn" id="3_yop4o"]
-[ext_resource type="PackedScene" path="res://scenes/util/delayed_audio_stream_player.tscn" id="6_1tk6y"]
+[ext_resource type="PackedScene" uid="uid://cykug4alhxyx5" path="res://scenes/util/delayed_audio_stream_player.tscn" id="6_1tk6y"]
 [ext_resource type="AudioStream" uid="uid://dmhgc5aw6vyyw" path="res://sfx/voices/robot/WARNING.ogg" id="6_wp1dq"]
 [ext_resource type="AudioStream" uid="uid://cfcjgtgqqh0c6" path="res://sfx/voices/shepard/damntheseinsurance.ogg" id="7_khmxi"]
 [ext_resource type="Texture2D" uid="uid://b0kl6iuh7d0p6" path="res://gfx/ship/big_ship.png" id="8_8epw4"]
@@ -34,11 +34,11 @@ orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 scale_max = 4.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ir78t"]
-size = Vector2(63.5, 2730.75)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tv1yd"]
 size = Vector2(3786, 31.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ir78t"]
+size = Vector2(63.5, 2730.75)
 
 [sub_resource type="Animation" id="Animation_44uyc"]
 length = 0.001
@@ -166,21 +166,21 @@ one_shot = true
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="AreaKillAsteroids"]
-position = Vector2(2580, 331)
-shape = SubResource("RectangleShape2D_ir78t")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="AreaKillAsteroids"]
-position = Vector2(-1166.75, 348.625)
-shape = SubResource("RectangleShape2D_ir78t")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaKillAsteroids"]
-position = Vector2(715, 1703.13)
-shape = SubResource("RectangleShape2D_tv1yd")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="AreaKillAsteroids"]
+[node name="up" type="CollisionShape2D" parent="AreaKillAsteroids"]
 position = Vector2(703, -1052)
 shape = SubResource("RectangleShape2D_tv1yd")
+
+[node name="left" type="CollisionShape2D" parent="AreaKillAsteroids"]
+position = Vector2(-512, 330)
+shape = SubResource("RectangleShape2D_ir78t")
+
+[node name="down" type="CollisionShape2D" parent="AreaKillAsteroids"]
+position = Vector2(715, 976)
+shape = SubResource("RectangleShape2D_tv1yd")
+
+[node name="right" type="CollisionShape2D" parent="AreaKillAsteroids"]
+position = Vector2(1792, 330)
+shape = SubResource("RectangleShape2D_ir78t")
 
 [node name="Sounds" type="Node" parent="."]
 

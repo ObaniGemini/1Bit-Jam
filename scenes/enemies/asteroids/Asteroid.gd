@@ -22,7 +22,7 @@ enum AsteroidType {
 
 var prop = {
 	AsteroidType.MINI: {"mass": 1, "health_min": 1, "health_max": 1, "damage": 1},
-	AsteroidType.BIG: {"mass": 100, "health_min": 1, "health_max": 6, "damage": 20},
+	AsteroidType.BIG: {"mass": 1000, "health_min": 1, "health_max": 6, "damage": 20},
 	AsteroidType.MEGA: {"mass": 10000, "health_min": 10000, "health_max": 10000, "damage": 30}
 }
 

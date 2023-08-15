@@ -26,7 +26,7 @@ func load_level():
 	level_scene.finished.connect(next_level)
 	if level_scene.has_signal("game_over"):
 		level_scene.game_over.connect(game_over)
-	add_child(level_scene)
+	call_deferred("add_child", level_scene)
 
 func next_level():
 	level += 1
