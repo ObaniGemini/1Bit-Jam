@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b1f140k5p0v8j" path="res://gfx/turret/cannon.png" id="5_w77rs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i1ff4"]
-size = Vector2(24, 35)
+size = Vector2(24, 20)
 
 [sub_resource type="Animation" id="Animation_cgdbr"]
 length = 0.001
@@ -133,6 +133,7 @@ autostart = true
 [node name="Sprites" type="Node2D" parent="."]
 modulate = Color(0, 0, 0, 1)
 rotation = 1.5708
+scale = Vector2(0.75, 0.75)
 
 [node name="base" type="Node2D" parent="Sprites"]
 
