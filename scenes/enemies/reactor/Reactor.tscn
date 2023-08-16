@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6kl1ukf6d26t"]
+
+[ext_resource type="Texture2D" uid="uid://bq4gy7twdmdy" path="res://gfx/reactor.png" id="1_ph2xc"]
+[ext_resource type="Texture2D" uid="uid://ckdjrmiye552v" path="res://gfx/reactor_inner_shield.png" id="2_1veak"]
+[ext_resource type="Texture2D" uid="uid://tpvobhkm614t" path="res://gfx/reactor_outer_shield.png" id="3_blikb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8j202"]
+radius = 496.065
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4h7j1"]
+radius = 465.102
+
+[node name="Reactor" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ph2xc")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-448, -56, -456, 56, -128, 96, -88, 152, -56, 416, 56, 416, 88, 144, 112, 104, 144, 96, 448, 64, 448, 64, 448, -64, 448, -64, 136, -88, 112, -104, 88, -152, 56, -408, 56, -408, 56, -408, -56, -408, -56, -408, -88, -152, -112, -104, -144, -88)
+
+[node name="OuterShield" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="OuterShield"]
+texture = ExtResource("3_blikb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OuterShield"]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_8j202")
+
+[node name="InnerShield" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="InnerShield"]
+texture = ExtResource("2_1veak")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InnerShield"]
+position = Vector2(0, 16)
+shape = SubResource("CircleShape2D_4h7j1")
