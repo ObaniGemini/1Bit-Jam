@@ -34,11 +34,18 @@ func next_level():
 	level += 1
 	Entities.clear()
 	
+	if level_scene != null:
+		level_scene.game_over.disconnect(game_over)
+	
 	if level == LEVELS.size():
 		go_to_menu()
 		return
 	
+	$Transition/AnimationPlayer.play("exit")
+	await $Transition/AnimationPlayer.animation_finished
+	
 	load_level()
+	$Transition/AnimationPlayer.play("enter")
 
 func go_to_menu():
 	$PauseMenu.set_pause(false)

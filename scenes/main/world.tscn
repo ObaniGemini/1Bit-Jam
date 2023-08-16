@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfqgxnsp33bp6"]
+[gd_scene load_steps=10 format=3 uid="uid://bfqgxnsp33bp6"]
 
 [ext_resource type="Script" path="res://scenes/main/world.gd" id="1_mg8vk"]
 [ext_resource type="Script" path="res://scenes/main/PauseMenu.gd" id="2_3lx71"]
@@ -10,6 +10,46 @@ size = Vector2(208, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k1ujb"]
 size = Vector2(208, 64)
+
+[sub_resource type="Animation" id="Animation_6pu1g"]
+resource_name = "enter"
+length = 0.75
+step = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Transition/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(0.25, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -720)]
+}
+
+[sub_resource type="Animation" id="Animation_jxl5h"]
+resource_name = "exit"
+length = 0.75
+step = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Transition/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(0.25, 1),
+"update": 0,
+"values": [Vector2(0, 720), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2xcgg"]
+_data = {
+"enter": SubResource("Animation_6pu1g"),
+"exit": SubResource("Animation_jxl5h")
+}
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_mg8vk")
@@ -54,3 +94,19 @@ offset_right = 103.0
 offset_bottom = 22.0
 theme_type_variation = &"HeaderLarge"
 text = "Main Menu"
+
+[node name="Transition" type="CanvasLayer" parent="."]
+layer = 9
+
+[node name="Sprite2D" type="Sprite2D" parent="Transition"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0, 720)
+scale = Vector2(1280, 720)
+texture = ExtResource("3_il7fi")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Transition"]
+root_node = NodePath("../../PauseMenu")
+libraries = {
+"": SubResource("AnimationLibrary_2xcgg")
+}

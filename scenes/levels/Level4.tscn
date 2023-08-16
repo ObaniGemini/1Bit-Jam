@@ -1,64 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://civa54ixp83r4"]
+[gd_scene load_steps=24 format=3 uid="uid://civa54ixp83r4"]
 
 [ext_resource type="Script" path="res://scenes/levels/Level2.gd" id="1_b6u5l"]
-[ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/abstract/square.png" id="2_yf00x"]
 [ext_resource type="PackedScene" uid="uid://bw4siilxufwyk" path="res://scenes/char/ship.tscn" id="3_mnges"]
 [ext_resource type="TileSet" uid="uid://bda2yh6gxoom4" path="res://gfx/tileset/tileset1.tres" id="6_fida7"]
 [ext_resource type="PackedScene" uid="uid://dd3iys45sj7h2" path="res://scenes/objects/hatch.tscn" id="7_cp27a"]
-[ext_resource type="Script" path="res://scenes/util/PlayerEnteredArea.gd" id="7_x07sx"]
 [ext_resource type="PackedScene" uid="uid://c20hbxi8f3vkv" path="res://scenes/objects/console.tscn" id="8_7somh"]
-
-[sub_resource type="Animation" id="Animation_1773f"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../fg/Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 720)]
-}
-
-[sub_resource type="Animation" id="Animation_aypag"]
-resource_name = "finish"
-length = 0.75
-step = 0.75
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../fg/Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.75),
-"transitions": PackedFloat32Array(0.25, 1),
-"update": 0,
-"values": [Vector2(0, 720), Vector2(0, 0)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("..")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.75),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [""],
-"method": &"finish"
-}]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_kd0tw"]
-_data = {
-"RESET": SubResource("Animation_1773f"),
-"finish": SubResource("Animation_aypag")
-}
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3nyiv"]
 polygon = PackedVector2Array(-32, 192, 32, 128, 288, 128, 288, -256, 32, -256, -32, -320, 352, -320, 352, 192)
@@ -209,22 +155,6 @@ width = 4.0
 [node name="Line2D2" type="Line2D" parent="decor"]
 points = PackedVector2Array(-1088, -1984, -1088, -3072, -256, -3072, -256, -6336, -2560, -6336, -2816, -5344)
 width = 4.0
-
-[node name="fg" type="CanvasLayer" parent="."]
-layer = 5
-
-[node name="Sprite2D" type="Sprite2D" parent="fg"]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(0, 720)
-scale = Vector2(1280, 720)
-texture = ExtResource("2_yf00x")
-centered = false
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="fg"]
-root_node = NodePath("../../finish")
-libraries = {
-"": SubResource("AnimationLibrary_kd0tw")
-}
 
 [node name="Ship" parent="." instance=ExtResource("3_mnges")]
 position = Vector2(-7040, -6912)
@@ -483,7 +413,6 @@ libraries = {
 
 [node name="finish" type="Area2D" parent="."]
 position = Vector2(5192, -6400)
-script = ExtResource("7_x07sx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="finish"]
 shape = SubResource("RectangleShape2D_d5v4q")
@@ -495,5 +424,4 @@ position = Vector2(-7296, -6912)
 shape = SubResource("RectangleShape2D_m2xij")
 
 [connection signal="player_died" from="Ship" to="." method="_on_ship_player_died"]
-[connection signal="body_entered" from="finish" to="finish" method="_on_body_entered"]
-[connection signal="player_entered" from="finish" to="fg/AnimationPlayer" method="play" flags=6 binds= ["finish"]]
+[connection signal="body_entered" from="finish" to="." method="body_entered_end_level"]

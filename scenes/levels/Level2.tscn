@@ -1,13 +1,18 @@
-[gd_scene load_steps=22 format=3 uid="uid://voefqb7styc"]
+[gd_scene load_steps=25 format=3 uid="uid://voefqb7styc"]
 
 [ext_resource type="Script" path="res://scenes/levels/Level2.gd" id="1_o4vqa"]
 [ext_resource type="PackedScene" uid="uid://bw4siilxufwyk" path="res://scenes/char/ship.tscn" id="2_u1rvh"]
 [ext_resource type="AudioStream" uid="uid://ce5xuhjit0cw8" path="res://sfx/voices/shepard/vandalism.ogg" id="3_8hkmc"]
 [ext_resource type="PackedScene" uid="uid://c20hbxi8f3vkv" path="res://scenes/objects/console.tscn" id="4_68gym"]
+[ext_resource type="Texture2D" uid="uid://by53edq75c6m5" path="res://gfx/abstract/sphere.png" id="4_e7oar"]
 [ext_resource type="TileSet" uid="uid://bda2yh6gxoom4" path="res://gfx/tileset/tileset1.tres" id="4_pik8q"]
 [ext_resource type="AudioStream" uid="uid://dgupx4nbhpdpb" path="res://sfx/voices/shepard/hacking.ogg" id="4_ydufw"]
+[ext_resource type="Script" path="res://scenes/util/PlayerEnteredArea.gd" id="5_ccsyh"]
 [ext_resource type="PackedScene" uid="uid://dd3iys45sj7h2" path="res://scenes/objects/hatch.tscn" id="5_y8v42"]
 [ext_resource type="PackedScene" uid="uid://ewvmgd1f1u0x" path="res://scenes/enemies/ship/watcher.tscn" id="6_17dmo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3uoo"]
+size = Vector2(1088, 192)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fecm4"]
 polygon = PackedVector2Array(-192, 64, -191, -192, -158, -224, -97, -239, 96, -240, 159, -224, 192, -190, 192, 64, 145, 64, 144, 0, 161, -63, 161, -161, 99, -191, -95, -192, -160, -162, -161, -60, -144, 0, -144, 64)
@@ -162,6 +167,21 @@ width = 4.0
 
 [node name="Ship" parent="." instance=ExtResource("2_u1rvh")]
 position = Vector2(608, 640)
+
+[node name="Trap" type="Node2D" parent="."]
+position = Vector2(-5824, -7296)
+
+[node name="Sprite2D" type="Sprite2D" parent="Trap"]
+visible = false
+scale = Vector2(1.75, 1.75)
+texture = ExtResource("4_e7oar")
+
+[node name="Area2D" type="Area2D" parent="Trap"]
+script = ExtResource("5_ccsyh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trap/Area2D"]
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_l3uoo")
 
 [node name="Sounds" type="Node" parent="."]
 
