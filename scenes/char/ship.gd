@@ -182,15 +182,17 @@ func _input(event):
 		if event.is_action_pressed("shoot_left"): arm[Arm_Left].shoot()
 		if event.is_action_pressed("shoot_right"): arm[Arm_Right].shoot()
 	else:
-		if event.is_action_pressed("ui_left"): move_dir.x -= 1
-		elif event.is_action_released("ui_left"): move_dir.x += 1
-		if event.is_action_pressed("ui_right"): move_dir.x += 1
-		elif event.is_action_released("ui_right"): move_dir.x -= 1
+		if event.is_action_pressed("ui_left"): move_dir.x = -1
+		elif event.is_action_pressed("ui_right"): move_dir.x = 1
+		elif event.is_action_released("ui_left") or event.is_action_released("ui_right"): move_dir.x = 0
 
-		if event.is_action_pressed("ui_up"): move_dir.y -= 1
-		elif event.is_action_released("ui_up"): move_dir.y += 1
-		if event.is_action_pressed("ui_down"): move_dir.y += 1
-		elif event.is_action_released("ui_down"): move_dir.y -= 1
+		if event.is_action_pressed("ui_up"): move_dir.y = -1
+		elif event.is_action_pressed("ui_down"): move_dir.y = 1
+		elif event.is_action_released("ui_up") or event.is_action_released("ui_down"): move_dir.y = 0
+		
+		if event.is_action_pressed("rotate_left"): angular_accel = -1
+		if event.is_action_pressed("rotate_right"): angular_accel = 1
+		elif event.is_action_released("rotate_left") or event.is_action_released("rotate_right"): angular_accel = 0
 		
 		if event.is_action_pressed("shoot_left"): arm[Arm_Left].shoot()
 		if event.is_action_pressed("shoot_right"): arm[Arm_Right].shoot()
@@ -198,8 +200,8 @@ func _input(event):
 		if event.is_action_pressed("lights_left"): arm[Arm_Left].toggle_light()
 		if event.is_action_pressed("lights_right"): arm[Arm_Right].toggle_light()
 	
-	move_dir.x = clampf(move_dir.x, -1, 1)
-	move_dir.y = clampf(move_dir.y, -1, 1)
+#	move_dir.x = clampf(move_dir.x, -1, 1)
+#	move_dir.y = clampf(move_dir.y, -1, 1)
 	update_smoke()
 
 var dead = false
