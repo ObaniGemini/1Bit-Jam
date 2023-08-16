@@ -709,6 +709,7 @@ rotation_smoothing_enabled = true
 rotation_smoothing_speed = 2.0
 
 [node name="boosters" type="Node2D" parent="."]
+visible = false
 position = Vector2(0, 18)
 
 [node name="left" type="GPUParticles2D" parent="boosters"]
@@ -792,10 +793,11 @@ shape = SubResource("CapsuleShape2D_tbcdq")
 z_index = -1
 
 [node name="Left" type="Marker2D" parent="WeaponsPosition"]
-position = Vector2(-14, -12)
-rotation = -0.261799
+position = Vector2(-20, -22)
 
 [node name="Sprite2D" type="Sprite2D" parent="WeaponsPosition/Left"]
+position = Vector2(4, 8)
+rotation = -0.261799
 texture = ExtResource("4_ffssy")
 offset = Vector2(0, -640)
 
@@ -823,10 +825,11 @@ stream = SubResource("AudioStreamOggVorbis_ubusw")
 volume_db = -15.0
 
 [node name="Right" type="Marker2D" parent="WeaponsPosition"]
-position = Vector2(14, -12)
-rotation = 0.261799
+position = Vector2(20, -22)
 
 [node name="Sprite2D" type="Sprite2D" parent="WeaponsPosition/Right"]
+position = Vector2(-4, 8)
+rotation = 0.261799
 texture = ExtResource("4_ffssy")
 offset = Vector2(0, -640)
 

@@ -25,6 +25,7 @@ class ArmProperties:
 	var handler
 	var progressbar
 	var light_on
+	var light
 	var anim
 	var timer
 	var rot
@@ -36,7 +37,8 @@ class ArmProperties:
 		progressbar.value = 100
 		light_on = false
 		anim = handler.get_node("AnimationPlayer")
-		rot = handler.rotation
+		light = handler.get_node("Sprite2D")
+		rot = light.rotation
 		
 		timer = Timer.new()
 		timer.one_shot = true
@@ -67,7 +69,7 @@ class ArmProperties:
 		else: anim.play("off")
 	
 	func process(delta, accel):
-		handler.rotation = rot + accel * 0.1
+		light.rotation = rot + accel * 0.1
 		
 		if light_on:
 			progressbar.value -= LIGHT_ENERGY * delta
