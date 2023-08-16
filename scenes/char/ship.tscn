@@ -25,9 +25,11 @@ curve = SubResource("Curve_p7fyh")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ppdoy"]
 particle_flag_disable_z = true
-spread = 180.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
 gravity = Vector3(0, 0, 0)
-initial_velocity_max = 9.81
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 scale_min = 0.05
@@ -36,9 +38,11 @@ scale_curve = SubResource("CurveTexture_of52x")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_flo6r"]
 particle_flag_disable_z = true
-spread = 180.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
 gravity = Vector3(0, 0, 0)
-initial_velocity_max = 9.81
+initial_velocity_min = 100.0
+initial_velocity_max = 150.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 scale_min = 0.1
@@ -709,8 +713,7 @@ rotation_smoothing_enabled = true
 rotation_smoothing_speed = 2.0
 
 [node name="boosters" type="Node2D" parent="."]
-visible = false
-position = Vector2(0, 18)
+position = Vector2(0, 12)
 
 [node name="left" type="GPUParticles2D" parent="boosters"]
 position = Vector2(-20, 4)
@@ -727,7 +730,7 @@ texture = ExtResource("2_2r851")
 lifetime = 0.25
 
 [node name="center" type="GPUParticles2D" parent="boosters"]
-position = Vector2(0, 15)
+position = Vector2(0, 12)
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_flo6r")
 texture = ExtResource("2_2r851")
@@ -743,7 +746,7 @@ libraries = {
 }
 
 [node name="top_left" type="Node2D" parent="rotaters"]
-position = Vector2(0, -4)
+position = Vector2(-4, -14)
 rotation = -1.39626
 
 [node name="Sprite2D" type="Sprite2D" parent="rotaters/top_left"]
@@ -753,27 +756,27 @@ centered = false
 offset = Vector2(-4, -64)
 
 [node name="top_right" type="Node2D" parent="rotaters"]
-position = Vector2(0, -4)
+position = Vector2(4, -14)
 rotation = 1.39626
 
 [node name="Sprite2D" type="Sprite2D" parent="rotaters/top_right"]
-scale = Vector2(0.75, 0.5)
+scale = Vector2(1, 0.5)
 texture = ExtResource("3_biuda")
 centered = false
 offset = Vector2(-4, -64)
 
 [node name="down_left" type="Node2D" parent="rotaters"]
-position = Vector2(0, 10)
+position = Vector2(-12, 12)
 rotation = -1.74533
 
 [node name="Sprite2D" type="Sprite2D" parent="rotaters/down_left"]
-scale = Vector2(0.75, 0.5)
+scale = Vector2(1, 0.5)
 texture = ExtResource("3_biuda")
 centered = false
 offset = Vector2(-4, -64)
 
 [node name="down_right" type="Node2D" parent="rotaters"]
-position = Vector2(0, 10)
+position = Vector2(12, 12)
 rotation = 1.74533
 
 [node name="Sprite2D" type="Sprite2D" parent="rotaters/down_right"]
@@ -858,13 +861,12 @@ stream = SubResource("AudioStreamOggVorbis_ubusw")
 volume_db = -15.0
 panning_strength = 3.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="shoot_left" type="ProgressBar" parent="UI"]
+offset_left = -50.0
 offset_top = 720.0
-offset_right = 720.0
+offset_right = 670.0
 offset_bottom = 760.0
 rotation = -1.5708
 theme_override_styles/background = SubResource("StyleBoxFlat_mk3v4")
@@ -878,9 +880,9 @@ libraries = {
 }
 
 [node name="shoot_right" type="ProgressBar" parent="UI"]
-offset_left = 1240.0
+offset_left = 1290.0
 offset_top = 720.0
-offset_right = 1960.0
+offset_right = 2010.0
 offset_bottom = 760.0
 rotation = -1.5708
 theme_override_styles/background = SubResource("StyleBoxFlat_sgpq5")
@@ -900,19 +902,19 @@ libraries = {
 }
 
 [node name="health_bar" type="Control" parent="UI"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 640.0
-offset_top = 656.0
+offset_top = 720.0
 offset_right = 680.0
-offset_bottom = 696.0
+offset_bottom = 760.0
 scale = Vector2(1, 0.5)
 
 [node name="left" type="TextureProgressBar" parent="UI/health_bar"]
 layout_mode = 0
 offset_left = -600.0
 offset_bottom = 128.0
-value = 100.0
 texture_progress = ExtResource("7_h4s5p")
 
 [node name="right" type="TextureProgressBar" parent="UI/health_bar"]
@@ -921,7 +923,6 @@ offset_left = 600.0
 offset_right = 1200.0
 offset_bottom = 128.0
 scale = Vector2(-1, 1)
-value = 100.0
 texture_progress = ExtResource("7_h4s5p")
 
 [node name="glitch" type="AnimationPlayer" parent="UI/health_bar"]

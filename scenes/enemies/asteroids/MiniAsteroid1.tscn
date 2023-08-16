@@ -1,13 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://cj34ko2tpbgsh"]
+[gd_scene load_steps=4 format=3 uid="uid://cj34ko2tpbgsh"]
 
 [ext_resource type="Script" path="res://scenes/enemies/asteroids/Asteroid.gd" id="1_ycbcm"]
 [ext_resource type="Texture2D" uid="uid://bissina8pfgcy" path="res://gfx/asteroids/mini_asteroid1.png" id="2_80umv"]
+[ext_resource type="Texture2D" uid="uid://dgolw4372usof" path="res://gfx/asteroids_bg/mini_asteroid1_bg.png" id="3_yuldu"]
 
 [node name="MiniAsteroid1" type="RigidBody2D"]
 script = ExtResource("1_ycbcm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_80umv")
+
+[node name="bg" type="Sprite2D" parent="."]
+texture = ExtResource("3_yuldu")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-15, 0, -13, 10, -7, 15, 1, 14, 8, 9, 13, -1, 15, -9, 10, -14, 1, -15, -6, -12, -13, -10)

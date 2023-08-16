@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvph08tsmbehn"]
+[gd_scene load_steps=5 format=3 uid="uid://dvph08tsmbehn"]
 
 [ext_resource type="Script" path="res://scenes/enemies/asteroids/MegaAsteroid.gd" id="1_n3wvq"]
 [ext_resource type="Texture2D" uid="uid://obequ1ektshd" path="res://gfx/asteroids/megaAsteroid1.png" id="2_72rkf"]
+[ext_resource type="Texture2D" uid="uid://l4m131n7dhot" path="res://gfx/asteroids_bg/megaAsteroid1_bg.png" id="3_28v84"]
 [ext_resource type="PackedScene" uid="uid://cdl4j8srvsb3o" path="res://scenes/enemies/turrets/Turret.tscn" id="3_n7g2t"]
 
 [node name="MegaAsteroid1" type="RigidBody2D"]
@@ -13,6 +14,9 @@ asteroid_type = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_72rkf")
+
+[node name="bg" type="Sprite2D" parent="."]
+texture = ExtResource("3_28v84")
 
 [node name="Turrets" type="Node2D" parent="."]
 

@@ -147,6 +147,7 @@ script = ExtResource("1_ep8oo")
 
 [node name="Ship" parent="." instance=ExtResource("1_776gt")]
 position = Vector2(635, 668)
+low_booster_active = true
 
 [node name="WorldBoundary" type="StaticBody2D" parent="."]
 
@@ -166,16 +167,19 @@ position = Vector2(1240, 0)
 shape = SubResource("SegmentShape2D_mxyi1")
 
 [node name="bg" type="CanvasLayer" parent="."]
-layer = 2
+layer = -10
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="bg"]
 position = Vector2(640, -16)
-amount = 12
+amount = 256
 process_material = SubResource("ParticleProcessMaterial_4e25h")
 texture = ExtResource("3_1ihlt")
 lifetime = 15.0
 
-[node name="LabelSpell" parent="bg" instance=ExtResource("3_yop4o")]
+[node name="fg" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="LabelSpell" parent="fg" instance=ExtResource("3_yop4o")]
 offset_right = 1280.0
 offset_bottom = 720.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -188,7 +192,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 lifetime = 10.0
 
-[node name="Insurance" parent="bg" instance=ExtResource("3_yop4o")]
+[node name="Insurance" parent="fg" instance=ExtResource("3_yop4o")]
 offset_right = 1280.0
 offset_bottom = 720.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -280,7 +284,7 @@ position = Vector2(0, 784)
 shape = SubResource("RectangleShape2D_w1gbj")
 
 [connection signal="player_died" from="Ship" to="." method="_on_ship_player_died"]
-[connection signal="finished" from="bg/Insurance" to="Sounds/DelayedAudioStreamPlayer" method="play_delayed"]
+[connection signal="finished" from="fg/Insurance" to="Sounds/DelayedAudioStreamPlayer" method="play_delayed"]
 [connection signal="timeout" from="AsteroidSpawnTimer" to="." method="_on_asteroid_spawn_timer_timeout"]
 [connection signal="timeout" from="TimerBeforeMega" to="." method="_on_timer_before_mega_timeout"]
 [connection signal="timeout" from="SpeedIncrease" to="." method="_on_speed_increase_timeout"]

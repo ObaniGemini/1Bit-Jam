@@ -101,6 +101,9 @@ var angular_velocity = 0
 var angular_accel = 0
 var health = MAX_HEALTH
 
+@export var low_booster_active = false
+@export var strong_booster_active = false
+
 func _ready():
 	$WeaponsPosition/Left/Sprite2D.visible = false
 	$WeaponsPosition/Right/Sprite2D.visible = false
@@ -165,9 +168,9 @@ func _process(_delta):
 func update_smoke():
 	var speed = move_dir.length()
 	
-	$boosters/left.emitting = speed > 0.1
-	$boosters/right.emitting = speed > 0.1
-	$boosters/center.emitting = speed > 0.9
+	$boosters/left.emitting = low_booster_active or speed > 0.1
+	$boosters/right.emitting = low_booster_active or speed > 0.1
+	$boosters/center.emitting = strong_booster_active or speed > 0.9
 
 func _input(event):
 	if event is InputEventJoypadMotion:

@@ -26,9 +26,9 @@ enum AsteroidType {
 @export var asteroid_type: AsteroidType = AsteroidType.MINI
 
 var prop = {
-	AsteroidType.MINI: {"mass": 1, "health_min": 1, "health_max": 1, "damage": 0.01},
-	AsteroidType.BIG: {"mass": 1000, "health_min": 1, "health_max": 4, "damage": 0.04},
-	AsteroidType.MEGA: {"mass": 10000, "health_min": 30, "health_max": 40, "damage": 0.1}
+	AsteroidType.MINI: {"mass": 1, "health_min": 1, "health_max": 1, "damage": 0.01, "scale_min": 0.25},
+	AsteroidType.BIG: {"mass": 1000, "health_min": 1, "health_max": 4, "damage": 0.04, "scale_min": 0.75},
+	AsteroidType.MEGA: {"mass": 10000, "health_min": 30, "health_max": 40, "damage": 0.1, "scale_min": 1.0}
 }
 
 var health = 0
@@ -59,13 +59,19 @@ func init():
 	set_collision_mask_value(1, false)
 	
 	# Mass to have nice collision
-	mass = prop[asteroid_type]["mass"]
-	health = randi_range(prop[asteroid_type]["health_min"], prop[asteroid_type]["health_max"])
+	var props = prop[asteroid_type]
+	mass = props["mass"]
+	health = randi_range(props["health_min"], props["health_max"])
+	scale *= randf_range(props["scale_min"], 1.0)
 	if asteroid_type == AsteroidType.MINI:
 		add_to_group("destroyable")
 	
 	contact_monitor = true
 	max_contacts_reported = 1
+	
+	var bg = get_node("bg")
+	if bg != null:
+		bg.z_index = -5
 	
 	body_entered.connect(hit)
 

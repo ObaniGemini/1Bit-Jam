@@ -6,12 +6,12 @@ var spawn_times = 0
 var mega_times = 0
 
 func _ready():
-	$bg/LabelSpell/AudioStreamPlayer.finished.connect($TimerBeforeMega.start)
+	$fg/LabelSpell/AudioStreamPlayer.finished.connect($TimerBeforeMega.start)
 	$Ship.set_camera_mode($Ship.Camera_Static)
 	Music.play("level1")
 
 func compute_big_proba():
-	return clampf(spawn_times * 0.1 + 0.05, 0, 0.75)
+	return clampf(spawn_times * 0.05 + 0.05, 0, 0.5)
 
 func _on_asteroid_spawn_timer_timeout():
 	spawn_times += 1
