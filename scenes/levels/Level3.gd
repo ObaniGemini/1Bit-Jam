@@ -1,8 +1,5 @@
 extends "res://scenes/main/level.gd"
 
-func _ready():
-	$Ship.set_camera_mode($Ship.Camera_Follow)
-
 
 # Detect right room is finished to unlock right generator
 # Same for left room
@@ -13,3 +10,60 @@ func _ready():
 # 3. Generator 1 destroyed -> remove first reactor shield
 # 4. Generator 2 destroyed -> remove second reactor shield
 # 5. Reactor is exposed and can be destroyed
+
+
+func _ready():
+	$Ship.set_camera_mode($Ship.Camera_Follow)
+
+func end_of_level():
+	pass
+
+enum State {
+	DESTROY_ROOMS,
+	GENERATOR1,
+	GENERATOR2,
+	DESTROY_GENERATOR1,
+	DESTROY_GENERATOR2,
+	DESTROY_REACTOR
+}
+
+var state = State.DESTROY_ROOMS
+
+func _process(_delta):
+	if state == State.GENERATOR2:
+		spawn_enemies()
+		state = State.DESTROY_GENERATOR1
+
+func spawn_enemies():
+	pass
+
+func _on_right_room_destroyed():
+	$Generator/Right.remove_shield()
+	if state == State.DESTROY_ROOMS:
+		state = State.GENERATOR1
+	else:
+		state = State.GENERATOR2
+	
+func _on_left_room_destroyed():
+	$Generators/Left.remove_shield()
+	if state == State.DESTROY_ROOMS:
+		state = State.GENERATOR1
+	else:
+		state = State.GENERATOR2
+	
+func _on_right_generator_destroyed():
+	$Reactor.remove_outer_shield()
+	if state == State.DESTROY_GENERATOR1:
+		state = State.DESTROY_GENERATOR1
+	else:
+		state = State.DESTROY_REACTOR
+
+func _on_left_generator_destroyed():
+	$Reactor.remove_inner_shield()
+	if state == State.DESTROY_GENERATOR1:
+		state = State.DESTROY_GENERATOR1
+	else:
+		state = State.DESTROY_REACTOR
+	
+func _on_reactor_destroyed():
+	end_of_level()

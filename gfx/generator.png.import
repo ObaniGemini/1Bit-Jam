@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckdjrmiye552v"
-path="res://.godot/imported/reactor_inner_shield.png-377574ca0f4ff88f04f2db6a98befa7b.ctex"
+uid="uid://b02vqc6i3wmqo"
+path="res://.godot/imported/generator.png-35eaf3b43934be02be5444fcb65d607a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gfx/reactor_inner_shield.png"
-dest_files=["res://.godot/imported/reactor_inner_shield.png-377574ca0f4ff88f04f2db6a98befa7b.ctex"]
+source_file="res://gfx/generator.png"
+dest_files=["res://.godot/imported/generator.png-35eaf3b43934be02be5444fcb65d607a.ctex"]
 
 [params]
 
