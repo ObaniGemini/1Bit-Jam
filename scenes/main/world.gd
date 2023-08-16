@@ -8,7 +8,9 @@ const LEVELS = [
 	"controls",
 	"cinematic_1",
 	"Level1",
-	"Level2"
+	"Level2",
+	"Level3",
+	"Level4"
 ]
 
 var level = -1;
