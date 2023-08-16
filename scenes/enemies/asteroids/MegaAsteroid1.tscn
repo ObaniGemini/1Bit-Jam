@@ -14,9 +14,6 @@ asteroid_type = 2
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_72rkf")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(18, -105, 56, -97, 81, -78, 90, -61, 81, -44, 64, -22, 64, 13, 79, 44, 80, 74, 64, 103, 41, 118, 9, 114, 6, 88, 15, 70, 5, 51, -12, 46, -30, 46, -36, 56, -34, 82, -55, 90, -81, 82, -98, 39, -93, -16, -87, -34, -72, -50, -66, -82, -30, -105)
-
 [node name="Turrets" type="Node2D" parent="."]
 
 [node name="Turret" parent="Turrets" instance=ExtResource("3_n7g2t")]
@@ -36,8 +33,12 @@ position = Vector2(-80, -63)
 rotation = -2.87979
 
 [node name="Turret5" parent="Turrets" instance=ExtResource("3_n7g2t")]
-position = Vector2(73, -8)
+position = Vector2(68, -24)
+rotation = 0.261799
 
 [node name="Turret7" parent="Turrets" instance=ExtResource("3_n7g2t")]
 position = Vector2(64, -98)
 rotation = -1.0472
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-95, 2, -88, -40, -73, -79, -59, -100, -32, -108, 4, -102, 29, -99, 54, -101, 81, -75, 90, -54, 64, -28, 63, 3, 74, 22, 78, 46, 78, 46, 85, 64, 73, 100, 49, 119, 15, 125, -2, 108, -7, 86, -21, 52, -29, 59, -39, 89, -54, 96, -84, 85, -89, 60, -97, 26)

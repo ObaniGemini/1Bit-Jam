@@ -11,4 +11,4 @@ asteroid_type = 1
 texture = ExtResource("2_bof0m")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-21, -3, -18, 3, -22, 13, -19, 29, -6, 28, 0, 22, -1, 6, 13, -6, 20, -4, 26, -6, 27, -11, 27, -17, 19, -27, 11, -27, 8, -24, -4, -24, -10, -26, -14, -25, -20, -10)
+polygon = PackedVector2Array(-13, -27, -23, -21, -26, -12, -21, 1, -26, 14, -27, 25, -15, 29, -1, 23, 8, 11, 13, 5, 17, 8, 28, -9, 29, -19, 23, -28, 10, -28, 3, -23)
