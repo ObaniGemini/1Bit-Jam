@@ -10,12 +10,15 @@ func set_pause(p):
 	$menu/Fullscreen.disable(!p)
 	$menu/Menu.disable(!p)
 
-func set_fullscreen():
-	Config.update("fullscreen", !Config.param("fullscreen"))
+func update_fullscreen():
 	if Config.param("fullscreen"):
 		$menu/Fullscreen/Label.text = "Windowed"
 	else:
 		$menu/Fullscreen/Label.text = "Fullscreen"
+
+func set_fullscreen():
+	Config.update("fullscreen", !Config.param("fullscreen"))
+	update_fullscreen()
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -32,4 +35,5 @@ func _input(event):
 func _ready():
 	$menu/Fullscreen.default_tween()
 	$menu/Menu.default_tween()
+	update_fullscreen()
 	set_pause(false)
