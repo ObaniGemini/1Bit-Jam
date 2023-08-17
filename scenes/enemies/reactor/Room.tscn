@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dd1ogjwkrm7jf"]
+
+[ext_resource type="Script" path="res://scenes/enemies/reactor/Room.gd" id="1_cudd2"]
+[ext_resource type="TileSet" uid="uid://bda2yh6gxoom4" path="res://gfx/tileset/tileset1.tres" id="2_qycgh"]
+[ext_resource type="PackedScene" uid="uid://c20hbxi8f3vkv" path="res://scenes/objects/console.tscn" id="3_tvf2i"]
+
+[node name="Room" type="Node2D"]
+script = ExtResource("1_cudd2")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_qycgh")
+format = 2
+layer_0/tile_data = PackedInt32Array(-196611, 0, 0, -131075, 0, 0, -65539, 0, 0, -3, 0, 0, 65533, 0, 0, 131069, 0, 0, 196605, 0, 0, 196606, 0, 0, 196607, 0, 0, 131072, 0, 0, -262143, 0, 0, 131073, 0, 0, -262142, 0, 0, 131074, 0, 0, -262141, 0, 0, -196605, 0, 0, -131069, 0, 0, 131075, 0, 0)
+
+[node name="Console" parent="." instance=ExtResource("3_tvf2i")]
+position = Vector2(160, -127)
+rotation = -1.5708
+
+[node name="Console2" parent="." instance=ExtResource("3_tvf2i")]
+position = Vector2(-4, 92)
+
+[node name="Console3" parent="." instance=ExtResource("3_tvf2i")]
+position = Vector2(-95, -24)
+rotation = 1.5708
+
+[connection signal="destroyed" from="Console" to="." method="_on_console_destroyed"]
+[connection signal="destroyed" from="Console2" to="." method="_on_console_destroyed"]
+[connection signal="destroyed" from="Console3" to="." method="_on_console_destroyed"]
