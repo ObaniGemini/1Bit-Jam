@@ -1,15 +1,18 @@
 extends "res://scenes/main/level.gd"
 
 const OFFSET = -512
-const SPEED_SCALE = 2.0
+const SPEED_SCALE = 8.0
 
 var spawn_times = 0
-var mega_times = 0
 
 func _ready():
-	$fg/LabelSpell/AudioStreamPlayer.finished.connect($TimerBeforeMega.start)
 	$Ship.set_camera_mode($Ship.Camera_Static)
-	Music.play("level1")
+	$Ship.arm[$Ship.Arm_Left].toggle_light()
+	$Ship.arm[$Ship.Arm_Right].toggle_light()
+
+@export var shake_amount = 0.0
+func _process(_delta):
+	$Camera2D.position = Vector2(shake_amount * (randf() - 0.5), shake_amount * (randf() - 0.5))
 
 func compute_big_proba():
 	return clampf(-spawn_times * 0.025 + 0.5, 0, 0.5)

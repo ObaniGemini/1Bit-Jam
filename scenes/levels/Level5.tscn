@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c7cnruliscqn1"]
+[gd_scene load_steps=27 format=3 uid="uid://c7cnruliscqn1"]
 
 [ext_resource type="Script" path="res://scenes/levels/Level5.gd" id="1_jn466"]
 [ext_resource type="PackedScene" uid="uid://bw4siilxufwyk" path="res://scenes/char/ship.tscn" id="2_d860p"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://qa4fipc12yyc" path="res://sfx/voices/shepard/lights3.ogg" id="10_tg42k"]
 [ext_resource type="Texture2D" uid="uid://vl82ii1fockc" path="res://gfx/abstract/arc.png" id="11_fojk4"]
 [ext_resource type="AudioStream" uid="uid://67qp36nmbe66" path="res://sfx/voices/shepard/lights4.ogg" id="11_hb1c1"]
+[ext_resource type="Script" path="res://scenes/util/InstantKill.gd" id="12_qgdwt"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_2l01y"]
 b = Vector2(1280, 0)
@@ -31,8 +32,8 @@ particle_flag_disable_z = true
 direction = Vector3(0, 1, 0)
 spread = 0.0
 gravity = Vector3(0, 0, 0)
-initial_velocity_min = 250.0
-initial_velocity_max = 500.0
+initial_velocity_min = 500.0
+initial_velocity_max = 1000.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 scale_max = 4.0
@@ -156,6 +157,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [true, false, true, false, true, true, false, true, false, true, false, true, false, true, true, false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:shake_amount")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5, 31, 34),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 20.0, 0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uidno"]
 _data = {
@@ -167,9 +180,10 @@ radius = 992.0
 
 [node name="Level5" type="Node2D"]
 script = ExtResource("1_jn466")
+shake_amount = 10.0
 
 [node name="Ship" parent="." instance=ExtResource("2_d860p")]
-position = Vector2(635, 668)
+position = Vector2(640, 600)
 low_booster_active = true
 strong_booster_active = true
 
@@ -195,13 +209,13 @@ layer = -10
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="bg"]
 position = Vector2(640, -16)
-amount = 256
+amount = 96
 process_material = SubResource("ParticleProcessMaterial_4e25h")
 texture = ExtResource("3_x0mim")
-lifetime = 15.0
+lifetime = 2.0
 
 [node name="AsteroidSpawnTimer" type="Timer" parent="."]
-wait_time = 0.75
+wait_time = 0.4
 autostart = true
 
 [node name="AreaKillAsteroids" type="Area2D" parent="."]
@@ -255,16 +269,19 @@ libraries = {
 }
 
 [node name="Sprite2D" type="Sprite2D" parent="explosion"]
-position = Vector2(0, 1792)
+position = Vector2(0, 2112)
 texture = ExtResource("11_fojk4")
 offset = Vector2(0, -512)
 
-[node name="Area2D" type="Area2D" parent="explosion/Sprite2D"]
+[node name="kill" type="Area2D" parent="explosion/Sprite2D"]
+script = ExtResource("12_qgdwt")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="explosion/Sprite2D/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="explosion/Sprite2D/kill"]
 shape = SubResource("CircleShape2D_roavt")
 
-[connection signal="player_died" from="Ship" to="." method="_on_ship_player_died"]
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(640, 360)
+
 [connection signal="timeout" from="AsteroidSpawnTimer" to="." method="_on_asteroid_spawn_timer_timeout"]
 [connection signal="body_entered" from="AreaKillAsteroids" to="." method="_on_area_kill_asteroids_body_entered"]
 [connection signal="animation_finished" from="explosion/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
