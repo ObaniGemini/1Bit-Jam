@@ -32,9 +32,10 @@ var prop = {
 }
 
 var health = 0
+var speed_scale = 1.0
 
 func init():
-	var speed = randf_range(ASTEROID_SPEED_MIN, ASTEROID_SPEED_MAX)
+	var speed = randf_range(ASTEROID_SPEED_MIN, ASTEROID_SPEED_MAX) * speed_scale
 	var direction = Vector2((randf() - 0.5) * 0.25, 1.0)
 
 	var s = signf(randf() - 0.5)

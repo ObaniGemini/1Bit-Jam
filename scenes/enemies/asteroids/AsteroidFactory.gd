@@ -20,7 +20,7 @@ static var mega_asteroids = [
 ]
 
 
-static func random_asteroid(big_asteroid_prob):
+static func random_asteroid(big_asteroid_prob, speed_scale=1.0):
 	var big_asteroid = randf() < big_asteroid_prob
 	
 	var arr = mini_asteroids
@@ -31,6 +31,7 @@ static func random_asteroid(big_asteroid_prob):
 	
 	var ast = arr.pick_random().instantiate()
 	ast.asteroid_type = ast_type
+	ast.speed_scale = speed_scale
 	return ast
 
 
