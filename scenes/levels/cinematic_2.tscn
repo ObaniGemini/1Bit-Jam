@@ -1,0 +1,146 @@
+[gd_scene load_steps=10 format=3 uid="uid://b584umtoj88oh"]
+
+[ext_resource type="Script" path="res://scenes/main/cinematic.gd" id="1_1va6p"]
+[ext_resource type="Texture2D" uid="uid://b8sj6swv4d0lp" path="res://gfx/cinematic/cinematic2/storyboard.png" id="2_0j7hs"]
+[ext_resource type="FontFile" uid="uid://chnp1si4jas1m" path="res://fonts/FFFFORWA.TTF" id="3_ngg1v"]
+[ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/abstract/square.png" id="4_dfteh"]
+[ext_resource type="AudioStream" uid="uid://dpegh3mhjay0b" path="res://sfx/voices/shepard/sergeantIfoundahugespacestation.ogg" id="5_q34v7"]
+[ext_resource type="AudioStream" uid="uid://cctejn83wiaac" path="res://sfx/voices/captain/Iminameeting.ogg" id="6_08ahs"]
+
+[sub_resource type="Animation" id="Animation_lqm5i"]
+resource_name = "scene"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 9.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sounds/sergeant I found:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D/Label2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 7.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sounds/Im in a meeting:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(7.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f5gfy"]
+_data = {
+"scene": SubResource("Animation_lqm5i")
+}
+
+[sub_resource type="Theme" id="Theme_55tes"]
+default_font = ExtResource("3_ngg1v")
+
+[node name="Cinematic2" type="Node2D"]
+script = ExtResource("1_1va6p")
+music = "level1"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "scene"
+libraries = {
+"": SubResource("AnimationLibrary_f5gfy")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_0j7hs")
+centered = false
+
+[node name="Label" type="Label" parent="Sprite2D"]
+offset_left = 600.0
+offset_top = 20.0
+offset_right = 1260.0
+offset_bottom = 160.0
+theme = SubResource("Theme_55tes")
+theme_type_variation = &"HeaderLarge"
+text = "Sergeant, I found a huge unlocated
+space station. I think it's the source
+of the void"
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D/Label"]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+position = Vector2(-20, -20)
+scale = Vector2(700, 180)
+texture = ExtResource("4_dfteh")
+centered = false
+
+[node name="Label2" type="Label" parent="Sprite2D"]
+visible = false
+offset_left = 20.0
+offset_top = 580.0
+offset_right = 660.0
+offset_bottom = 720.0
+theme = SubResource("Theme_55tes")
+theme_type_variation = &"HeaderLarge"
+text = "I'm in a meeting, Shreprad
+Call me later"
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D/Label2"]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+position = Vector2(-20, 0)
+scale = Vector2(510, 140)
+texture = ExtResource("4_dfteh")
+centered = false
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="sergeant I found" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("5_q34v7")
+bus = &"Comms"
+
+[node name="Im in a meeting" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("6_08ahs")
+bus = &"Comms"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="finish"]
