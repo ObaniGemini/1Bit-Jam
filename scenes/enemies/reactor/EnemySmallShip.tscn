@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://eodso6of8ma0"]
+
+[ext_resource type="Script" path="res://scenes/enemies/reactor/EnemySmallShip.gd" id="1_3rmo1"]
+[ext_resource type="Texture2D" uid="uid://c76ukirye1yw8" path="res://gfx/enemy_mini_ship.png" id="2_qo8m5"]
+
+[node name="EnemySmallShip" type="RigidBody2D"]
+position = Vector2(0, -31)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_3rmo1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_qo8m5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-8, -24, -8, 0, -32, 16, -32, 32, 32, 32, 32, 16, 8, 0, 8, -24)
+
+[node name="ShootingTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="LeftShooter" type="Marker2D" parent="."]
+position = Vector2(-18, -11)
+
+[node name="RightShooter" type="Marker2D" parent="."]
+position = Vector2(18, -10)

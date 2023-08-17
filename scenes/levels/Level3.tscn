@@ -245,8 +245,8 @@ rotation = 3.14159
 [node name="Rooms" type="Node2D" parent="."]
 
 [node name="LeftRoom" parent="Rooms" instance=ExtResource("5_o7110")]
-position = Vector2(-494, -2424)
-rotation = -1.5708
+position = Vector2(-585, 136)
+rotation = -3.14159
 
 [node name="RightRoom" parent="Rooms" instance=ExtResource("5_o7110")]
 position = Vector2(1824, -2424)
@@ -254,13 +254,39 @@ position = Vector2(1824, -2424)
 [node name="Generators" type="Node2D" parent="."]
 
 [node name="Left" parent="Generators" instance=ExtResource("6_3y4r6")]
-position = Vector2(-576, 272)
+position = Vector2(-577, -2408)
 
 [node name="Right" parent="Generators" instance=ExtResource("6_3y4r6")]
-position = Vector2(1984, 272)
+position = Vector2(1880, 88)
 
 [node name="Reactor" parent="." instance=ExtResource("6_5gfyn")]
 position = Vector2(552, -1312)
+
+[node name="Decor" type="Node2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="Decor"]
+points = PackedVector2Array(2104, -2432, 2208, -2432, 2208, -2088, 1472, -1456, 1472, -824, 1888, -528, 1888, -312)
+
+[node name="Line2D2" type="Line2D" parent="Decor"]
+position = Vector2(-72, -16)
+points = PackedVector2Array(2176, -2360, 2240, -2360, 2240, -2088, 1504, -1456, 1504, -808, 1184, -672, 216, -672, -992, -296, -992, 128, -784, 128)
+
+[node name="Line2D3" type="Line2D" parent="Decor"]
+points = PackedVector2Array(-856, 160, -1104, 160, -1104, -344, -584, -504, -584, -2032)
+
+[node name="SpawnPositions" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(-416, -568)
+
+[node name="Marker2D2" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(-656, -560)
+
+[node name="Marker2D3" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(1864, -1888)
+
+[node name="Marker2D4" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(1696, -1888)
 
 [connection signal="room_cleared" from="Rooms/LeftRoom" to="." method="_on_left_room_destroyed"]
 [connection signal="room_cleared" from="Rooms/RightRoom" to="." method="_on_right_room_destroyed"]

@@ -37,7 +37,6 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_nts2i")
 
 [node name="OuterShield" type="StaticBody2D" parent="."]
-visible = false
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("3_aiok2")
@@ -51,7 +50,6 @@ scale = Vector2(1.01812, 1.01812)
 shape = SubResource("CircleShape2D_8j202")
 
 [node name="InnerShield" type="StaticBody2D" parent="." groups=["enemy"]]
-visible = false
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("3_aiok2")

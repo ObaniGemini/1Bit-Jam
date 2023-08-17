@@ -11,9 +11,17 @@ extends "res://scenes/main/level.gd"
 # 4. Generator 2 destroyed -> remove second reactor shield
 # 5. Reactor is exposed and can be destroyed
 
+var EnemySmallShip = preload("res://scenes/enemies/reactor/EnemySmallShip.tscn")
 
+var spawn_positions = []
 func _ready():
 	$Ship.set_camera_mode($Ship.Camera_Follow)
+	
+	var markers = $SpawnPositions.get_children()
+	for i in range(len(markers)):
+		spawn_positions.append(markers[i])
+	
+	spawn_enemies()
 
 func end_of_level():
 	pass
@@ -34,8 +42,13 @@ func _process(_delta):
 		spawn_enemies()
 		state = State.DESTROY_GENERATOR1
 
+
 func spawn_enemies():
-	pass
+	for i in range(len(spawn_positions)):
+		var ess = EnemySmallShip.instantiate()
+		ess.global_position = spawn_positions[i].global_position
+		add_child(ess)
+		
 
 func _on_right_room_destroyed():
 	$Generators/Right.remove_shield()

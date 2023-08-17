@@ -713,6 +713,7 @@ rotation_smoothing_enabled = true
 rotation_smoothing_speed = 2.0
 
 [node name="boosters" type="Node2D" parent="."]
+visible = false
 position = Vector2(0, 12)
 
 [node name="left" type="GPUParticles2D" parent="boosters"]
