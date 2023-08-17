@@ -11,7 +11,7 @@ func destroy_room():
 	queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if nb_console_destroyed == 3:
 		destroy_room()
 		nb_console_destroyed = -1

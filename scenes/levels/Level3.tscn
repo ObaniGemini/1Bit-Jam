@@ -263,4 +263,7 @@ position = Vector2(1984, 272)
 position = Vector2(552, -1312)
 
 [connection signal="room_cleared" from="Rooms/LeftRoom" to="." method="_on_left_room_destroyed"]
-[connection signal="room_cleared" from="Rooms/RightRoom" to="." method="_on_right_generator_destroyed"]
+[connection signal="room_cleared" from="Rooms/RightRoom" to="." method="_on_right_room_destroyed"]
+[connection signal="generator_destroyed" from="Generators/Left" to="." method="_on_left_generator_destroyed"]
+[connection signal="generator_destroyed" from="Generators/Right" to="." method="_on_right_generator_destroyed"]
+[connection signal="reactor_destroyed" from="Reactor" to="." method="_on_reactor_destroyed"]

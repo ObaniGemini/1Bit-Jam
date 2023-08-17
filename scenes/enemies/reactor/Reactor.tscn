@@ -1,8 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6kl1ukf6d26t"]
+[gd_scene load_steps=9 format=3 uid="uid://c6kl1ukf6d26t"]
 
 [ext_resource type="Script" path="res://scenes/enemies/reactor/Reactor.gd" id="1_f6y53"]
 [ext_resource type="Texture2D" uid="uid://bq4gy7twdmdy" path="res://gfx/reactor.png" id="1_ph2xc"]
 [ext_resource type="Texture2D" uid="uid://o6kmdtxtwu30" path="res://gfx/abstract/circle.png" id="2_h34f5"]
+[ext_resource type="Script" path="res://scenes/enemies/reactor/shield.gd" id="3_aiok2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gmxys"]
+radius = 93.0
+height = 808.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nts2i"]
+radius = 94.0
+height = 830.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8j202"]
 radius = 496.065
@@ -10,18 +19,28 @@ radius = 496.065
 [sub_resource type="CircleShape2D" id="CircleShape2D_4h7j1"]
 radius = 465.102
 
-[node name="Reactor" type="StaticBody2D"]
+[node name="Reactor" type="StaticBody2D" groups=["enemy"]]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_f6y53")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_ph2xc")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-448, -56, -456, 56, -128, 96, -88, 152, -56, 416, 56, 416, 88, 144, 112, 104, 144, 96, 448, 64, 448, 64, 448, -64, 448, -64, 136, -88, 112, -104, 88, -152, 56, -408, 56, -408, 56, -408, -56, -408, -56, -408, -88, -152, -112, -104, -144, -88)
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 3)
+shape = SubResource("CapsuleShape2D_gmxys")
+
+[node name="CollisionPolygon2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_nts2i")
 
 [node name="OuterShield" type="StaticBody2D" parent="."]
+visible = false
 collision_layer = 3
 collision_mask = 3
+script = ExtResource("3_aiok2")
 
 [node name="Sprite2D" type="Sprite2D" parent="OuterShield"]
 scale = Vector2(4.0726, 4.0726)
@@ -31,9 +50,11 @@ texture = ExtResource("2_h34f5")
 scale = Vector2(1.01812, 1.01812)
 shape = SubResource("CircleShape2D_8j202")
 
-[node name="InnerShield" type="StaticBody2D" parent="."]
+[node name="InnerShield" type="StaticBody2D" parent="." groups=["enemy"]]
+visible = false
 collision_layer = 3
 collision_mask = 3
+script = ExtResource("3_aiok2")
 
 [node name="Sprite2D" type="Sprite2D" parent="InnerShield"]
 scale = Vector2(3.83542, 3.83542)

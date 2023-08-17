@@ -38,7 +38,7 @@ func spawn_enemies():
 	pass
 
 func _on_right_room_destroyed():
-	$Generator/Right.remove_shield()
+	$Generators/Right.remove_shield()
 	if state == State.DESTROY_ROOMS:
 		state = State.GENERATOR1
 	else:

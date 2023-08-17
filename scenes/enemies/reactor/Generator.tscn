@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://j6xolwm66gdv"]
+[gd_scene load_steps=6 format=3 uid="uid://j6xolwm66gdv"]
 
 [ext_resource type="Texture2D" uid="uid://b02vqc6i3wmqo" path="res://gfx/generator.png" id="1_3xrtq"]
 [ext_resource type="Script" path="res://scenes/enemies/reactor/Generator.gd" id="1_oatjf"]
 [ext_resource type="Texture2D" uid="uid://o6kmdtxtwu30" path="res://gfx/abstract/circle.png" id="2_wf28q"]
+[ext_resource type="Script" path="res://scenes/enemies/reactor/shield.gd" id="3_cce0r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nuv2f"]
 radius = 326.435
 
-[node name="Generator" type="StaticBody2D"]
+[node name="Generator" type="StaticBody2D" groups=["enemy"]]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_oatjf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -18,7 +21,10 @@ texture = ExtResource("1_3xrtq")
 scale = Vector2(-28.4176, 14.2149)
 polygon = PackedVector2Array(0, 19.6977, -4.50424, 16.8837, -4.50424, 7.31628, -8.72697, 7.31628, -9.57152, 0.562791, -8.72697, -7.31628, -4.78576, -7.31628, -4.78576, -17.4465, -0.281515, -19.1349, 4.78576, -16.8837, 4.78576, -7.31628, 9.00849, -7.31628, 9.85303, 0, 9.00849, 7.31628, 4.78576, 7.31628, 4.78576, 16.8837)
 
-[node name="Shield" type="StaticBody2D" parent="."]
+[node name="Shield" type="StaticBody2D" parent="." groups=["enemy"]]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("3_cce0r")
 
 [node name="Sprite2D" type="Sprite2D" parent="Shield"]
 scale = Vector2(2.63367, 2.63367)
