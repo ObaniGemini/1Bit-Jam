@@ -105,6 +105,8 @@ var health = MAX_HEALTH
 @export var strong_booster_active = false
 
 func _ready():
+	$boosters.visible = true
+	$rotaters.visible = true
 	$WeaponsPosition/Left/Sprite2D.visible = false
 	$WeaponsPosition/Right/Sprite2D.visible = false
 	update_smoke()
