@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/levels/Level1.gd" id="1_ep8oo"]
 [ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/abstract/square.png" id="3_1ihlt"]
 [ext_resource type="PackedScene" uid="uid://bav4oj0w0t1o5" path="res://scenes/util/LabelSpell.tscn" id="3_yop4o"]
-[ext_resource type="PackedScene" uid="uid://cykug4alhxyx5" path="res://scenes/util/delayed_audio_stream_player.tscn" id="6_1tk6y"]
+[ext_resource type="PackedScene" path="res://scenes/util/delayed_audio_stream_player.tscn" id="6_1tk6y"]
 [ext_resource type="AudioStream" uid="uid://dmhgc5aw6vyyw" path="res://sfx/voices/robot/WARNING.ogg" id="6_wp1dq"]
 [ext_resource type="AudioStream" uid="uid://cfcjgtgqqh0c6" path="res://sfx/voices/shepard/damntheseinsurance.ogg" id="7_khmxi"]
 [ext_resource type="Texture2D" uid="uid://b0kl6iuh7d0p6" path="res://gfx/ship/big_ship.png" id="8_8epw4"]
@@ -119,7 +119,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_aps68"]
 resource_name = "move"
-length = 180.0
+length = 220.0
 step = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -128,10 +128,10 @@ tracks/0/path = NodePath("ship:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 180),
+"times": PackedFloat32Array(0, 220),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(640, -1800), Vector2(640, 0)]
+"values": [Vector2(640, -1800), Vector2(640, -400)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uidno"]
@@ -257,7 +257,7 @@ libraries = {
 }
 
 [node name="ship" type="Node2D" parent="."]
-position = Vector2(640, -1800)
+position = Vector2(640, -500)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ship"]
 root_node = NodePath("../..")
@@ -289,4 +289,5 @@ shape = SubResource("RectangleShape2D_w1gbj")
 [connection signal="timeout" from="TimerBeforeMega" to="." method="_on_timer_before_mega_timeout"]
 [connection signal="timeout" from="SpeedIncrease" to="." method="_on_speed_increase_timeout"]
 [connection signal="body_entered" from="AreaKillAsteroids" to="." method="_on_area_kill_asteroids_body_entered"]
+[connection signal="animation_finished" from="ship/AnimationPlayer" to="." method="end_of_level_animation"]
 [connection signal="body_entered" from="ship/Area2D" to="." method="body_entered_end_level"]

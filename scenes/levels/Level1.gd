@@ -41,9 +41,8 @@ func _on_timer_before_mega_timeout():
 		asteroid.position = Vector2(x_position, OFFSET)
 		add_child(asteroid)
 	
-	$TimerBeforeMega.wait_time = 45
-	if mega_times < 5:
-		$TimerBeforeMega.start()
+	$TimerBeforeMega.wait_time = 40
+	$TimerBeforeMega.start()
 
 
 func _on_speed_increase_timeout():
