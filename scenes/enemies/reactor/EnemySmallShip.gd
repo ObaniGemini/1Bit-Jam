@@ -3,7 +3,7 @@ extends RigidBody2D
 const EnemyBullet = preload("res://scenes/enemies/turrets/EnemyBullet.tscn")
 const EXPLOSION_CLASS = preload("res://scenes/util/explosion.tscn")
 
-const SPEED = 100000.0
+const SPEED = 100.0
 const BULLET_SPEED = 1000.0
 var health = 1
 

@@ -21,8 +21,6 @@ func _ready():
 	for i in range(len(markers)):
 		spawn_positions.append(markers[i])
 	
-	spawn_enemies()
-
 func end_of_level():
 	pass
 

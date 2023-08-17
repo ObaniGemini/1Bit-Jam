@@ -1,35 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://ciwv8i400pf7x"]
+[gd_scene load_steps=3 format=3 uid="uid://eodso6of8ma0"]
 
 [ext_resource type="Script" path="res://scenes/enemies/reactor/EnemySmallShip.gd" id="1_3rmo1"]
 [ext_resource type="Texture2D" uid="uid://c76ukirye1yw8" path="res://gfx/enemy_mini_ship.png" id="2_qo8m5"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hroie"]
-friction = 0.0
-bounce = 0.5
-
-[node name="EnemySmallShip" type="RigidBody2D" groups=["enemy"]]
+[node name="EnemySmallShip" type="RigidBody2D"]
+position = Vector2(0, -31)
 collision_layer = 3
 collision_mask = 3
-mass = 10.0
-inertia = 1.0
-physics_material_override = SubResource("PhysicsMaterial_hroie")
-gravity_scale = 0.0
 script = ExtResource("1_3rmo1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 1.5708
 texture = ExtResource("2_qo8m5")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-rotation = 1.5708
 polygon = PackedVector2Array(-8, -24, -8, 0, -32, 16, -32, 32, 32, 32, 32, 16, 8, 0, 8, -24)
 
 [node name="ShootingTimer" type="Timer" parent="."]
 wait_time = 5.0
-autostart = true
 
 [node name="LeftShooter" type="Marker2D" parent="."]
-position = Vector2(7, -18)
+position = Vector2(-18, -11)
 
 [node name="RightShooter" type="Marker2D" parent="."]
-position = Vector2(6, 18)
+position = Vector2(18, -10)
