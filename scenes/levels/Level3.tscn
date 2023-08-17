@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://bda2yh6gxoom4" path="res://gfx/tileset/tileset1.tres" id="2_gjwvk"]
 [ext_resource type="PackedScene" uid="uid://bw4siilxufwyk" path="res://scenes/char/ship.tscn" id="3_skpx4"]
 [ext_resource type="PackedScene" uid="uid://cdl4j8srvsb3o" path="res://scenes/enemies/turrets/Turret.tscn" id="4_ndqoh"]
-[ext_resource type="PackedScene" uid="uid://dd1ogjwkrm7jf" path="res://scenes/enemies/reactor/Room.tscn" id="5_o7110"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/reactor/Room.tscn" id="5_o7110"]
 [ext_resource type="PackedScene" uid="uid://j6xolwm66gdv" path="res://scenes/enemies/reactor/Generator.tscn" id="6_3y4r6"]
 [ext_resource type="PackedScene" uid="uid://c6kl1ukf6d26t" path="res://scenes/enemies/reactor/Reactor.tscn" id="6_5gfyn"]
 

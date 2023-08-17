@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvaswonvbwf3w"]
+
+[ext_resource type="Script" path="res://scenes/enemies/level4_explosion.gd" id="1_v5axo"]
+[ext_resource type="Texture2D" uid="uid://by53edq75c6m5" path="res://gfx/abstract/sphere.png" id="1_xpbvn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pufu1"]
+radius = 1024.0
+
+[sub_resource type="Curve" id="Curve_f1kb2"]
+_data = [Vector2(0, 0.463158), 0.0, 0.0, 0, 0, Vector2(0.177778, 1), 0.0, 0.0, 0, 0, Vector2(0.777778, 0.715789), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_r0xf3"]
+curve = SubResource("Curve_f1kb2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_701vt"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 500.0
+initial_velocity_max = 1500.0
+orbit_velocity_min = -0.5
+orbit_velocity_max = 0.5
+radial_accel_min = 100.0
+radial_accel_max = 200.0
+scale_min = 0.5
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_r0xf3")
+
+[node name="Level4 Explosion" type="Area2D"]
+script = ExtResource("1_v5axo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pufu1")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_701vt")
+texture = ExtResource("1_xpbvn")
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.93
+visibility_rect = Rect2(-1024, -1024, 2048, 2048)
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+emitting = false
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_701vt")
+texture = ExtResource("1_xpbvn")
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.93
+visibility_rect = Rect2(-1024, -1024, 2048, 2048)
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_701vt")
+texture = ExtResource("1_xpbvn")
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.93
+visibility_rect = Rect2(-1024, -1024, 2048, 2048)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+max_distance = 10000.0
+attenuation = 1.68179
