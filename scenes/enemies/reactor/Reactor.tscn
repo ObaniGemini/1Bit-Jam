@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://c6kl1ukf6d26t"]
+[gd_scene load_steps=22 format=3 uid="uid://c6kl1ukf6d26t"]
 
 [ext_resource type="Script" path="res://scenes/enemies/reactor/Reactor.gd" id="1_f6y53"]
 [ext_resource type="Texture2D" uid="uid://bq4gy7twdmdy" path="res://gfx/reactor.png" id="1_ph2xc"]
-[ext_resource type="Texture2D" uid="uid://o6kmdtxtwu30" path="res://gfx/abstract/circle.png" id="2_h34f5"]
 [ext_resource type="Script" path="res://scenes/enemies/reactor/shield.gd" id="3_aiok2"]
+[ext_resource type="Texture2D" uid="uid://ciuwy4e7a14s8" path="res://gfx/reactor/reactor_shield.png" id="4_ebs1f"]
+[ext_resource type="Texture2D" uid="uid://by53edq75c6m5" path="res://gfx/abstract/sphere.png" id="5_rii4m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gmxys"]
 radius = 93.0
@@ -19,8 +20,122 @@ radius = 768.0
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kwsfs"]
 polygon = PackedVector2Array(-760, 0, -736, -200, -656, -384, -536, -536, -384, -656, -192, -736, 0, -760, 192, -736, 384, -656, 536, -536, 656, -384, 736, -192, 760, 0, 736, 192, 656, 376, 544, 528, 384, 656, 200, 736, 0, 760, -192, 736, -376, 656, -528, 536, -656, 384, -736, 192)
 
+[sub_resource type="Animation" id="Animation_jal5s"]
+resource_name = "idle"
+length = 30.0
+loop_mode = 1
+step = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.294589, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_om18o"]
+_data = {
+"idle": SubResource("Animation_jal5s")
+}
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_4h7j1"]
 radius = 704.0
+
+[sub_resource type="Animation" id="Animation_j8tld"]
+resource_name = "idle"
+length = 30.0
+loop_mode = 1
+step = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../InnerShield:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jxmt3"]
+_data = {
+"idle": SubResource("Animation_j8tld")
+}
+
+[sub_resource type="Curve" id="Curve_n4qkk"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.533333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_6gu3i"]
+curve = SubResource("Curve_n4qkk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_53k6y"]
+emission_shape = 1
+emission_sphere_radius = 256.0
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 151.16
+initial_velocity_max = 151.16
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+radial_accel_min = -500.0
+scale_min = 0.1
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_6gu3i")
+
+[sub_resource type="Animation" id="Animation_e3occ"]
+resource_name = "rotate"
+length = 20.0
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_erih6"]
+_data = {
+"rotate": SubResource("Animation_e3occ")
+}
+
+[sub_resource type="Animation" id="Animation_m7p0j"]
+resource_name = "idle"
+length = 0.5
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p3ys7"]
+_data = {
+"idle": SubResource("Animation_m7p0j")
+}
 
 [node name="Reactor" type="StaticBody2D" groups=["enemy"]]
 collision_layer = 3
@@ -40,14 +155,10 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_nts2i")
 
 [node name="OuterShield" type="StaticBody2D" parent="."]
+rotation = 0.294589
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("3_aiok2")
-
-[node name="Sprite2D" type="Sprite2D" parent="OuterShield"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_h34f5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OuterShield"]
 shape = SubResource("CircleShape2D_8j202")
@@ -56,15 +167,43 @@ shape = SubResource("CircleShape2D_8j202")
 scale = Vector2(0.99, 0.99)
 occluder = SubResource("OccluderPolygon2D_kwsfs")
 
+[node name="Sprite2D" type="Sprite2D" parent="OuterShield"]
+scale = Vector2(-0.78, 0.78)
+texture = ExtResource("4_ebs1f")
+centered = false
+offset = Vector2(1, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="OuterShield"]
+rotation = 1.5708
+scale = Vector2(-0.78, 0.78)
+texture = ExtResource("4_ebs1f")
+centered = false
+offset = Vector2(1, 0)
+
+[node name="Sprite2D3" type="Sprite2D" parent="OuterShield"]
+rotation = 3.14159
+scale = Vector2(-0.78, 0.78)
+texture = ExtResource("4_ebs1f")
+centered = false
+offset = Vector2(1, 0)
+
+[node name="Sprite2D4" type="Sprite2D" parent="OuterShield"]
+rotation = -1.5708
+scale = Vector2(-0.78, 0.78)
+texture = ExtResource("4_ebs1f")
+centered = false
+offset = Vector2(1, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="OuterShield"]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_om18o")
+}
+
 [node name="InnerShield" type="StaticBody2D" parent="." groups=["enemy"]]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("3_aiok2")
-
-[node name="Sprite2D" type="Sprite2D" parent="InnerShield"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(1.38, 1.38)
-texture = ExtResource("2_h34f5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InnerShield"]
 shape = SubResource("CircleShape2D_4h7j1")
@@ -72,3 +211,103 @@ shape = SubResource("CircleShape2D_4h7j1")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="InnerShield"]
 scale = Vector2(0.91, 0.91)
 occluder = SubResource("OccluderPolygon2D_kwsfs")
+
+[node name="Sprite2D5" type="Sprite2D" parent="InnerShield"]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_ebs1f")
+centered = false
+offset = Vector2(1, 0)
+
+[node name="Sprite2D6" type="Sprite2D" parent="InnerShield"]
+rotation = 1.5708
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_ebs1f")
+centered = false
+offset = Vector2(1, 0)
+
+[node name="Sprite2D7" type="Sprite2D" parent="InnerShield"]
+rotation = -3.14159
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_ebs1f")
+centered = false
+offset = Vector2(1, 0)
+
+[node name="Sprite2D8" type="Sprite2D" parent="InnerShield"]
+rotation = -1.5708
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_ebs1f")
+centered = false
+offset = Vector2(1, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="InnerShield"]
+root_node = NodePath("../../OuterShield")
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_jxmt3")
+}
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Node2D"]
+position = Vector2(0, 256)
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_53k6y")
+texture = ExtResource("5_rii4m")
+lifetime = 2.0
+visibility_rect = Rect2(-512, -512, 1024, 1024)
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Node2D"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0, 256)
+process_material = SubResource("ParticleProcessMaterial_53k6y")
+texture = ExtResource("5_rii4m")
+lifetime = 2.0
+visibility_rect = Rect2(-512, -512, 1024, 1024)
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Node2D"]
+position = Vector2(0, 256)
+scale = Vector2(1, 1)
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_53k6y")
+texture = ExtResource("5_rii4m")
+lifetime = 2.0
+visibility_rect = Rect2(-512, -512, 1024, 1024)
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="Node2D"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0, -256)
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_53k6y")
+texture = ExtResource("5_rii4m")
+lifetime = 2.0
+visibility_rect = Rect2(-512, -512, 1024, 1024)
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="Node2D"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0, -256)
+process_material = SubResource("ParticleProcessMaterial_53k6y")
+texture = ExtResource("5_rii4m")
+lifetime = 2.0
+visibility_rect = Rect2(-512, -512, 1024, 1024)
+
+[node name="GPUParticles2D6" type="GPUParticles2D" parent="Node2D"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0, -256)
+scale = Vector2(1, 1)
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_53k6y")
+texture = ExtResource("5_rii4m")
+lifetime = 2.0
+visibility_rect = Rect2(-512, -512, 1024, 1024)
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+autoplay = "rotate"
+libraries = {
+"": SubResource("AnimationLibrary_erih6")
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_p3ys7")
+}

@@ -1,11 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://bx5ni2ys3f088"]
+[gd_scene load_steps=29 format=3 uid="uid://bx5ni2ys3f088"]
 
 [ext_resource type="Script" path="res://scenes/levels/Level4.gd" id="1_v6ev4"]
 [ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/abstract/square.png" id="2_i8uew"]
 [ext_resource type="PackedScene" uid="uid://bw4siilxufwyk" path="res://scenes/char/ship.tscn" id="3_mnges"]
 [ext_resource type="TileSet" uid="uid://bda2yh6gxoom4" path="res://gfx/tileset/tileset1.tres" id="6_fida7"]
 [ext_resource type="PackedScene" uid="uid://dd3iys45sj7h2" path="res://scenes/objects/hatch.tscn" id="7_cp27a"]
-[ext_resource type="PackedScene" path="res://scenes/enemies/level4_explosion.tscn" id="7_gjljv"]
+[ext_resource type="PackedScene" uid="uid://cvaswonvbwf3w" path="res://scenes/enemies/level4_explosion.tscn" id="7_gjljv"]
 [ext_resource type="PackedScene" uid="uid://c20hbxi8f3vkv" path="res://scenes/objects/console.tscn" id="8_7somh"]
 
 [sub_resource type="Animation" id="Animation_hravj"]
@@ -141,6 +141,42 @@ size = Vector2(512, 2048)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m2xij"]
 size = Vector2(256, 1024)
+
+[sub_resource type="Animation" id="Animation_8xbjj"]
+resource_name = "screenshake"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ship:shake_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [10.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_705tw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ship:shake_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o37bj"]
+_data = {
+"RESET": SubResource("Animation_705tw"),
+"screenshake": SubResource("Animation_8xbjj")
+}
 
 [node name="Level4" type="Node2D"]
 script = ExtResource("1_v6ev4")
@@ -493,6 +529,11 @@ position = Vector2(2760, -6448)
 position = Vector2(4168, -6440)
 
 [node name="Timer" type="Timer" parent="explosions"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_o37bj")
+}
 
 [connection signal="player_died" from="Ship" to="." method="_on_ship_player_died"]
 [connection signal="body_entered" from="finish" to="." method="body_entered_end_level"]

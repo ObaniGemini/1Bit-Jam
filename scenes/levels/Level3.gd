@@ -18,11 +18,12 @@ var max_enemies = 0
 
 func _ready():
 	$Ship.set_camera_mode($Ship.Camera_Follow)
+	$StaticBody2D.modulate = Color(0, 0, 0)
 	
 	var markers = $SpawnPositions.get_children()
 	for i in range(len(markers)):
 		spawn_positions.append(markers[i])
-	
+
 func end_of_level():
 	pass
 

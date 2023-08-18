@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://j6xolwm66gdv"]
+[gd_scene load_steps=12 format=3 uid="uid://j6xolwm66gdv"]
 
-[ext_resource type="Texture2D" uid="uid://b02vqc6i3wmqo" path="res://gfx/generator.png" id="1_3xrtq"]
 [ext_resource type="Script" path="res://scenes/enemies/reactor/Generator.gd" id="1_oatjf"]
 [ext_resource type="Texture2D" uid="uid://o6kmdtxtwu30" path="res://gfx/abstract/circle.png" id="2_wf28q"]
+[ext_resource type="Texture2D" uid="uid://ch3s8wpf8uf0p" path="res://gfx/generator/generator.png" id="3_7i3cj"]
 [ext_resource type="Script" path="res://scenes/enemies/reactor/shield.gd" id="3_cce0r"]
+[ext_resource type="Texture2D" uid="uid://bjixwffyya85u" path="res://gfx/generator/generator2.png" id="3_lwgbv"]
+[ext_resource type="Texture2D" uid="uid://dgkxw3tiriboh" path="res://gfx/generator/generator3.png" id="4_udgon"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nuv2f"]
 radius = 326.435
@@ -11,18 +13,70 @@ radius = 326.435
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ff8ff"]
 polygon = PackedVector2Array(0, 320, 80, 312, 160, 280, 224, 232, 272, 168, 296, 120, 320, 48, 320, -32, 312, -88, 288, -144, 256, -192, 208, -248, 144, -288, 80, -312, 0, -320, -104, -304, -184, -264, -248, -208, -288, -144, -312, -72, -320, 0, -312, 80, -280, 152, -224, 224, -152, 280, -72, 312)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_o8sod"]
+radius = 272.0
+
+[sub_resource type="Animation" id="Animation_v7wk4"]
+resource_name = "idle"
+length = 10.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -25.1327]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Sprite2D2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 62.8319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wdrkf"]
+_data = {
+"idle": SubResource("Animation_v7wk4")
+}
+
 [node name="Generator" type="StaticBody2D" groups=["enemy"]]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_oatjf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1.0041, 1)
-texture = ExtResource("1_3xrtq")
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("3_7i3cj")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-scale = Vector2(-28.4176, 14.2149)
-polygon = PackedVector2Array(0, 19.6977, -4.50424, 16.8837, -4.50424, 7.31628, -8.72697, 7.31628, -9.57152, 0.562791, -8.72697, -7.31628, -4.78576, -7.31628, -4.78576, -17.4465, -0.281515, -19.1349, 4.78576, -16.8837, 4.78576, -7.31628, 9.00849, -7.31628, 9.85303, 0, 9.00849, 7.31628, 4.78576, 7.31628, 4.78576, 16.8837)
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+texture = ExtResource("3_lwgbv")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+texture = ExtResource("4_udgon")
 
 [node name="Shield" type="StaticBody2D" parent="." groups=["enemy"]]
 collision_layer = 3
@@ -39,3 +93,12 @@ shape = SubResource("CircleShape2D_nuv2f")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Shield"]
 occluder = SubResource("OccluderPolygon2D_ff8ff")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_o8sod")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_wdrkf")
+}

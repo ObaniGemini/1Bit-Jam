@@ -22,5 +22,6 @@ func explode():
 		return
 	
 	explosions.pop_front().explode()
+	$AnimationPlayer.play("screenshake")
 	$explosions/Timer.wait_time = 0.1
 	$explosions/Timer.start()

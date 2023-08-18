@@ -5,6 +5,10 @@ var life = 10
 
 signal reactor_destroyed
 
+func _ready():
+	$OuterShield.modulate = Color(0, 0, 0)
+	$InnerShield.modulate = Color(0, 0, 0)
+
 func destroy():
 	reactor_destroyed.emit()
 	queue_free()
