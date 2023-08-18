@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cdl4j8srvsb3o"]
+[gd_scene load_steps=11 format=3 uid="uid://cdl4j8srvsb3o"]
 
 [ext_resource type="Script" path="res://scenes/enemies/turrets/Turret.gd" id="1_ao3g4"]
 [ext_resource type="Texture2D" uid="uid://dfbsm4ksb44kb" path="res://gfx/turret/base.png" id="3_x21mj"]
 [ext_resource type="Texture2D" uid="uid://si0uyc8bfm0q" path="res://gfx/turret/holder.png" id="4_4ngxn"]
+[ext_resource type="AudioStream" uid="uid://clhm8fddybn6d" path="res://sfx/enemies/cannon_shoot.ogg" id="5_qxjr0"]
 [ext_resource type="Texture2D" uid="uid://b1f140k5p0v8j" path="res://gfx/turret/cannon.png" id="5_w77rs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i1ff4"]
@@ -116,6 +117,11 @@ _data = {
 "shoot": SubResource("Animation_xhwni")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qthcj"]
+streams_count = 1
+stream_0/stream = ExtResource("5_qxjr0")
+stream_0/weight = 1.0
+
 [node name="Turret" type="CharacterBody2D" groups=["destroyable"]]
 collision_layer = 2
 collision_mask = 2
@@ -173,5 +179,9 @@ offset = Vector2(-4, -24)
 libraries = {
 "": SubResource("AnimationLibrary_cg3jl")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_qthcj")
+bus = &"Space"
 
 [connection signal="timeout" from="ShootingTimer" to="." method="_on_shooting_timer_timeout"]

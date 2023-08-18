@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bw4siilxufwyk"]
+[gd_scene load_steps=49 format=3 uid="uid://bw4siilxufwyk"]
 
 [ext_resource type="Script" path="res://scenes/char/ship.gd" id="1_qdgyp"]
 [ext_resource type="Texture2D" uid="uid://ddg0747spbd6s" path="res://gfx/abstract/sphere_small.png" id="2_2r851"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://2ifp3rlt6gha" path="res://sfx/voices/robot/lowhp3.ogg" id="10_y47ix"]
 [ext_resource type="AudioStream" uid="uid://bo7g8rln5chrg" path="res://sfx/voices/robot/lowhp4.ogg" id="11_bngvs"]
 [ext_resource type="Texture2D" uid="uid://by53edq75c6m5" path="res://gfx/abstract/sphere.png" id="13_gtg6u"]
+[ext_resource type="AudioStream" uid="uid://clhm8fddybn6d" path="res://sfx/enemies/cannon_shoot.ogg" id="16_h3ome"]
 
 [sub_resource type="Curve" id="Curve_p7fyh"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.155556, 0.989474), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -696,6 +697,11 @@ _data = {
 "explode": SubResource("Animation_drb8o")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ibga8"]
+streams_count = 1
+stream_0/stream = ExtResource("16_h3ome")
+stream_0/weight = 1.0
+
 [node name="Ship" type="CharacterBody2D" groups=["player"]]
 collision_layer = 3
 collision_mask = 3
@@ -707,6 +713,7 @@ script = ExtResource("1_qdgyp")
 position = Vector2(0, -256)
 ignore_rotation = false
 enabled = false
+zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 rotation_smoothing_enabled = true
@@ -982,5 +989,9 @@ libraries = {
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="explosion"]
 stream = ExtResource("9_m3ett")
 volume_db = -10.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ibga8")
+volume_db = -5.0
 
 [connection signal="timeout" from="UI/health_bar/Timer" to="." method="heatlh_glitch"]

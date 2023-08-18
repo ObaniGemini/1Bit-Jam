@@ -9,14 +9,25 @@ var life = 16
 var ship = null
 
 func _ready():
+	set_physics_process(false)
 	$OuterShield.modulate = Color(0, 0, 0)
 	$InnerShield.modulate = Color(0, 0, 0)
-	remove_outer_shield()
-	remove_inner_shield()
 
+var dead = false
 func destroy():
+	if dead:
+		return
+	
+	dead = true
 	reactor_destroyed.emit()
-	queue_free()
+	$AudioStreamPlayer2D.stop()
+	$AudioStreamPlayer2D2.stop()
+	$down.play()
+	$explode.play()
+	$GPUParticles2D.emitting = true
+	$GPUParticles2D2.emitting = true
+	$GPUParticles2D3.emitting = true
+	set_physics_process(false)
 
 func check_process():
 	if num_shields <= 0:
@@ -33,7 +44,6 @@ func remove_inner_shield():
 	check_process()
 
 func _physics_process(delta):
-	print((DMG_PER_DISTANCE/float(1 + ship.position.distance_to(position))))
 	ship.damage(delta * (DMG_PER_DISTANCE/(1.0 + ship.position.distance_to(position))))
 
 

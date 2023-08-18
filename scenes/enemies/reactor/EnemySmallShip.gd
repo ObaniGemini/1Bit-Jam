@@ -3,9 +3,9 @@ extends RigidBody2D
 const EnemyBullet = preload("res://scenes/enemies/turrets/EnemyBullet.tscn")
 const EXPLOSION_CLASS = preload("res://scenes/util/explosion.tscn")
 
-const SPEED = 100.0
+const SPEED = 100000.0
 const BULLET_SPEED = 1000.0
-var health = 1
+var health = 2
 
 const MIN_DISTANCE = 800
 
@@ -17,6 +17,7 @@ const MAX_SHOOTING_SPEED = 10.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_to_group("enemy")
 	rotation = PI / 2
 	if get_tree().current_scene.name == "World":
 		ship = get_tree().current_scene.level_scene.get_node("Ship")
@@ -25,6 +26,7 @@ func _ready():
 	
 	$ShootingTimer.wait_time = randf_range(MIN_SHOOTING_SPEED, MAX_SHOOTING_SPEED)
 	$ShootingTimer.timeout.connect(shoot_bullet)
+	$ShootingTimer.start()
 
 func damage(dmg):
 	health -= dmg

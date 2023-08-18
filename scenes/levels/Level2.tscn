@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://voefqb7styc"]
+[gd_scene load_steps=27 format=3 uid="uid://voefqb7styc"]
 
 [ext_resource type="Script" path="res://scenes/levels/Level2.gd" id="1_o4vqa"]
 [ext_resource type="PackedScene" uid="uid://bw4siilxufwyk" path="res://scenes/char/ship.tscn" id="2_u1rvh"]
@@ -8,6 +8,19 @@
 [ext_resource type="AudioStream" uid="uid://dgupx4nbhpdpb" path="res://sfx/voices/shepard/hacking.ogg" id="4_ydufw"]
 [ext_resource type="PackedScene" uid="uid://dd3iys45sj7h2" path="res://scenes/objects/hatch.tscn" id="5_y8v42"]
 [ext_resource type="PackedScene" uid="uid://ewvmgd1f1u0x" path="res://scenes/enemies/ship/watcher.tscn" id="6_17dmo"]
+[ext_resource type="AudioStream" uid="uid://b1wejpi6vcmji" path="res://sfx/voices/shepard/whysodark.ogg" id="6_nel1a"]
+[ext_resource type="AudioStream" uid="uid://cobkkwewu3txs" path="res://sfx/voices/shepard/thisistoobig.ogg" id="7_5rmur"]
+[ext_resource type="AudioStream" uid="uid://6u6kng485y53" path="res://sfx/voices/shepard/sergeanthappy.ogg" id="8_q7oau"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pdq72"]
+streams_count = 3
+random_pitch = 1.0
+stream_0/stream = ExtResource("6_nel1a")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("7_5rmur")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("8_q7oau")
+stream_2/weight = 1.0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fecm4"]
 polygon = PackedVector2Array(-192, 64, -191, -192, -158, -224, -97, -239, 96, -240, 159, -224, 192, -190, 192, 64, 145, 64, 144, 0, 161, -63, 161, -161, 99, -191, -95, -192, -160, -162, -161, -60, -144, 0, -144, 64)
@@ -174,6 +187,11 @@ bus = &"Comms"
 
 [node name="hacking" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("4_ydufw")
+bus = &"Comms"
+
+[node name="start" type="AudioStreamPlayer" parent="Sounds"]
+stream = SubResource("AudioStreamRandomizer_pdq72")
+autoplay = true
 bus = &"Comms"
 
 [node name="TileMap" type="TileMap" parent="."]

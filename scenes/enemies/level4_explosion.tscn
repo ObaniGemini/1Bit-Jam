@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvaswonvbwf3w"]
+[gd_scene load_steps=10 format=3 uid="uid://cvaswonvbwf3w"]
 
 [ext_resource type="Script" path="res://scenes/enemies/level4_explosion.gd" id="1_v5axo"]
 [ext_resource type="Texture2D" uid="uid://by53edq75c6m5" path="res://gfx/abstract/sphere.png" id="1_xpbvn"]
+[ext_resource type="AudioStream" uid="uid://bk4xua8s7ns5x" path="res://sfx/BIGEXPLOSION1.ogg" id="3_x60tg"]
+[ext_resource type="AudioStream" uid="uid://ix5ig0wyt0qc" path="res://sfx/BIGEXPLOSION2.ogg" id="4_kmhgq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pufu1"]
 radius = 1024.0
@@ -10,7 +12,7 @@ radius = 1024.0
 _data = [Vector2(0, 0.463158), 0.0, 0.0, 0, 0, Vector2(0.177778, 1), 0.0, 0.0, 0, 0, Vector2(0.777778, 0.715789), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_r0xf3"]
+[sub_resource type="CurveTexture" id="CurveTexture_6wnh8"]
 curve = SubResource("Curve_f1kb2")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_701vt"]
@@ -26,7 +28,15 @@ radial_accel_min = 100.0
 radial_accel_max = 200.0
 scale_min = 0.5
 scale_max = 2.0
-scale_curve = SubResource("CurveTexture_r0xf3")
+scale_curve = SubResource("CurveTexture_6wnh8")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kt57d"]
+streams_count = 2
+random_pitch = 1.5
+stream_0/stream = ExtResource("3_x60tg")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("4_kmhgq")
+stream_1/weight = 1.0
 
 [node name="Level4 Explosion" type="Area2D"]
 script = ExtResource("1_v5axo")
@@ -65,5 +75,7 @@ explosiveness = 0.93
 visibility_rect = Rect2(-1024, -1024, 2048, 2048)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_kt57d")
+pitch_scale = 0.8
 max_distance = 10000.0
 attenuation = 1.68179
