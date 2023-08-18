@@ -50,13 +50,15 @@ func spawn_enemies():
 
 func _on_right_room_destroyed():
 	$Generators/Right.remove_shield()
+	$Decor/LineRoomGeneratorRight.modulate = Color(0, 0, 0)
 	if state == State.DESTROY_ROOMS:
 		state = State.GENERATOR1
 	else:
 		state = State.GENERATOR2
-	
+
 func _on_left_room_destroyed():
 	$Generators/Left.remove_shield()
+	$Decor/LineRoomGeneratorLeft.modulate = Color(0, 0, 0)
 	if state == State.DESTROY_ROOMS:
 		state = State.GENERATOR1
 	else:
@@ -64,6 +66,7 @@ func _on_left_room_destroyed():
 	
 func _on_right_generator_destroyed():
 	$Reactor.remove_outer_shield()
+	$Decor/lightRight/AnimationPlayer.play("destroy")
 	if state == State.DESTROY_GENERATOR1:
 		state = State.DESTROY_GENERATOR1
 	else:
@@ -71,6 +74,7 @@ func _on_right_generator_destroyed():
 
 func _on_left_generator_destroyed():
 	$Reactor.remove_inner_shield()
+	$Decor/lightLeft/AnimationPlayer.play("destroy")
 	if state == State.DESTROY_GENERATOR1:
 		state = State.DESTROY_GENERATOR1
 	else:

@@ -5,7 +5,15 @@ signal destroyed
 @export var dead = false
 
 func _ready():
+	add_to_group("destroyable")
+	
+	$Timer.timeout.connect(flicker)
+	$Timer2.timeout.connect(flicker)
+	
 	if dead: stop()
+	else:
+		$Timer.start()
+		$Timer2.start()
 
 func stop():
 	destroyed.emit()

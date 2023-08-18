@@ -2,19 +2,16 @@ extends Node2D
 
 signal room_cleared
 
-var nb_console_destroyed = 0
+var num_destroyed = 0
+@onready var num_to_destroy = $to_explode.get_child_count()
 
-
-func destroy_room():
-	# Room destruction animation ?
-	room_cleared.emit()
-	queue_free()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	if nb_console_destroyed == 3:
-		destroy_room()
-		nb_console_destroyed = -1
+func _ready():
+	$CollisionPolygon2D/LightOccluder2D/Sprite2D.modulate = Color(0, 0, 0)
+	$CollisionPolygon2D2/LightOccluder2D/Sprite2D.modulate = Color(0, 0, 0)
+	for node in $to_explode.get_children():
+		node.destroyed.connect(_on_console_destroyed)
 
 func _on_console_destroyed():
-	nb_console_destroyed += 1
+	num_destroyed += 1
+	if num_destroyed == num_to_destroy:
+		room_cleared.emit()
