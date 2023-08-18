@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cdydfvc3xal7a"]
+[gd_scene load_steps=21 format=3 uid="uid://cdydfvc3xal7a"]
 
 [ext_resource type="Script" path="res://scenes/main/cinematic.gd" id="1_jiuv6"]
 [ext_resource type="Texture2D" uid="uid://dwlv0uppn7qe0" path="res://gfx/cinematic/cinematic1/frame1.png" id="1_xy40w"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://cw76ffcuh8ptr" path="res://sfx/voices/captain/captain.ogg" id="5_hyuvh"]
 [ext_resource type="AudioStream" uid="uid://ch2fbu6r87aml" path="res://sfx/voices/shepard/alright.ogg" id="6_7lob7"]
 [ext_resource type="AudioStream" uid="uid://3kb4f0sdos3p" path="res://sfx/voices/robot/targetreached.ogg" id="7_0t715"]
+[ext_resource type="Texture2D" uid="uid://by53edq75c6m5" path="res://gfx/abstract/sphere.png" id="7_trxux"]
 [ext_resource type="AudioStream" uid="uid://cml3m8a2n38fr" path="res://sfx/voices/shepard/already.ogg" id="8_jcivb"]
 
 [sub_resource type="Animation" id="Animation_1o7vk"]
@@ -125,7 +126,7 @@ tracks/8/keys = {
 
 [sub_resource type="Animation" id="Animation_lqm5i"]
 resource_name = "scene"
-length = 26.0
+length = 25.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -157,7 +158,7 @@ tracks/2/path = NodePath("Sprite2D3:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 14.4, 16.2),
+"times": PackedFloat32Array(0, 14.4, 15.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -169,7 +170,7 @@ tracks/3/path = NodePath("Sprite2D4:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 16.6, 25.6),
+"times": PackedFloat32Array(0, 16.3, 24.8),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -205,7 +206,7 @@ tracks/6/path = NodePath("Sounds/targetreached:playing")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(16.5),
+"times": PackedFloat32Array(16.3),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -217,7 +218,7 @@ tracks/7/path = NodePath("Sounds/already:playing")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(21),
+"times": PackedFloat32Array(20.8),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -229,7 +230,55 @@ tracks/8/path = NodePath("Sprite2D4/Label4:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 21.3),
+"times": PackedFloat32Array(0, 20.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Sprite2D3/Sprite2D:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(14.4, 15.3),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(-1100, 0), Vector2(1100, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Sprite2D3/Sprite2D/GPUParticles2D:emitting")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 14.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Sprite2D3/Sprite2D/GPUParticles2D2:emitting")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 14.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Sprite2D3/Sprite2D/GPUParticles2D3:emitting")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 14.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -243,6 +292,34 @@ _data = {
 
 [sub_resource type="Theme" id="Theme_55tes"]
 default_font = ExtResource("2_822qh")
+
+[sub_resource type="Curve" id="Curve_560g4"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.130952, 1), 0.0, 0.0, 0, 0, Vector2(0.876984, 0.868132), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_c0ne7"]
+curve = SubResource("Curve_560g4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lt2pa"]
+emission_shape = 3
+emission_box_extents = Vector3(640, 360, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_c0ne7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lm5hm"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 300.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.1
+scale_max = 0.25
 
 [node name="Cinematic1" type="Node2D"]
 script = ExtResource("1_jiuv6")
@@ -302,10 +379,49 @@ scale = Vector2(640, 120)
 texture = ExtResource("4_kc67w")
 centered = false
 
-[node name="Sprite2D3" type="Sprite2D" parent="."]
+[node name="Sprite2D3" type="Node2D" parent="."]
 visible = false
+position = Vector2(640, 360)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D3"]
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_lt2pa")
+texture = ExtResource("4_kc67w")
+lifetime = 2.0
+explosiveness = 0.53
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D3"]
+position = Vector2(1100, 0)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("3_4y8mm")
-centered = false
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D3/Sprite2D"]
+show_behind_parent = true
+position = Vector2(-512, 32)
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_lm5hm")
+texture = ExtResource("7_trxux")
+lifetime = 0.75
+visibility_rect = Rect2(-1024, -1024, 2048, 2048)
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Sprite2D3/Sprite2D"]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+position = Vector2(-512, 32)
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_lm5hm")
+texture = ExtResource("7_trxux")
+lifetime = 0.75
+visibility_rect = Rect2(-1024, -1024, 2048, 2048)
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Sprite2D3/Sprite2D"]
+show_behind_parent = true
+position = Vector2(-512, 32)
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_lm5hm")
+texture = ExtResource("7_trxux")
+lifetime = 0.75
+visibility_rect = Rect2(-1024, -1024, 2048, 2048)
 
 [node name="Sprite2D4" type="Sprite2D" parent="."]
 visible = false

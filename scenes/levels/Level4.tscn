@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bw4siilxufwyk" path="res://scenes/char/ship.tscn" id="3_mnges"]
 [ext_resource type="TileSet" uid="uid://bda2yh6gxoom4" path="res://gfx/tileset/tileset1.tres" id="6_fida7"]
 [ext_resource type="PackedScene" uid="uid://dd3iys45sj7h2" path="res://scenes/objects/hatch.tscn" id="7_cp27a"]
-[ext_resource type="PackedScene" uid="uid://cvaswonvbwf3w" path="res://scenes/enemies/level4_explosion.tscn" id="7_gjljv"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/level4_explosion.tscn" id="7_gjljv"]
 [ext_resource type="PackedScene" uid="uid://c20hbxi8f3vkv" path="res://scenes/objects/console.tscn" id="8_7somh"]
 
 [sub_resource type="Animation" id="Animation_hravj"]
