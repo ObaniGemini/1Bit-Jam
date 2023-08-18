@@ -58,14 +58,14 @@ func spawn_furthest(nb):
 	for i in range(len(spawn_positions)):
 		var marker = spawn_positions[i]
 		var d = ship.position.distance_to(marker.position)
-		sorted_positions.append([d, i])
+		sorted_positions.append([d, marker.global_position])
 	
 	sorted_positions.sort_custom(func(a, b): a[0] > b[0])
 
 	# Spawn enemies on descending order
 	for i in range(nb):
 		var ess = EnemySmallShip.instantiate()
-		ess.global_position = sorted_positions[i % len(sorted_positions)][1].global_position
+		ess.position = sorted_positions[i % len(sorted_positions)][1]
 		$Enemies.add_child(ess)
 	
 
@@ -79,6 +79,7 @@ func spawn_on_all_markers():
 func _on_right_room_destroyed():
 	$Generators/Right.remove_shield()
 	$Decor/LineRoomGeneratorRight.modulate = Color(0, 0, 0)
+	$screenshake.play("screen_shake")
 	if state == State.DESTROY_ROOMS:
 		state = State.GENERATOR1
 		max_enemies = 2
@@ -89,6 +90,7 @@ func _on_right_room_destroyed():
 func _on_left_room_destroyed():
 	$Generators/Left.remove_shield()
 	$Decor/LineRoomGeneratorLeft.modulate = Color(0, 0, 0)
+	$screenshake.play("screen_shake")
 	if state == State.DESTROY_ROOMS:
 		state = State.GENERATOR1
 		max_enemies = 2
@@ -99,6 +101,7 @@ func _on_left_room_destroyed():
 func _on_right_generator_destroyed():
 	$Reactor.remove_outer_shield()
 	$Decor/lightRight/AnimationPlayer.play("destroy")
+	$screenshake.play("screen_shake")
 	if state == State.DESTROY_GENERATOR1:
 		state = State.DESTROY_GENERATOR1
 		max_enemies = 6
@@ -109,6 +112,7 @@ func _on_right_generator_destroyed():
 func _on_left_generator_destroyed():
 	$Reactor.remove_inner_shield()
 	$Decor/lightLeft/AnimationPlayer.play("destroy")
+	$screenshake.play("screen_shake")
 	if state == State.DESTROY_GENERATOR1:
 		state = State.DESTROY_GENERATOR1
 		max_enemies = 6

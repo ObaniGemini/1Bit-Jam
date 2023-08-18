@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scenes/levels/Level3.gd" id="1_82jql"]
 [ext_resource type="TileSet" uid="uid://bda2yh6gxoom4" path="res://gfx/tileset/tileset1.tres" id="2_gjwvk"]
-[ext_resource type="Texture2D" uid="uid://by53edq75c6m5" path="res://gfx/abstract/sphere.png" id="3_redoi"]
 [ext_resource type="PackedScene" uid="uid://bw4siilxufwyk" path="res://scenes/char/ship.tscn" id="3_skpx4"]
-[ext_resource type="PackedScene" uid="uid://dd1ogjwkrm7jf" path="res://scenes/enemies/reactor/Room.tscn" id="5_o7110"]
+[ext_resource type="Texture2D" uid="uid://cdvtg8c5yp0qw" path="res://gfx/abstract/rect.png" id="4_50hph"]
+[ext_resource type="PackedScene" uid="uid://gy08ng8qg5vd" path="res://scenes/enemies/reactor/Room.tscn" id="5_o7110"]
 [ext_resource type="PackedScene" uid="uid://j6xolwm66gdv" path="res://scenes/enemies/reactor/Generator.tscn" id="6_3y4r6"]
 [ext_resource type="PackedScene" uid="uid://c6kl1ukf6d26t" path="res://scenes/enemies/reactor/Reactor.tscn" id="6_5gfyn"]
 [ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/abstract/square.png" id="9_hlqvd"]
@@ -21,7 +21,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_316v4"]
@@ -47,26 +47,44 @@ _data = {
 "destroy": SubResource("Animation_316v4")
 }
 
-[sub_resource type="Curve" id="Curve_3biiq"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.516667, 1), 0.0, 0.0, 0, 0, Vector2(0.977778, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_20ube"]
-curve = SubResource("Curve_3biiq")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4fdl3"]
-emission_shape = 1
-emission_sphere_radius = 2560.0
-particle_flag_disable_z = true
-gravity = Vector3(0, 0, 0)
-orbit_velocity_min = -0.01
-orbit_velocity_max = 0.01
-radial_accel_min = -1.0
-scale_min = 0.5
-scale_curve = SubResource("CurveTexture_20ube")
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6a5wv"]
 size = Vector2(1024, 6144)
+
+[sub_resource type="Animation" id="Animation_gw4q3"]
+resource_name = "screen_shake"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ship:shake_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [10.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_wo1qo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ship:shake_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v36qp"]
+_data = {
+"RESET": SubResource("Animation_wo1qo"),
+"screen_shake": SubResource("Animation_gw4q3")
+}
 
 [node name="Level3" type="Node2D"]
 script = ExtResource("1_82jql")
@@ -75,6 +93,7 @@ metadata/_edit_horizontal_guides_ = [-2808.0]
 [node name="Decor" type="Node2D" parent="."]
 
 [node name="lightRight" type="Sprite2D" parent="Decor"]
+visible = false
 rotation = 0.785398
 scale = Vector2(3072, 5120)
 texture = ExtResource("9_hlqvd")
@@ -86,6 +105,7 @@ libraries = {
 }
 
 [node name="lightLeft" type="Sprite2D" parent="Decor"]
+visible = false
 rotation = 3.92699
 scale = Vector2(3072, 5120)
 texture = ExtResource("9_hlqvd")
@@ -97,35 +117,49 @@ libraries = {
 }
 
 [node name="LineRoomGeneratorRight" type="Line2D" parent="Decor"]
-points = PackedVector2Array(960, -1024, 1088, -1024, 1024, -1024, 1024, 768)
+points = PackedVector2Array(1024, -1024, 960.003, -1024, 959.997, 1024, 1088, 1024, 1088, -1024, 1024, -1024, 1024, 1024)
 width = 4.0
 
 [node name="LineRoomGeneratorLeft" type="Line2D" parent="Decor"]
 rotation = 3.14159
-points = PackedVector2Array(960, -1024, 1088, -1024, 1024, -1024, 1024, 768)
-width = 4.0
-
-[node name="LineGeneratorReactorLeft" type="Line2D" parent="Decor"]
-points = PackedVector2Array(1024, 1024, 0, 0)
+points = PackedVector2Array(1024, -1024, 960.003, -1024, 959.997, 1024, 1088, 1024, 1088, -1024, 1024, -1024, 1024, 1024)
 width = 4.0
 
 [node name="LineGeneratorReactorRight" type="Line2D" parent="Decor"]
 rotation = 3.14159
-points = PackedVector2Array(1024, 1024, 0, 0)
+points = PackedVector2Array(1024, 1024, 959.997, 1088, -64.0002, 63.9998, 64.0002, -63.9998, 1088, 960.003, 1024, 1024, 0, 0)
 width = 4.0
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Decor"]
+[node name="linePowerRoom" type="Line2D" parent="Decor"]
+rotation = 1.5708
+points = PackedVector2Array(1024, 1024, 959.997, 1088, -64.0002, 63.9998, 64.0002, -63.9998, 1088, 960.003, 1024, 1024, 0, 0)
+width = 4.0
+
+[node name="linePowerRoom2" type="Line2D" parent="Decor"]
+rotation = 4.71239
+points = PackedVector2Array(1024, 1024, 959.997, 1088, -64.0002, 63.9998, 64.0002, -63.9998, 1088, 960.003, 1024, 1024, 0, 0)
+width = 4.0
+
+[node name="LineGeneratorReactorLeft" type="Line2D" parent="Decor"]
+points = PackedVector2Array(1024, 1024, 959.997, 1088, -64.0002, 63.9998, 64.0002, -63.9998, 1088, 960.003, 1024, 1024, 0, 0)
+width = 4.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Decor"]
 modulate = Color(0, 0, 0, 1)
-amount = 64
-process_material = SubResource("ParticleProcessMaterial_4fdl3")
-texture = ExtResource("3_redoi")
-lifetime = 20.0
-visibility_rect = Rect2(-3072, -3072, 6144, 6144)
+position = Vector2(-1024, 1024)
+scale = Vector2(128, 224)
+texture = ExtResource("4_50hph")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Decor"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1024, -1024)
+scale = Vector2(128, 224)
+texture = ExtResource("4_50hph")
 
 [node name="Turrets" type="Node2D" parent="."]
 
 [node name="Ship" parent="." instance=ExtResource("3_skpx4")]
-position = Vector2(0, 2048)
+position = Vector2(0, 1536)
 
 [node name="Rooms" type="Node2D" parent="."]
 
@@ -150,21 +184,20 @@ position = Vector2(1024, 1024)
 [node name="SpawnPositions" type="Node2D" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="SpawnPositions"]
-position = Vector2(-416, -568)
+position = Vector2(0, -1024)
 
 [node name="Marker2D2" type="Marker2D" parent="SpawnPositions"]
-position = Vector2(-656, -560)
+position = Vector2(-1024, 0)
 
 [node name="Marker2D3" type="Marker2D" parent="SpawnPositions"]
-position = Vector2(1864, -1888)
+position = Vector2(1024, 0)
 
 [node name="Marker2D4" type="Marker2D" parent="SpawnPositions"]
-position = Vector2(1696, -1888)
+position = Vector2(0, 1024)
 
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-modulate = Color(0, 0, 0, 1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(8, 2304, -2304, 2304, -2304, 64, -2296, 320, -2272, 560, -2232, 784, -2200, 920, -2144, 1096, -2064, 1280, -1928, 1520, -1848, 1632, -1720, 1768, -1592, 1880, -1472, 1960, -1336, 2040, -1160, 2120, -1016, 2168, -856, 2216, -696, 2248, -544, 2272, -384, 2288)
@@ -207,7 +240,7 @@ tile_set = ExtResource("2_gjwvk")
 format = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-2816, 0)
+position = Vector2(-2560, 0)
 shape = SubResource("RectangleShape2D_6a5wv")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
@@ -215,7 +248,7 @@ scale = Vector2(1024, 6144)
 texture = ExtResource("9_hlqvd")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(2816, 0)
+position = Vector2(2560, 0)
 shape = SubResource("RectangleShape2D_6a5wv")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D2"]
@@ -223,7 +256,7 @@ scale = Vector2(1024, 6144)
 texture = ExtResource("9_hlqvd")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 2816)
+position = Vector2(0, 2560)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_6a5wv")
 
@@ -232,13 +265,18 @@ scale = Vector2(1024, 6144)
 texture = ExtResource("9_hlqvd")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, -2816)
+position = Vector2(0, -2560)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_6a5wv")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D4"]
 scale = Vector2(1024, 6144)
 texture = ExtResource("9_hlqvd")
+
+[node name="screenshake" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v36qp")
+}
 
 [connection signal="room_cleared" from="Rooms/LeftRoom" to="." method="_on_left_room_destroyed"]
 [connection signal="room_cleared" from="Rooms/RightRoom" to="." method="_on_right_room_destroyed"]

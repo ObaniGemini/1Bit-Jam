@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://j6xolwm66gdv"]
+[gd_scene load_steps=7 format=3 uid="uid://j6xolwm66gdv"]
 
 [ext_resource type="Texture2D" uid="uid://b02vqc6i3wmqo" path="res://gfx/generator.png" id="1_3xrtq"]
 [ext_resource type="Script" path="res://scenes/enemies/reactor/Generator.gd" id="1_oatjf"]
@@ -7,6 +7,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nuv2f"]
 radius = 326.435
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ff8ff"]
+polygon = PackedVector2Array(0, 320, 80, 312, 160, 280, 224, 232, 272, 168, 296, 120, 320, 48, 320, -32, 312, -88, 288, -144, 256, -192, 208, -248, 144, -288, 80, -312, 0, -320, -104, -304, -184, -264, -248, -208, -288, -144, -312, -72, -320, 0, -312, 80, -280, 152, -224, 224, -152, 280, -72, 312)
 
 [node name="Generator" type="StaticBody2D" groups=["enemy"]]
 collision_layer = 3
@@ -27,8 +30,12 @@ collision_mask = 3
 script = ExtResource("3_cce0r")
 
 [node name="Sprite2D" type="Sprite2D" parent="Shield"]
-scale = Vector2(2.63367, 2.63367)
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.65, 0.65)
 texture = ExtResource("2_wf28q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shield"]
 shape = SubResource("CircleShape2D_nuv2f")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Shield"]
+occluder = SubResource("OccluderPolygon2D_ff8ff")

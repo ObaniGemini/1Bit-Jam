@@ -158,9 +158,12 @@ func joy_axis_move(value):
 	if abs(value) < JOYSTICK_MOVE_THRESHOLD: return 0.0
 	return value
 
+@export var shake_scale = 0.0
 func _process(_delta):
 	var right = max(0.0, angular_accel)
 	var left = max(0.0, -angular_accel)
+	
+	$Camera2D.offset = Vector2((randf() - 0.5) * shake_scale, (randf() - 0.5) * shake_scale)
 	
 	$rotaters/top_left.scale.y = right
 	$rotaters/down_right.scale.y = right

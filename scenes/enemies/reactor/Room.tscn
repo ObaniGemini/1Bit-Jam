@@ -173,22 +173,6 @@ shape = SubResource("RectangleShape2D_nqn3b")
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_ep3s7")
 
-[node name="Sprite2D14" type="Sprite2D" parent="to_explode/CharacterBody2D2/buttons"]
-position = Vector2(-24, 16)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("3_ep3s7")
-
-[node name="Sprite2D16" type="Sprite2D" parent="to_explode/CharacterBody2D2/buttons"]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(-24, 16)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_ep3s7")
-
-[node name="Sprite2D17" type="Sprite2D" parent="to_explode/CharacterBody2D2/buttons"]
-position = Vector2(-24, 16)
-scale = Vector2(0.125, 0.125)
-texture = ExtResource("3_ep3s7")
-
 [node name="Sprite2D18" type="Sprite2D" parent="to_explode/CharacterBody2D2/buttons"]
 position = Vector2(24, 16)
 scale = Vector2(0.4, 0.4)
@@ -247,22 +231,6 @@ shape = SubResource("RectangleShape2D_nqn3b")
 
 [node name="Sprite2D10" type="Sprite2D" parent="to_explode/CharacterBody2D3/buttons"]
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_ep3s7")
-
-[node name="Sprite2D14" type="Sprite2D" parent="to_explode/CharacterBody2D3/buttons"]
-position = Vector2(-24, 16)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("3_ep3s7")
-
-[node name="Sprite2D16" type="Sprite2D" parent="to_explode/CharacterBody2D3/buttons"]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(-24, 16)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_ep3s7")
-
-[node name="Sprite2D17" type="Sprite2D" parent="to_explode/CharacterBody2D3/buttons"]
-position = Vector2(-24, 16)
-scale = Vector2(0.125, 0.125)
 texture = ExtResource("3_ep3s7")
 
 [node name="Sprite2D18" type="Sprite2D" parent="to_explode/CharacterBody2D3/buttons"]
@@ -438,22 +406,6 @@ shape = SubResource("RectangleShape2D_nqn3b")
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_ep3s7")
 
-[node name="Sprite2D14" type="Sprite2D" parent="to_explode/CharacterBody2D5/buttons"]
-position = Vector2(-24, 16)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("3_ep3s7")
-
-[node name="Sprite2D16" type="Sprite2D" parent="to_explode/CharacterBody2D5/buttons"]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(-24, 16)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_ep3s7")
-
-[node name="Sprite2D17" type="Sprite2D" parent="to_explode/CharacterBody2D5/buttons"]
-position = Vector2(-24, 16)
-scale = Vector2(0.125, 0.125)
-texture = ExtResource("3_ep3s7")
-
 [node name="Sprite2D18" type="Sprite2D" parent="to_explode/CharacterBody2D5/buttons"]
 position = Vector2(24, 16)
 scale = Vector2(0.4, 0.4)
@@ -512,22 +464,6 @@ shape = SubResource("RectangleShape2D_nqn3b")
 
 [node name="Sprite2D10" type="Sprite2D" parent="to_explode/CharacterBody2D6/buttons"]
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_ep3s7")
-
-[node name="Sprite2D14" type="Sprite2D" parent="to_explode/CharacterBody2D6/buttons"]
-position = Vector2(-24, 16)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("3_ep3s7")
-
-[node name="Sprite2D16" type="Sprite2D" parent="to_explode/CharacterBody2D6/buttons"]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(-24, 16)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_ep3s7")
-
-[node name="Sprite2D17" type="Sprite2D" parent="to_explode/CharacterBody2D6/buttons"]
-position = Vector2(-24, 16)
-scale = Vector2(0.125, 0.125)
 texture = ExtResource("3_ep3s7")
 
 [node name="Sprite2D18" type="Sprite2D" parent="to_explode/CharacterBody2D6/buttons"]

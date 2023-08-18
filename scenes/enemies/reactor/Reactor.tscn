@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://c6kl1ukf6d26t"]
+[gd_scene load_steps=10 format=3 uid="uid://c6kl1ukf6d26t"]
 
 [ext_resource type="Script" path="res://scenes/enemies/reactor/Reactor.gd" id="1_f6y53"]
 [ext_resource type="Texture2D" uid="uid://bq4gy7twdmdy" path="res://gfx/reactor.png" id="1_ph2xc"]
 [ext_resource type="Texture2D" uid="uid://o6kmdtxtwu30" path="res://gfx/abstract/circle.png" id="2_h34f5"]
 [ext_resource type="Script" path="res://scenes/enemies/reactor/shield.gd" id="3_aiok2"]
-[ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/abstract/square.png" id="5_m1hna"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gmxys"]
 radius = 93.0
@@ -15,65 +14,13 @@ radius = 94.0
 height = 830.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8j202"]
-radius = 496.065
+radius = 768.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kwsfs"]
+polygon = PackedVector2Array(-760, 0, -736, -200, -656, -384, -536, -536, -384, -656, -192, -736, 0, -760, 192, -736, 384, -656, 536, -536, 656, -384, 736, -192, 760, 0, 736, 192, 656, 376, 544, 528, 384, 656, 200, 736, 0, 760, -192, 736, -376, 656, -528, 536, -656, 384, -736, 192)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4h7j1"]
-radius = 465.102
-
-[sub_resource type="Curve" id="Curve_ikeie"]
-min_value = -360.0
-max_value = 360.0
-_data = [Vector2(0, -360), 0.0, 0.0, 0, 0, Vector2(1, 360), 1008.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_nfxnt"]
-curve = SubResource("Curve_ikeie")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jm32i"]
-emission_shape = 1
-emission_sphere_radius = 128.0
-particle_flag_disable_z = true
-direction = Vector3(1, 1, 1)
-spread = 180.0
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 40.0
-initial_velocity_max = 80.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-tangential_accel_min = -10.0
-tangential_accel_max = 10.0
-angle_curve = SubResource("CurveTexture_nfxnt")
-scale_min = 4.0
-scale_max = 6.0
-
-[sub_resource type="Curve" id="Curve_xntpe"]
-min_value = -360.0
-max_value = 360.0
-_data = [Vector2(0, -360), 0.0, 0.0, 0, 0, Vector2(1, 360), 1008.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_8nwkg"]
-curve = SubResource("Curve_xntpe")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_risgv"]
-emission_shape = 1
-emission_sphere_radius = 128.0
-particle_flag_disable_z = true
-direction = Vector3(1, 1, 1)
-spread = 180.0
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 40.0
-initial_velocity_max = 80.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-linear_accel_min = 1.0
-linear_accel_max = 2.0
-tangential_accel_min = -10.0
-tangential_accel_max = 10.0
-angle_curve = SubResource("CurveTexture_8nwkg")
-scale_min = 4.0
-scale_max = 6.0
-color = Color(0, 0, 0, 1)
+radius = 704.0
 
 [node name="Reactor" type="StaticBody2D" groups=["enemy"]]
 collision_layer = 3
@@ -98,12 +45,16 @@ collision_mask = 3
 script = ExtResource("3_aiok2")
 
 [node name="Sprite2D" type="Sprite2D" parent="OuterShield"]
-scale = Vector2(4.0726, 4.0726)
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_h34f5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OuterShield"]
-scale = Vector2(1.01812, 1.01812)
 shape = SubResource("CircleShape2D_8j202")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="OuterShield"]
+scale = Vector2(0.99, 0.99)
+occluder = SubResource("OccluderPolygon2D_kwsfs")
 
 [node name="InnerShield" type="StaticBody2D" parent="." groups=["enemy"]]
 collision_layer = 3
@@ -111,23 +62,13 @@ collision_mask = 3
 script = ExtResource("3_aiok2")
 
 [node name="Sprite2D" type="Sprite2D" parent="InnerShield"]
-scale = Vector2(3.83542, 3.83542)
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(1.38, 1.38)
 texture = ExtResource("2_h34f5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InnerShield"]
-scale = Vector2(1.01982, 1.01982)
 shape = SubResource("CircleShape2D_4h7j1")
 
-[node name="WhiteParticles" type="GPUParticles2D" parent="."]
-scale = Vector2(135.196, 111.572)
-amount = 300
-process_material = SubResource("ParticleProcessMaterial_jm32i")
-texture = ExtResource("5_m1hna")
-lifetime = 10.0
-
-[node name="BlackParticles" type="GPUParticles2D" parent="."]
-scale = Vector2(79.64, 64.4)
-amount = 300
-process_material = SubResource("ParticleProcessMaterial_risgv")
-texture = ExtResource("5_m1hna")
-lifetime = 10.0
+[node name="LightOccluder2D" type="LightOccluder2D" parent="InnerShield"]
+scale = Vector2(0.91, 0.91)
+occluder = SubResource("OccluderPolygon2D_kwsfs")
