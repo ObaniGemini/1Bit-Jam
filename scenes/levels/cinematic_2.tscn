@@ -1,11 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://b584umtoj88oh"]
+[gd_scene load_steps=19 format=3 uid="uid://b584umtoj88oh"]
 
 [ext_resource type="Script" path="res://scenes/main/cinematic.gd" id="1_1va6p"]
-[ext_resource type="Texture2D" uid="uid://b8sj6swv4d0lp" path="res://gfx/cinematic/cinematic2/storyboard.png" id="2_0j7hs"]
+[ext_resource type="Texture2D" uid="uid://cm6begbpev1m0" path="res://gfx/cinematic/cinematic2/bg.png" id="2_1txrv"]
+[ext_resource type="Texture2D" uid="uid://ckmkvonv5waiu" path="res://gfx/cinematic/cinematic2/asteroid1.png" id="3_c3k78"]
+[ext_resource type="Texture2D" uid="uid://reyutpsvjm7s" path="res://gfx/cinematic/cinematic2/ship.png" id="3_ht83q"]
 [ext_resource type="FontFile" uid="uid://chnp1si4jas1m" path="res://fonts/FFFFORWA.TTF" id="3_ngg1v"]
+[ext_resource type="Texture2D" uid="uid://ddg0747spbd6s" path="res://gfx/abstract/sphere_small.png" id="4_3vfj8"]
 [ext_resource type="Texture2D" uid="uid://dbg24fyq3s4q6" path="res://gfx/abstract/square.png" id="4_dfteh"]
+[ext_resource type="Texture2D" uid="uid://b42u4u1o1hsbf" path="res://gfx/cinematic/cinematic2/asteroid4.png" id="4_xm0mr"]
+[ext_resource type="Texture2D" uid="uid://dw0l82il6t8p8" path="res://gfx/cinematic/cinematic2/asteroid3.png" id="5_lodvp"]
 [ext_resource type="AudioStream" uid="uid://dpegh3mhjay0b" path="res://sfx/voices/shepard/sergeantIfoundahugespacestation.ogg" id="5_q34v7"]
 [ext_resource type="AudioStream" uid="uid://cctejn83wiaac" path="res://sfx/voices/captain/Iminameeting.ogg" id="6_08ahs"]
+[ext_resource type="Texture2D" uid="uid://lefunn7q2hxq" path="res://gfx/cinematic/cinematic2/asteroid2.png" id="8_5pu21"]
 
 [sub_resource type="Animation" id="Animation_lqm5i"]
 resource_name = "scene"
@@ -70,11 +76,89 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D/Sprite2D2:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.523599]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D/Sprite2D3:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.698132]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sprite2D/Sprite2D4:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.349066]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Sprite2D/Sprite2D5:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.39626]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Sprite2D/Sprite2D:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0872665, 0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f5gfy"]
 _data = {
 "scene": SubResource("Animation_lqm5i")
 }
+
+[sub_resource type="Curve" id="Curve_pdwrv"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.138889, 1), 0.0, 0.0, 0, 0, Vector2(0.827778, 0.726316), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_gnurb"]
+curve = SubResource("Curve_pdwrv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r0bst"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 15.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.5
+scale_max = 0.75
+scale_curve = SubResource("CurveTexture_gnurb")
 
 [sub_resource type="Theme" id="Theme_55tes"]
 default_font = ExtResource("3_ngg1v")
@@ -90,8 +174,75 @@ libraries = {
 }
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_0j7hs")
+visible = false
+texture = ExtResource("2_1txrv")
 centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(1120, 280)
+rotation = 0.523599
+texture = ExtResource("3_c3k78")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(232, 416)
+rotation = 1.39626
+texture = ExtResource("4_xm0mr")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(168, 72)
+rotation = -0.349066
+texture = ExtResource("5_lodvp")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(856, 488)
+texture = ExtResource("3_ht83q")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D/Sprite2D"]
+position = Vector2(40, -16)
+process_material = SubResource("ParticleProcessMaterial_r0bst")
+texture = ExtResource("4_3vfj8")
+lifetime = 4.0
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Sprite2D/Sprite2D"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(40, -16)
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_r0bst")
+texture = ExtResource("4_3vfj8")
+lifetime = 4.0
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Sprite2D/Sprite2D"]
+position = Vector2(40, -16)
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_r0bst")
+texture = ExtResource("4_3vfj8")
+lifetime = 4.0
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="Sprite2D/Sprite2D"]
+position = Vector2(160, 0)
+process_material = SubResource("ParticleProcessMaterial_r0bst")
+texture = ExtResource("4_3vfj8")
+lifetime = 4.0
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="Sprite2D/Sprite2D"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(160, 0)
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_r0bst")
+texture = ExtResource("4_3vfj8")
+lifetime = 4.0
+
+[node name="GPUParticles2D6" type="GPUParticles2D" parent="Sprite2D/Sprite2D"]
+position = Vector2(160, 0)
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_r0bst")
+texture = ExtResource("4_3vfj8")
+lifetime = 4.0
+
+[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(608, 608)
+rotation = -0.698132
+texture = ExtResource("8_5pu21")
 
 [node name="Label" type="Label" parent="Sprite2D"]
 offset_left = 600.0
@@ -114,7 +265,6 @@ texture = ExtResource("4_dfteh")
 centered = false
 
 [node name="Label2" type="Label" parent="Sprite2D"]
-visible = false
 offset_left = 20.0
 offset_top = 580.0
 offset_right = 660.0

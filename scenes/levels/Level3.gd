@@ -19,6 +19,7 @@ var max_enemies = 0
 func _ready():
 	$Ship.set_camera_mode($Ship.Camera_Follow)
 	$StaticBody2D.modulate = Color(0, 0, 0)
+	$Reactor.ship = $Ship
 	
 	var markers = $SpawnPositions.get_children()
 	for i in range(len(markers)):
@@ -38,6 +39,7 @@ enum State {
 
 var state = State.DESTROY_ROOMS
 
+
 func _process(_delta):
 #	if state == State.GENERATOR2:
 #		spawn_enemies()
@@ -46,11 +48,13 @@ func _process(_delta):
 	if  nb > 0:
 		spawn_enemies(nb)
 
+
 func spawn_enemies(nb=-1):
 	if nb == -1:
 		spawn_on_all_markers()
 	else:
 		spawn_furthest(nb)
+
 
 func spawn_furthest(nb):
 	# Sort markers by distance to the player
@@ -68,14 +72,14 @@ func spawn_furthest(nb):
 		var ess = EnemySmallShip.instantiate()
 		ess.position = sorted_positions[i % len(sorted_positions)][1]
 		$Enemies.add_child(ess)
-	
+
 
 func spawn_on_all_markers():
 	for i in range(len(spawn_positions)):
 		var ess = EnemySmallShip.instantiate()
 		ess.global_position = spawn_positions[i].global_position
 		$Enemies.add_child(ess)
-		
+
 
 func _on_right_room_destroyed():
 	$Generators/Right.remove_shield()
@@ -83,10 +87,11 @@ func _on_right_room_destroyed():
 	$screenshake.play("screen_shake")
 	if state == State.DESTROY_ROOMS:
 		state = State.GENERATOR1
-		max_enemies = 2
+		max_enemies = 1
 	else:
 		state = State.GENERATOR2
-		max_enemies = 4
+		max_enemies = 2
+
 
 func _on_left_room_destroyed():
 	$Generators/Left.remove_shield()
@@ -94,21 +99,23 @@ func _on_left_room_destroyed():
 	$screenshake.play("screen_shake")
 	if state == State.DESTROY_ROOMS:
 		state = State.GENERATOR1
-		max_enemies = 2
+		max_enemies = 1
 	else:
 		state = State.GENERATOR2
-		max_enemies = 4
-	
+		max_enemies = 2
+
+
 func _on_right_generator_destroyed():
 	$Reactor.remove_outer_shield()
 	$Decor/lightRight/AnimationPlayer.play("destroy")
 	$screenshake.play("screen_shake")
 	if state == State.DESTROY_GENERATOR1:
 		state = State.DESTROY_GENERATOR1
-		max_enemies = 6
+		max_enemies = 3
 	else:
 		state = State.DESTROY_REACTOR
-		max_enemies = 8
+		max_enemies = 4
+
 
 func _on_left_generator_destroyed():
 	$Reactor.remove_inner_shield()
@@ -116,10 +123,10 @@ func _on_left_generator_destroyed():
 	$screenshake.play("screen_shake")
 	if state == State.DESTROY_GENERATOR1:
 		state = State.DESTROY_GENERATOR1
-		max_enemies = 6
+		max_enemies = 3
 	else:
 		state = State.DESTROY_REACTOR
-		max_enemies = 8
-	
+		max_enemies = 4
+
 func _on_reactor_destroyed():
 	end_of_level()

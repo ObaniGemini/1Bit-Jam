@@ -1,18 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://c6kl1ukf6d26t"]
+[gd_scene load_steps=21 format=3 uid="uid://c6kl1ukf6d26t"]
 
 [ext_resource type="Script" path="res://scenes/enemies/reactor/Reactor.gd" id="1_f6y53"]
 [ext_resource type="Texture2D" uid="uid://bq4gy7twdmdy" path="res://gfx/reactor.png" id="1_ph2xc"]
 [ext_resource type="Script" path="res://scenes/enemies/reactor/shield.gd" id="3_aiok2"]
 [ext_resource type="Texture2D" uid="uid://ciuwy4e7a14s8" path="res://gfx/reactor/reactor_shield.png" id="4_ebs1f"]
 [ext_resource type="Texture2D" uid="uid://by53edq75c6m5" path="res://gfx/abstract/sphere.png" id="5_rii4m"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gmxys"]
-radius = 93.0
-height = 808.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nts2i"]
-radius = 94.0
-height = 830.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8j202"]
 radius = 768.0
@@ -93,9 +85,9 @@ scale_curve = SubResource("CurveTexture_6gu3i")
 
 [sub_resource type="Animation" id="Animation_e3occ"]
 resource_name = "rotate"
-length = 20.0
+length = 5.0
 loop_mode = 1
-step = 0.5
+step = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -103,7 +95,7 @@ tracks/0/path = NodePath("Node2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 20),
+"times": PackedFloat32Array(0, 5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, -6.28319]
@@ -137,6 +129,9 @@ _data = {
 "idle": SubResource("Animation_m7p0j")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vyyps"]
+radius = 384.0
+
 [node name="Reactor" type="StaticBody2D" groups=["enemy"]]
 collision_layer = 3
 collision_mask = 3
@@ -144,15 +139,6 @@ script = ExtResource("1_f6y53")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_ph2xc")
-
-[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, 3)
-shape = SubResource("CapsuleShape2D_gmxys")
-
-[node name="CollisionPolygon2D2" type="CollisionShape2D" parent="."]
-position = Vector2(-3, 3)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_nts2i")
 
 [node name="OuterShield" type="StaticBody2D" parent="."]
 rotation = 0.294589
@@ -248,56 +234,110 @@ libraries = {
 
 [node name="Node2D" type="Node2D" parent="."]
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Node2D"]
+[node name="Node2D" type="Node2D" parent="Node2D"]
 position = Vector2(0, 256)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Node2D/Node2D"]
 amount = 64
 process_material = SubResource("ParticleProcessMaterial_53k6y")
 texture = ExtResource("5_rii4m")
-lifetime = 2.0
+lifetime = 0.75
 visibility_rect = Rect2(-512, -512, 1024, 1024)
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="Node2D"]
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Node2D/Node2D"]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(0, 256)
+position = Vector2(-64, 0)
 process_material = SubResource("ParticleProcessMaterial_53k6y")
 texture = ExtResource("5_rii4m")
-lifetime = 2.0
+lifetime = 0.75
 visibility_rect = Rect2(-512, -512, 1024, 1024)
 
-[node name="GPUParticles2D3" type="GPUParticles2D" parent="Node2D"]
-position = Vector2(0, 256)
-scale = Vector2(1, 1)
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Node2D/Node2D"]
+position = Vector2(64, 0)
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_53k6y")
 texture = ExtResource("5_rii4m")
-lifetime = 2.0
+lifetime = 0.75
 visibility_rect = Rect2(-512, -512, 1024, 1024)
 
-[node name="GPUParticles2D4" type="GPUParticles2D" parent="Node2D"]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(0, -256)
+[node name="Node2D2" type="Node2D" parent="Node2D"]
+position = Vector2(256, 0)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Node2D/Node2D2"]
 amount = 64
 process_material = SubResource("ParticleProcessMaterial_53k6y")
 texture = ExtResource("5_rii4m")
-lifetime = 2.0
+lifetime = 1.5
 visibility_rect = Rect2(-512, -512, 1024, 1024)
 
-[node name="GPUParticles2D5" type="GPUParticles2D" parent="Node2D"]
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Node2D/Node2D2"]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(0, -256)
+position = Vector2(-64, 0)
 process_material = SubResource("ParticleProcessMaterial_53k6y")
 texture = ExtResource("5_rii4m")
-lifetime = 2.0
+lifetime = 1.5
 visibility_rect = Rect2(-512, -512, 1024, 1024)
 
-[node name="GPUParticles2D6" type="GPUParticles2D" parent="Node2D"]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(0, -256)
-scale = Vector2(1, 1)
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Node2D/Node2D2"]
+position = Vector2(64, 0)
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_53k6y")
 texture = ExtResource("5_rii4m")
-lifetime = 2.0
+lifetime = 1.5
+visibility_rect = Rect2(-512, -512, 1024, 1024)
+
+[node name="Node2D3" type="Node2D" parent="Node2D"]
+position = Vector2(0, -256)
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="Node2D/Node2D3"]
+modulate = Color(0, 0, 0, 1)
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_53k6y")
+texture = ExtResource("5_rii4m")
+lifetime = 1.5
+visibility_rect = Rect2(-512, -512, 1024, 1024)
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="Node2D/Node2D3"]
+position = Vector2(64, 0)
+process_material = SubResource("ParticleProcessMaterial_53k6y")
+texture = ExtResource("5_rii4m")
+lifetime = 1.5
+visibility_rect = Rect2(-512, -512, 1024, 1024)
+
+[node name="GPUParticles2D6" type="GPUParticles2D" parent="Node2D/Node2D3"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-64, 0)
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_53k6y")
+texture = ExtResource("5_rii4m")
+lifetime = 1.5
+visibility_rect = Rect2(-512, -512, 1024, 1024)
+
+[node name="Node2D4" type="Node2D" parent="Node2D"]
+position = Vector2(-256, 0)
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="Node2D/Node2D4"]
+modulate = Color(0, 0, 0, 1)
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_53k6y")
+texture = ExtResource("5_rii4m")
+lifetime = 0.75
+visibility_rect = Rect2(-512, -512, 1024, 1024)
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="Node2D/Node2D4"]
+position = Vector2(64, 0)
+process_material = SubResource("ParticleProcessMaterial_53k6y")
+texture = ExtResource("5_rii4m")
+lifetime = 0.75
+visibility_rect = Rect2(-512, -512, 1024, 1024)
+
+[node name="GPUParticles2D6" type="GPUParticles2D" parent="Node2D/Node2D4"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-64, 0)
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_53k6y")
+texture = ExtResource("5_rii4m")
+lifetime = 0.75
 visibility_rect = Rect2(-512, -512, 1024, 1024)
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
@@ -311,3 +351,6 @@ autoplay = "idle"
 libraries = {
 "": SubResource("AnimationLibrary_p3ys7")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vyyps")
