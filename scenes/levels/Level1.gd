@@ -1,6 +1,7 @@
 extends "res://scenes/main/level.gd"
 
-const OFFSET = -512
+const OFFSET = -256
+const OFFSET_MEGA = -512
 
 var spawn_times = 0
 var mega_times = 0
@@ -34,14 +35,14 @@ func _on_area_kill_asteroids_body_entered(body):
 func _on_timer_before_mega_timeout():
 	mega_times += 1
 	var asteroids = AsteroidFactory.spawn_mega(min(mega_times, 2))
-	for i in range(len(asteroids)):
+	var rand_pos_x = (randf_range(0, 1280/len(asteroids) - 200.0) + 100.0)
+	for i in range(asteroids.size()):
 		# If 3 asteroids, will spawn on 1/4, 2/4, 3/4 of ~screen width
-		var x_position = 100.0 + float(i + 1) / (mega_times + 1.0) * (1280 - 300)
 		var asteroid = asteroids[i]
-		asteroid.position = Vector2(x_position, OFFSET)
-		add_child(asteroid)
+		asteroid.position = Vector2(float(i + 1) * rand_pos_x, OFFSET_MEGA)
+		Entities.add_child(asteroid)
 	
-	$TimerBeforeMega.wait_time = 40
+	$TimerBeforeMega.wait_time = 30
 	$TimerBeforeMega.start()
 
 

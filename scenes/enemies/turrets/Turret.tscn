@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b1f140k5p0v8j" path="res://gfx/turret/cannon.png" id="5_w77rs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i1ff4"]
-size = Vector2(24, 20)
+size = Vector2(24, 16)
 
 [sub_resource type="Animation" id="Animation_cgdbr"]
 length = 0.001

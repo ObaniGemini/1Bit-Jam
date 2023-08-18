@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const MIN_SHOOTING_TIME = 3.0
 const MAX_SHOOTING_TIME = 6.0
-const MAX_DISTANCE = 450.0
+const MAX_DISTANCE = 500.0
 
 const BULLET_SPEED = 300
 const BULLET_OFFSET = 20
@@ -11,8 +11,8 @@ const EnemyBullet = preload("res://scenes/enemies/turrets/EnemyBullet.tscn")
 const EXPLOSION_CLASS = preload("res://scenes/util/explosion.tscn")
 
 # Called when the node enters the scene tree for the first time.
-@onready var MIN_ANGLE = -PI/4
-@onready var MAX_ANGLE = PI/4
+@onready var MIN_ANGLE = -PI/3
+@onready var MAX_ANGLE = PI/3
 @onready var holder = $Sprites/holder
 var ship = null
 
