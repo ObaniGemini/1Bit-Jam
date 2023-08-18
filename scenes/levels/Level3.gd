@@ -65,7 +65,7 @@ func spawn_furthest(nb):
 	# Spawn enemies on descending order
 	for i in range(nb):
 		var ess = EnemySmallShip.instantiate()
-		ess.global_position = sorted_positions[i][1].global_position
+		ess.global_position = sorted_positions[i % len(sorted_positions)][1].global_position
 		$Enemies.add_child(ess)
 	
 
