@@ -641,6 +641,7 @@ autoplay = true
 bus = &"Space"
 
 [node name="level" type="AnimationPlayer" parent="."]
+autoplay = "level"
 libraries = {
 "": SubResource("AnimationLibrary_sij23")
 }
