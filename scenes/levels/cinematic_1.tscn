@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cdydfvc3xal7a"]
+[gd_scene load_steps=24 format=3 uid="uid://cdydfvc3xal7a"]
 
 [ext_resource type="Script" path="res://scenes/main/cinematic.gd" id="1_jiuv6"]
 [ext_resource type="Texture2D" uid="uid://dwlv0uppn7qe0" path="res://gfx/cinematic/cinematic1/frame1.png" id="1_xy40w"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://ch2fbu6r87aml" path="res://sfx/voices/shepard/alright.ogg" id="6_7lob7"]
 [ext_resource type="AudioStream" uid="uid://3kb4f0sdos3p" path="res://sfx/voices/robot/targetreached.ogg" id="7_0t715"]
 [ext_resource type="Texture2D" uid="uid://by53edq75c6m5" path="res://gfx/abstract/sphere.png" id="7_trxux"]
+[ext_resource type="AudioStream" uid="uid://dr21sabu67ghw" path="res://sfx/ship_cinematic.ogg" id="8_76eg3"]
 [ext_resource type="AudioStream" uid="uid://cml3m8a2n38fr" path="res://sfx/voices/shepard/already.ogg" id="8_jcivb"]
 
 [sub_resource type="Animation" id="Animation_1o7vk"]
@@ -283,6 +284,18 @@ tracks/12/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Sprite2D3/Sprite2D/AudioStreamPlayer2D:playing")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(14.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f5gfy"]
 _data = {
@@ -310,6 +323,13 @@ orbit_velocity_max = 0.0
 scale_max = 4.0
 scale_curve = SubResource("CurveTexture_c0ne7")
 
+[sub_resource type="Curve" id="Curve_uggit"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.852632), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7yvmr"]
+curve = SubResource("Curve_uggit")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lm5hm"]
 particle_flag_disable_z = true
 spread = 180.0
@@ -320,6 +340,7 @@ orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 scale_min = 0.1
 scale_max = 0.25
+scale_curve = SubResource("CurveTexture_7yvmr")
 
 [node name="Cinematic1" type="Node2D"]
 script = ExtResource("1_jiuv6")
@@ -391,7 +412,7 @@ lifetime = 2.0
 explosiveness = 0.53
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite2D3"]
-position = Vector2(1100, 0)
+position = Vector2(-1100, 0)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("3_4y8mm")
 
@@ -401,7 +422,6 @@ position = Vector2(-512, 32)
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_lm5hm")
 texture = ExtResource("7_trxux")
-lifetime = 0.75
 visibility_rect = Rect2(-1024, -1024, 2048, 2048)
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="Sprite2D3/Sprite2D"]
@@ -411,7 +431,6 @@ position = Vector2(-512, 32)
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_lm5hm")
 texture = ExtResource("7_trxux")
-lifetime = 0.75
 visibility_rect = Rect2(-1024, -1024, 2048, 2048)
 
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="Sprite2D3/Sprite2D"]
@@ -420,8 +439,11 @@ position = Vector2(-512, 32)
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_lm5hm")
 texture = ExtResource("7_trxux")
-lifetime = 0.75
 visibility_rect = Rect2(-1024, -1024, 2048, 2048)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Sprite2D3/Sprite2D"]
+stream = ExtResource("8_76eg3")
+panning_strength = 2.0
 
 [node name="Sprite2D4" type="Sprite2D" parent="."]
 visible = false
@@ -482,6 +504,6 @@ bus = &"Robot"
 
 [node name="already" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("8_jcivb")
-volume_db = -1.0
+volume_db = -2.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="finish"]

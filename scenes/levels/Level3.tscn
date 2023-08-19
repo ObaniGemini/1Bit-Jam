@@ -418,6 +418,7 @@ bus = &"Space"
 stream = ExtResource("12_mqsgv")
 bus = &"Robot Comms"
 
+[connection signal="player_died" from="Ship" to="." method="_on_ship_player_died"]
 [connection signal="room_cleared" from="Rooms/LeftRoom" to="." method="_on_left_room_destroyed"]
 [connection signal="room_cleared" from="Rooms/RightRoom" to="." method="_on_right_room_destroyed"]
 [connection signal="generator_destroyed" from="Generators/Left" to="." method="_on_left_generator_destroyed"]

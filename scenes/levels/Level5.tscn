@@ -531,6 +531,7 @@ shape = SubResource("CircleShape2D_roavt")
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(640, 360)
 
+[connection signal="player_died" from="Ship" to="." method="_on_ship_player_died"]
 [connection signal="timeout" from="AsteroidSpawnTimer" to="." method="_on_asteroid_spawn_timer_timeout"]
 [connection signal="body_entered" from="AreaKillAsteroids" to="." method="_on_area_kill_asteroids_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
