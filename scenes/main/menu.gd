@@ -71,6 +71,7 @@ func unselect_quit():
 
 
 func _ready():
+	Entities.clear()
 	Music.play("menu")
 	unselect_fullscreen()
 	

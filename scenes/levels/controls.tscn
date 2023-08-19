@@ -72,6 +72,13 @@ texture = ExtResource("2_6akbg")
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(528, 512, 448, 640, 384, 640)
 
+[node name="Line2D5" type="Line2D" parent="."]
+points = PackedVector2Array(832, 352, 896, 400, 1048, 400)
+
+[node name="Line2D6" type="Line2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+points = PackedVector2Array(848, 368, 896, 400, 936, 400)
+
 [node name="Line2D2" type="Line2D" parent="."]
 points = PackedVector2Array(736, 512, 800, 640, 864, 640)
 
@@ -121,3 +128,13 @@ autoplay = "enter"
 libraries = {
 "": SubResource("AnimationLibrary_aj5d5")
 }
+
+[node name="Label5" type="Label" parent="."]
+offset_left = 1064.0
+offset_top = 368.0
+offset_right = 1188.0
+offset_bottom = 452.0
+theme_type_variation = &"HeaderLarge"
+text = "hold to
+skip"
+horizontal_alignment = 1
