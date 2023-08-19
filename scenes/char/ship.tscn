@@ -713,7 +713,6 @@ script = ExtResource("1_qdgyp")
 position = Vector2(0, -256)
 ignore_rotation = false
 enabled = false
-zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 rotation_smoothing_enabled = true
