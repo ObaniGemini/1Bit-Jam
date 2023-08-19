@@ -86,10 +86,10 @@ func _on_right_room_destroyed():
 	$screenshake.play("screen_shake")
 	if state == State.DESTROY_ROOMS:
 		state = State.GENERATOR1
-		max_enemies = 2
+		max_enemies = 1
 	else:
 		state = State.GENERATOR2
-		max_enemies = 3
+		max_enemies = 2
 
 
 func _on_left_room_destroyed():
@@ -98,10 +98,10 @@ func _on_left_room_destroyed():
 	$screenshake.play("screen_shake")
 	if state == State.DESTROY_ROOMS:
 		state = State.GENERATOR1
-		max_enemies = 2
+		max_enemies = 1
 	else:
 		state = State.GENERATOR2
-		max_enemies = 3
+		max_enemies = 2
 
 
 func _on_right_generator_destroyed():
@@ -110,10 +110,10 @@ func _on_right_generator_destroyed():
 	$screenshake.play("screen_shake")
 	if state == State.DESTROY_GENERATOR1:
 		state = State.DESTROY_GENERATOR1
-		max_enemies = 4
+		max_enemies = 3
 	else:
 		state = State.DESTROY_REACTOR
-		max_enemies = 5
+		max_enemies = 4
 
 
 func _on_left_generator_destroyed():
@@ -122,10 +122,10 @@ func _on_left_generator_destroyed():
 	$screenshake.play("screen_shake")
 	if state == State.DESTROY_GENERATOR1:
 		state = State.DESTROY_GENERATOR1
-		max_enemies = 4
+		max_enemies = 3
 	else:
 		state = State.DESTROY_REACTOR
-		max_enemies = 5
+		max_enemies = 4
 
 func _on_reactor_destroyed():
 	$end_level.play("end")

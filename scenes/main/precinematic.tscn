@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://h74wo5lj5nml"]
+
+[ext_resource type="Texture2D" uid="uid://guyee1m2fi0f" path="res://gfx/layout.png" id="1_1m0wi"]
+[ext_resource type="Script" path="res://scenes/main/precinematic.gd" id="1_vbgsp"]
+
+[sub_resource type="Animation" id="Animation_n5v8g"]
+resource_name = "anim"
+length = 10.0
+step = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yuxfb"]
+_data = {
+"anim": SubResource("Animation_n5v8g")
+}
+
+[node name="precinematic" type="Node2D"]
+script = ExtResource("1_vbgsp")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_right = 1280.0
+offset_bottom = 720.0
+theme_type_variation = &"HeaderLarge"
+text = "Warning : this game contains flashing lights
+
+We recommend playing this game with a controller
+
+(and with headphones if possible)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+offset_right = 1280.0
+offset_bottom = 488.0
+theme_type_variation = &"HeaderLarge"
+text = "If you can' play with a controller, here's the keyboard layout
+(not recommended)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Label2"]
+position = Vector2(640, 488)
+scale = Vector2(2, 2)
+texture = ExtResource("1_1m0wi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "anim"
+libraries = {
+"": SubResource("AnimationLibrary_yuxfb")
+}

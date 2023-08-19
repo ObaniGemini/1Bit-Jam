@@ -59,3 +59,7 @@ func game_over():
 	level_scene = node
 	Entities.clear()
 	add_child(level_scene)
+
+#func _input(event):
+#	if event.is_action_pressed("ui_end"):
+#		next_level()

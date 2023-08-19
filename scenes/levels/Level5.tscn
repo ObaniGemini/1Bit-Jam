@@ -111,7 +111,8 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_nnpng"]
 resource_name = "ending"
-length = 80.0
+length = 85.0
+step = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -167,10 +168,10 @@ tracks/4/path = NodePath("fg/Label:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 5, 7.5, 75, 80),
+"times": PackedFloat32Array(0, 5, 7.5, 80, 85),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 340), Vector2(0, 340), Vector2(0, 340), Vector2(0, -1864), Vector2(0, -1864)]
+"values": [Vector2(0, 340), Vector2(0, 340), Vector2(0, 340), Vector2(0, -1928), Vector2(0, -1928)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -386,7 +387,7 @@ layer = 5
 visible = false
 offset_top = 340.0
 offset_right = 1280.0
-offset_bottom = 2566.0
+offset_bottom = 2608.0
 theme_type_variation = &"HeaderLarge"
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
@@ -434,6 +435,7 @@ MADE WITHIN A WEEK
 
 FOR THE 1-BIT GAMEJAM
 
+WITH THEME: LIGHT & DARK
 
 
 

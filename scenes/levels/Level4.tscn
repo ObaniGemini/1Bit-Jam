@@ -307,6 +307,7 @@ rotation = 1.5708
 
 [node name="isthisai" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("4_dky8v")
+stream_paused = true
 bus = &"Comms"
 
 [node name="technology" type="AudioStreamPlayer" parent="Sounds"]
@@ -315,6 +316,7 @@ bus = &"Comms"
 
 [node name="dontkill" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("6_0eoxu")
+stream_paused = true
 bus = &"Robot Comms"
 
 [node name="fear" type="AudioStreamPlayer" parent="Sounds"]

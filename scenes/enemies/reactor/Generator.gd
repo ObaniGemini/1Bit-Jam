@@ -5,7 +5,12 @@ var life = 10
 
 signal generator_destroyed
 
+var dead = false
 func destroy():
+	if dead:
+		return
+	
+	dead = true
 	generator_destroyed.emit()
 	var t = get_tree().create_tween()
 	$AudioStreamPlayer2D.stop()

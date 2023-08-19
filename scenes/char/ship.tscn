@@ -15,7 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://2ifp3rlt6gha" path="res://sfx/voices/robot/lowhp3.ogg" id="10_y47ix"]
 [ext_resource type="AudioStream" uid="uid://bo7g8rln5chrg" path="res://sfx/voices/robot/lowhp4.ogg" id="11_bngvs"]
 [ext_resource type="Texture2D" uid="uid://by53edq75c6m5" path="res://gfx/abstract/sphere.png" id="13_gtg6u"]
-[ext_resource type="AudioStream" uid="uid://clhm8fddybn6d" path="res://sfx/enemies/cannon_shoot.ogg" id="16_h3ome"]
+[ext_resource type="AudioStream" uid="uid://dmsyye7nmb31y" path="res://sfx/ship/asteroid_collide1.ogg" id="16_40pcg"]
 
 [sub_resource type="Curve" id="Curve_p7fyh"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.155556, 0.989474), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -697,9 +697,10 @@ _data = {
 "explode": SubResource("Animation_drb8o")
 }
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ibga8"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jpyh5"]
 streams_count = 1
-stream_0/stream = ExtResource("16_h3ome")
+random_pitch = 1.5
+stream_0/stream = ExtResource("16_40pcg")
 stream_0/weight = 1.0
 
 [node name="Ship" type="CharacterBody2D" groups=["player"]]
@@ -989,8 +990,10 @@ libraries = {
 stream = ExtResource("9_m3ett")
 volume_db = -10.0
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource("AudioStreamRandomizer_ibga8")
+[node name="collide" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_jpyh5")
 volume_db = -5.0
+pitch_scale = 1.25
+max_polyphony = 3
 
 [connection signal="timeout" from="UI/health_bar/Timer" to="." method="heatlh_glitch"]

@@ -91,6 +91,7 @@ func destroy():
 func hit(body):
 	if body.is_in_group("player"):
 		body.damage(linear_velocity.distance_to(body.previous_velocity) * prop[asteroid_type]["damage"])
+		body.get_node("collide").play()
 
 func damage(i):
 	health -= i

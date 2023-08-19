@@ -87,6 +87,10 @@ func play():
 	$Play.disable(true)
 	$Fullscreen.hide()
 	$Quit.hide()
+	$shepard.hide()
+	$to.hide()
+	$the.hide()
+	$void.hide()
 	
 	Music.play("wind")
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3mqyfu2srbxu"]
+[gd_scene load_steps=11 format=3 uid="uid://d3mqyfu2srbxu"]
 
 [ext_resource type="Script" path="res://scenes/main/menu.gd" id="1_sqoof"]
 [ext_resource type="PackedScene" uid="uid://b0jj3g077iadv" path="res://scenes/main/main_menu_button.tscn" id="2_6xyls"]
@@ -8,6 +8,75 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_va28y"]
 size = Vector2(320, 320)
+
+[sub_resource type="Animation" id="Animation_vi34x"]
+resource_name = "idle"
+length = 20.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shepard:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10, 20),
+"transitions": PackedFloat32Array(-2, -2, 1),
+"update": 0,
+"values": [-0.0349066, 0.0349066, -0.0349066]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("to:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 6, 20),
+"transitions": PackedFloat32Array(-2, 1, 1),
+"update": 0,
+"values": [0.0, 0.0349066, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("the:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 8.9, 9, 20),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nxlqy"]
+_data = {
+"idle": SubResource("Animation_vi34x")
+}
+
+[sub_resource type="Animation" id="Animation_u3mn5"]
+resource_name = "idle"
+length = 120.0
+loop_mode = 1
+step = 60.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("void:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 120),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lj6yl"]
+_data = {
+"idle": SubResource("Animation_u3mn5")
+}
 
 [node name="Main Menu" type="Node2D"]
 script = ExtResource("1_sqoof")
@@ -94,6 +163,56 @@ scale = Vector2(48, 128)
 texture = ExtResource("5_xrifg")
 centered = false
 offset = Vector2(-0.5, 0)
+
+[node name="shepard" type="Label" parent="."]
+offset_left = 72.0
+offset_top = 56.0
+offset_right = 220.0
+offset_bottom = 98.0
+rotation = -0.0349066
+scale = Vector2(2, 2)
+theme_type_variation = &"HeaderLarge"
+text = "Shepard"
+
+[node name="to" type="Label" parent="."]
+offset_left = 464.0
+offset_top = 64.0
+offset_right = 503.0
+offset_bottom = 106.0
+scale = Vector2(2, 2)
+theme_type_variation = &"HeaderLarge"
+text = "to"
+
+[node name="the" type="Label" parent="."]
+offset_left = 704.0
+offset_top = 32.0
+offset_right = 764.0
+offset_bottom = 74.0
+scale = Vector2(2, 2)
+theme_type_variation = &"HeaderLarge"
+text = "the"
+
+[node name="void" type="Label" parent="."]
+offset_left = 1008.0
+offset_top = 96.0
+offset_right = 1082.0
+offset_bottom = 138.0
+scale = Vector2(2, 2)
+pivot_offset = Vector2(40, 20)
+theme_type_variation = &"HeaderLarge"
+text = "void"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_nxlqy")
+}
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_lj6yl")
+}
 
 [connection signal="selected" from="Play" to="." method="select_play"]
 [connection signal="unselected" from="Play" to="." method="unselect_play"]
