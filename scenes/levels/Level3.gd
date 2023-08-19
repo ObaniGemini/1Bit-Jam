@@ -17,6 +17,8 @@ var spawn_positions = []
 var max_enemies = 0
 
 func _ready():
+	Music.play("level3")
+	
 	$Ship.set_camera_mode($Ship.Camera_Follow)
 	$StaticBody2D.modulate = Color(0, 0, 0)
 	$Reactor.ship = $Ship

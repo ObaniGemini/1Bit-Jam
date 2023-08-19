@@ -6,6 +6,8 @@ const SPEED_SCALE = 8.0
 var spawn_times = 0
 
 func _ready():
+	Music.play("escape")
+	
 	$Ship.set_camera_mode($Ship.Camera_Static)
 	$Ship.arm[$Ship.Arm_Left].toggle_light()
 	$Ship.arm[$Ship.Arm_Right].toggle_light()
@@ -40,6 +42,7 @@ func _on_animation_player_animation_finished(anim_name):
 		print("finish")
 		return
 	
+	Music.play("finish")
 	$AsteroidSpawnTimer.stop()
 	$AnimationPlayer.play("ending")
 	print("You win!")
